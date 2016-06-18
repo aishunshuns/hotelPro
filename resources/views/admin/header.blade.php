@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="div1">
  <head> 
   <meta charset="utf-8" /> 
   <title>控制台 - Bootstrap后台管理系统模版Ace下载</title> 
@@ -161,6 +161,7 @@
     </li>
 	  @endforeach
 	
+
      <!-- /.nav-list --> 
      <div class="sidebar-collapse" id="sidebar-collapse"> 
       <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i> 
@@ -189,28 +190,7 @@
             </div><!-- #nav-search -->
           </div>
 
-          
-          <script>
-            // alert(1);
-            var pathname = window.location.pathname;
-            // alert(pathname);
-            pathname = pathname.substr(1);
-            // alert(pathname);
-            $("li a").each(function() {
 
-            var href = $(this).attr("href");
-            // alert(href);
-            if(pathname == href){
-
-            $(this).parent().parent().parent().addClass("active");
-
-            $(this).parent().addClass("active");
-
-            }
-
-            });
-
-            </script>
             <style>
         body {
           font-family:Arial, Helvetica, sans-serif;
@@ -267,3 +247,26 @@
           text-decoration:none;
           } 
           </style>
+
+
+          <script>
+// alert(1);
+var pathname = window.location.pathname;
+ //alert(pathname);
+pathname = pathname.substr(1);
+ //alert(pathname);
+$("li a").each(function() {
+
+var href = $(this).attr("href");
+//alert(href);
+if(pathname == href){
+
+$(this).parent().parent().parent().addClass("active");
+
+$(this).parent().addClass("active");
+
+}
+
+});
+
+</script>

@@ -61,10 +61,13 @@ Route::get('admin/user_add','admin\UserController@user_add');
 Route::get('admin/user_list','admin\UserController@user_list');
 
 
-//后台酒店列表
+
+//后台酒店管理
 Route::get('admin/hotel_list','admin\HotelController@hotel_list');
-//后台酒店添加
 Route::get('admin/hotel_add','admin\HotelController@hotel_add');
+
+
+
 
 
 //后台户型添加
@@ -98,3 +101,24 @@ Route::get('admin/gift_list','admin\GiftController@gift_list');
 Route::get('admin/cart_list','admin\CartController@cart_list');
 //订单添加
 Route::get('admin/cart_add','admin\CartController@cart_add');
+
+
+//后台网络配置
+//活动
+Route::get('admin/activity','admin\ActivityController@Index');
+Route::post('admin/activityAdd','admin\ActivityController@activityAdd');
+Route::get('admin/activityShow','admin\ActivityController@activityShow');
+Route::get('admin/activityDel','admin\ActivityController@activityDel');
+Route::get('admin/activityUpdate','admin\ActivityController@activityUpdate');
+Route::post('admin/activityUp','admin\ActivityController@activityUp');
+Route::get('admin/activityJson','admin\ActivityController@activityJson');
+Route::get('admin/activitySearch','admin\ActivityController@activitySearch');
+//帮助 
+Route::get('admin/help','admin\HelpController@Index');
+Route::post('admin/helpAdd','admin\HelpController@helpAdd');
+Route::get('admin/helpShow','admin\HelpController@helpShow');
+Route::get('admin/helpUpdate','admin\HelpController@helpUpdate');
+Route::get('admin/helpDel','admin\HelpController@helpDel');
+Route::post('admin/helpUp','admin\HelpController@helpUp');
+Route::get('admin/helpJson','admin\HelpController@helpJson');
+Route::get('admin/helpSearch','admin\HelpController@helpSearch');
