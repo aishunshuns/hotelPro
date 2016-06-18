@@ -1,6 +1,8 @@
 @include('admin/header')
-     <div class="page-content"> 
+  
+     <div class="page-content" > 
       <div class="page-header"> 
+  
        <h1> 用户列表<small> <i class="icon-double-angle-right"></i></small> </h1> 
       </div>
       <!-- /.page-header --> 
@@ -10,45 +12,90 @@
         <div class="row"> 
          <div class="col-xs-12"> 
           <div class="table-responsive"> 
-           <table id="sample-table-1" class="table table-striped table-bordered table-hover"> 
+   
+        
+          
+          <input type="text" id="ser1"/>          
+          <input class="datainp"  type="text" id="ser2" onClick="jeDate({dateCell:'#ser2',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})">
+          <input class="datainp"  type="text" id="ser3" onClick="jeDate({dateCell:'#ser3',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})">
+          <button onclick ="fun1()" style="background:lightblue;color:HeavyBlack" >搜索</button>
+                    
+           <table border="2" width="1000" id="sample-table-1" class="table table-striped table-bordered table-hover"> 
             <thead> 
-             <tr> 
-              <th class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </th> 
-              <th>Domain</th> 
-              <th>Price</th> 
-              <th class="hidden-480">Clicks</th> 
-              <th> <i class="icon-time bigger-110 hidden-480"></i> Update </th> 
-              <th class="hidden-480">Status</th> 
-              <th></th> 
+             <tr align="center"> 
+              <td align="center">礼品名称</td> 
+              <td align="center">礼品图片</td> 
+              <td class="hidden-480" align="center">礼品积分</td> 
+              <td align="center"> <i class="icon-time bigger-110 hidden-480"></i> 开始时间 </td> 
+              <td class="hidden-480" align="center"> <i class="icon-time bigger-110 hidden-480"></i> 结束时间</td> 
+              <td align="center">礼品数量</td> 
+              <td align="center">操作</td>
              </tr> 
             </thead> 
-            <tbody> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">ace.com</a> </td> 
-              <td>$45</td> 
-              <td class="hidden-480">3,330</td> 
-              <td>Feb 12</td> 
-              <td class="hidden-480"> <span class="label label-sm label-warning">Expiring</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
+            <tbody id="div1"> 
+            <?php foreach ($arr['arr'] as $k => $v) {?>
+             <tr>
+              <td align="center"> <a href="#"><?php echo $v['gift_name'] ?></a> </td> 
+              <td align="center"><img src="../<?php echo $v['gift_img'] ?>" width="100" height="80"/></td> 
+              <td class="hidden-480" align="center">
+                <span onclick="fun2(this)"><?php echo $v['gift_integral'] ?></span>
+                <input type="text" style="display:none" onblur="fun3(this)" id="<?php echo $v['gift_id'] ?>" value="<?php echo $v['gift_integral'] ?>"/>
+              
+              </td> 
+              <td align="center"><?php echo $v['gift_start_time'] ?></td> 
+              <td align="center"><?php echo $v['gift_end_time'] ?></td> 
+              <td class="hidden-480" align="center"> <span class="label label-sm label-warning"><?php echo $v['gift_stock'] ?></span> </td>
+               <td align="center">
+                  <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
+                
+                <a href="up?gift_id=<?php echo $v['gift_id'] ?>"><i class="icon-edit bigger-120"></i></a> 
+                <a href="del?gift_id=<?php echo $v['gift_id'] ?>"><i class="icon-trash bigger-120"></i></a>
+                
                </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
+
+               
+
+               </td>
              </tr> 
-             <tr> 
+             <?php } ?>
+
+  <script src="../js/jquery.js"></script>              
+<script type="text/javascript">
+//搜索
+  function fun1(){
+    //alert($)
+    var gift_name=$('#ser1').val();
+    //alert(gift_name);
+    var gift_start_time=$('#ser2').val();
+    var gift_end_time=$('#ser3').val();
+    location.href='giftSer?gift_name='+gift_name+'&gift_start_time='+gift_start_time+'&gift_end_time='+gift_end_time;
+    // $.get('giftSer',{gift_name:gift_name,gift_start_time:gift_start_time,gift_end_time:gift_end_time},function(msg){
+    //   //alert(msg);
+    //     $('#div1').html(msg);
+    // });
+  }
+
+
+  //即点即
+  function fun2(pps){
+    $(pps).css('display','none');
+    $(pps).next().css('display','block');
+
+  }
+
+  function fun3(ppt){
+    var res=$(ppt).val();
+    var id=$(ppt).attr('id');
+    $.get("gift_dian",{"gift_id":id,"gift_integral":res},function(obj){
+      //alert(obj);
+    });
+    $(ppt).prev().html(res);
+    $(ppt).css('display','none');
+    $(ppt).prev().css('display','block');
+  }
+</script>
+
+             <!-- <tr> 
               <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
               <td> <a href="#">base.com</a> </td> 
               <td>$35</td> 
@@ -147,11 +194,16 @@
                  </ul> 
                 </div> 
                </div> </td> 
-             </tr> 
+             </tr>  -->
             </tbody> 
            </table> 
-          </div>
+           <?php echo $arr['arr']->appends(['gift_name'=>$arr['gift_name'],'gift_start_time'=>$arr['gift_start_time'],'gift_end_time'=>$arr['gift_end_time']])->render(); ?>
+            
+
+
+        
           <!-- /.table-responsive --> 
+
          </div>
          <!-- /span --> 
         </div>
@@ -175,6 +227,7 @@
             </div> 
            </div> 
            <div class="modal-body no-padding"> 
+
             <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top"> 
              <thead> 
               <tr> 
@@ -280,17 +333,24 @@
    <!-- /.main-container-inner --> 
    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="icon-double-angle-up icon-only bigger-110"></i> </a> 
   </div>
+
+
+
   <!-- /.main-container --> 
   <!-- basic scripts --> 
   <!--[if !IE]> --> 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> 
+
+  
+
+  
+  
   <!-- <![endif]--> 
   <!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <![endif]--> 
   <!--[if !IE]> --> 
   <script type="text/javascript">
-			window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='../js/jquery.js'>"+"<"+"/script>");
 		</script> 
   <!-- <![endif]--> 
   <!--[if IE]>
@@ -309,6 +369,8 @@
   <!-- ace scripts --> 
   <script src="../assets/js/ace-elements.min.js"></script> 
   <script src="../assets/js/ace.min.js"></script> 
+
+  <script src="../jedate/jedate.min.js"></script>
   <!-- inline scripts related to this page --> 
   <script type="text/javascript">
 			jQuery(function($) {
@@ -348,6 +410,11 @@
 		</script> 
   <div style="display:none">
    <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script>
+
+
   </div>   
  </body>
 </html>
+
+
+

@@ -248,25 +248,20 @@
           } 
           </style>
 
-
+      <!-- gs -->
           <script>
-// alert(1);
-var pathname = window.location.pathname;
- //alert(pathname);
-pathname = pathname.substr(1);
- //alert(pathname);
-$("li a").each(function() {
-
-var href = $(this).attr("href");
-//alert(href);
-if(pathname == href){
-
-$(this).parent().parent().parent().addClass("active");
-
-$(this).parent().addClass("active");
-
-}
-
-});
-
-</script>
+            // alert(1);
+            var pathname = window.location.pathname;
+             //alert(pathname);
+            pathname = pathname.substr(1);
+             //alert(pathname);
+            $("li a").each(function() {
+            var href = $(this).attr("href");
+            //alert(href);
+            if(pathname == href){
+            $(this).parent().parent().parent().addClass("active");
+            $(this).parent().addClass("active");
+            }
+            });
+          </script>
+          <!-- gs -->
