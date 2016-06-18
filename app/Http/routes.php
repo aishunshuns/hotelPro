@@ -94,3 +94,7 @@ Route::get('admin/gift_list','admin\GiftController@gift_list');
 Route::get('admin/cart_list','admin\CartController@cart_list');
 //订单添加
 Route::get('admin/cart_add','admin\CartController@cart_add');
+//订单删除
+Route::get('admin/cart_del','admin\CartController@cart_del');
+//订单搜索
+Route::get('admin/cart_sou','admin\CartController@cart_sou');

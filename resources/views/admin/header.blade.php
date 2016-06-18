@@ -191,7 +191,6 @@
 
     <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 订单管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
-        <li> <a href="{{URL('admin/cart_add')}}"> <i class="icon-double-angle-right"></i> 订单添加</a> </li> 
         <li> <a href="{{URL('admin/cart_list')}}"> <i class="icon-double-angle-right"></i> 订单列表</a> </li> 
        </ul> </li>
 

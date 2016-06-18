@@ -10,129 +10,72 @@
         <div class="row"> 
          <div class="col-xs-12"> 
           <div class="table-responsive"> 
-          搜索：<input type="text" id="user_name">
-          <select id="hotel_id">
-              <option value="">请选择酒店</option>
-              <?php foreach ($hotel as $k => $b) {
-              echo "<option value='".$b['hotel_id']."'>".$b['hotel_name']."</option>";
+          
+           <table id="sample-table-1" class="table table-striped table-bordered table-hover table-center"> 
+           <center>
+                  <tr>
+                      <td>用户名</td>
+                      <td><input type="text" name="user_name"></td>
+                  </tr> 
 
-              }?>
-          </select>
-          <select id="house_id">
-              <option value="">请选择房型</option>
-               <?php foreach ($house as $ke => $a) {
-              echo "<option value='".$a['house_id']."'>".$a['house_name']."</option>";
+                  <tr>
+                      <td>酒店名称</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
 
-              }?>
-          </select>
-          <select id="card_status">
-              <option value="">选择状态</option>
-              <option value="0">未付款</option>
-              <option value="1">已付款</option>
-          </select>
-          <input type="button" onclick="sou()" value="搜索">
-          <br/>&nbsp;
-          <div id="list">
-           <table id="sample-table-1" class="table table-striped table-bordered table-hover"> 
-            <thead> 
-             <tr> 
-              <th class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </th> 
-              <th>用户名</th> 
-              <th>酒店名称</th> 
-              <th>房间类型</th> 
-              <th>酒店介绍</th> 
-              <th>入住时间</th> 
-              <th>离开时间</th> 
-              <th>数量</th> 
-              <th>总价</th> 
-              <th>订单号</th> 
-              <th>联系电话</th> 
-              <th>订单状态</th> 
-              <th>操作</th> 
-             </tr> 
-            </thead> 
-            <tbody> 
-            <?php foreach ($users as $key => $v) {
-    echo "  <tr> 
-              <td class='center'> <label> <input type='checkbox' class='ace' /> <span class='lbl'></span> </label> </td> 
-              <td>".$v['user_name']."</td> 
-              <td>".$v['hotel_name']."</td> 
-              <td>".$v['house_name']."</td> 
-              <td>".$v['card_desc']."</td> 
-              <td>".$v['start_time']."</td> 
-              <td>".$v['end_time']."</td> 
-              <td>".$v['card_num']."</td> 
-              <td>".$v['card_price']."</td> 
-              <td>".$v['card_number']."</td> 
-              <td>".$v['card_phone']."</td> 
-              <td>";
-                if ($v['card_status']==0) {
-                  echo "未付款";
-                } else {
-                  echo "已付款";
-                }
-                
-              echo "</td> 
-              <td> 
-               <div class='visible-md visible-lg hidden-sm hidden-xs btn-group'> 
-               
-                <a href='cart_xiu?id=".$v['card_id']."'><button class='btn btn-xs btn-info'> <i class='icon-edit bigger-120'></i> </button> </a>
-                <a href='cart_del?id=".$v['card_id']."'><button class='btn btn-xs btn-danger'> <i class='icon-trash bigger-120'></i> </button> </a>
-                 
-               </div> 
-               <div class='visible-xs visible-sm hidden-md hidden-lg'> 
-                <div class='inline position-relative'> 
-                 <button class='btn btn-minier btn-primary dropdown-toggle' data-toggle='dropdown'> <i class='icon-cog icon-only bigger-110'></i> </button> 
-                 <ul class='dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close'> 
-                  //<li> <a href='#' class='tooltip-info' data-rel='tooltip' title='View'> <span class='blue'> <i class='icon-zoom-in bigger-120'></i> </span> </a> </li> 
-                  <li> <a href='#' class='tooltip-success' data-rel='tooltip' title='Edit'> <span class='green'> <i class='icon-edit bigger-120'></i> </span> </a> </li> 
-                  <li> <a href='#' class='tooltip-error' data-rel='tooltip' title='Delete'> <span class='red'> <i class='icon-trash bigger-120'></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> ";
-              } ?>
-            </tbody> 
-           </table> 
-           <?php echo $users->render(); ?>
-           </div>
+                  <tr>
+                      <td>房间类型</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  <tr>
+                      <td>酒店介绍</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  <tr>
+                      <td>入住时间</td>
+                      <td><input type="text" name=""></td>
+                  </tr>  
+
+                  <tr>
+                      <td>离开时间</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  <tr>
+                      <td>数量</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  <tr>
+                      <td>总价</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  <tr>
+                      <td>订单号</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  <tr>
+                     <td>联系电话</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  <tr>
+                     <td>订单状态</td>
+                      <td><input type="text" name=""></td>
+                  </tr> 
+
+                  </center>
+            </table> 
+            
           </div>
           <!-- /.table-responsive --> 
          </div>
          <!-- /span --> 
         </div>
-        <script>
-        function sou () {
-            var arry= new Array(); 
-            var user_name=document.getElementById('user_name').value
-            var hotel_id=document.getElementById('hotel_id').value
-            var house_id=document.getElementById('house_id').value
-            var card_status=document.getElementById('card_status').value
-            var where="1";
-            if (user_name!="") {
-                  where= where+" and c.user_name='"+user_name+"'";
-            };
-            if (hotel_id!="") {
-                  where= where+" and d.hotel_id="+hotel_id;
-            };
-            if (house_id!="") {
-                  where= where+" and d.house_id="+house_id;
-            };
-            if (card_status!="") {
-                  where= where+" and d.card_status="+card_status;
-            };
-            //alert(where)
-            var ajax=new XMLHttpRequest()
-            ajax.open('get',"cart_sou?where="+where,true)
-            ajax.send()
-            ajax.onreadystatechange=function () {
-                if (ajax.readyState==4&&ajax.status==200) {
-                  //alert(ajax.responseText)
-                    document.getElementById('list').innerHTML=ajax.responseText;
-                };
-            }
-        }
-        </script>
         <!-- /row --> 
         <div class="hr hr-18 dotted hr-double"></div> 
         <h4 class="pink"> <i class="icon-hand-right icon-animated-hand-pointer blue"></i> <a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a> </h4> 
