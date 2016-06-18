@@ -11,7 +11,7 @@ class HotelController extends Controller
 	//酒店添加页面
 	public function hotel_add()
 	{
-		$arr = DB::table('lat_hotel_type')->get();
+		$arr = DB::table('hotel_type')->get();
 		return view('admin/hotel_add')->with('arr',$arr);
 	}
 
@@ -48,7 +48,7 @@ class HotelController extends Controller
 		$arr['hotel_img'] = $path;
 		//echo $arr['hotel_img'];die;
 		//print_r($arr);die;
-		$res=DB::table('lat_hotel')->insert($arr);
+		$res=DB::table('hotel')->insert($arr);
 		if ($res) {
 			return "<script>alert('添加成功');location.href='admin/hotel_list'</script>" ;
 		}else{
@@ -62,11 +62,11 @@ class HotelController extends Controller
 		$search=isset($_GET['search'])?$_GET['search']:'';
 		//echo $search;
 		if (!empty($search)) {
-			$arr = DB::table('lat_hotel')
+			$arr = DB::table('hotel')
 			->where('hotel_name','like',"%$search%")->get();;
 			
 		}else{
-			$arr = DB::table('lat_hotel')->get();
+			$arr = DB::table('hotel')->get();
 		}
 		
 		//dd($arr);die;
@@ -77,7 +77,7 @@ class HotelController extends Controller
 		}
 		//print_r($data);die;	
 		foreach($data as $v){
-			$local[] = DB::table('lat_region')->whereIn('region_id',$v)->lists('region_name');
+			$local[] = DB::table('region')->whereIn('region_id',$v)->lists('region_name');
 		}
 		//print_r($local);die;
 		foreach($local as $k => $v) {
@@ -108,7 +108,7 @@ class HotelController extends Controller
 	{
 		$id = Request::input('hotel_id');
 		//dd($id);die;
-		$res = DB::table('lat_hotel')->where('hotel_id','=',$id)->delete();
+		$res = DB::table('hotel')->where('hotel_id','=',$id)->delete();
 		if ($res) {
 			return "<script>alert('删除成功');location.href='admin/hotel_list'</script>" ;
 		}else{
@@ -116,28 +116,16 @@ class HotelController extends Controller
 		}
 	}
 
-<<<<<<< HEAD
-	//酒店添加
-	public function hotel_add()
-	{
-		return view('admin/hotel_add');
-	}
-
-	//酒店列表
-	public function hotel_list()
-	{
-		return view('admin/hotel_list');
-=======
 	// 酒店修改页面
 	public function hotelSave()
 	{
 		$id = Request::input('hotel_id');
-		$arr = DB::table('lat_hotel')->where('hotel_id','=',$id)->first();
+		$arr = DB::table('hotel')->where('hotel_id','=',$id)->first();
 		$city = explode(',',$arr['city_id']);
 		$arr['pro'] = $city[0];
 		$arr['city'] = $city[1];
 		$arr['county'] = $city[2];
-		$type = DB::table('lat_hotel_type')->get();
+		$type = DB::table('hotel_type')->get();
 		$arr['type'] = $type;
 		// dd($arr);die;
 		return view('admin.hotel_save')->with('arr',$arr);
@@ -180,12 +168,11 @@ class HotelController extends Controller
 			}
 		}
 		// dd($arr);die;
-		$res=DB::table('lat_hotel')->where('hotel_id',$id)->update($arr);
+		$res=DB::table('hotel')->where('hotel_id',$id)->update($arr);
 		if ($res) {
 			return "<script>alert('修改成功');location.href='admin/hotel_list'</script>" ;
 		}else{
 			return "<script>alert('修改失败');location.href='hotelSave'</script>" ;
 		}
->>>>>>> origin/lyt
 	}
 }

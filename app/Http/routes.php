@@ -46,11 +46,6 @@ Route::get('myGift', 'home\UseraccountController@myGift');
 //礼品商城
 Route::get('Gift', 'home\GiftController@Gift');
 
-
-
-
-
-
 /*后台*/
  
 Route::get('admin/index','admin\AdminController@index');
@@ -58,12 +53,6 @@ Route::get('admin/index','admin\AdminController@index');
 //后台登陆页面
 Route::get('admin', 'admin\LoginController@adminLogin');
 
-//后台用户管理
-Route::get('admin/user_add','admin\UserController@user_add');
-Route::get('admin/user_list','admin\UserController@user_list');
-
-
-<<<<<<< HEAD
 
 //后台酒店管理
 Route::get('admin/hotel_list','admin\HotelController@hotel_list');
@@ -73,7 +62,6 @@ Route::get('admin/hotel_add','admin\HotelController@hotel_add');
 
 
 
-=======
 /***
  *
  *后台酒店管理系统
@@ -97,7 +85,6 @@ Route::post('hotelUpdate','admin\HotelController@hotelUpdate');
  *后台酒店户型管理系统
  *
  */
->>>>>>> origin/lyt
 //后台户型添加
 Route::get('admin/house_add','admin\HouseController@house_add');
 //后台户型列表
@@ -109,7 +96,7 @@ Route::get('houseDel','admin\HouseController@houseDel');
 // 后台酒店户型修改页面
 Route::get('houseSave','admin\HouseController@houseSave');
 // 后台酒店户型修改操作
-Route::post('houseUpdate','admin\HouseController@houseUpdate');
+Route::any('houseUpdate','admin\HouseController@houseUpdate');
 
 
 //后台地区添加
@@ -156,7 +143,7 @@ Route::get('admin/cart_add','admin\CartController@cart_add');
 //后台网络配置
 //活动
 Route::get('admin/activity','admin\ActivityController@Index');
-Route::post('admin/activityAdd','admin\ActivityController@activityAdd');
+Route::any('admin/activityAdd','admin\ActivityController@activityAdd');
 Route::get('admin/activityShow','admin\ActivityController@activityShow');
 Route::get('admin/activityDel','admin\ActivityController@activityDel');
 Route::get('admin/activityUpdate','admin\ActivityController@activityUpdate');
