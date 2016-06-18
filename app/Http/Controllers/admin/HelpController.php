@@ -7,7 +7,7 @@ class HelpController extends Controller{
 	//活动添加展示
 	public function Index()
 	{	
-		$res=DB::table('lat_hotel')->get();
+		$res=DB::table('hotel')->get();
 		return view('admin.helpform')->with('res',$res);
 	}
 
@@ -52,7 +52,7 @@ class HelpController extends Controller{
 			$arr['help_img']= $path;
 		}
 		
-		$res=DB::table('lat_help')->insert($arr);
+		$res=DB::table('help')->insert($arr);
 		if ($res) {
 			return "<script>alert('添加成功');location.href='helpShow'</script>" ;
 		}else{
@@ -65,8 +65,8 @@ class HelpController extends Controller{
     public function helpShow()
     {	
     	
-    	$arr['arr']=DB::table('lat_help')
-				    	->join('lat_hotel', 'lat_help.hotel_id', '=', 'lat_hotel.hotel_id')
+    	$arr['arr']=DB::table('help')
+				    	->join('hotel', 'help.hotel_id', '=', 'hotel.hotel_id')
 				    	->paginate(2);
     	$arr['search']='';	
     	$hotel_name='';
@@ -77,7 +77,7 @@ class HelpController extends Controller{
     public function helpDel()
     {
     	$id=$_GET['id'];
-    	$res=DB::table('lat_help')->where('help_id','=',$id)->delete();
+    	$res=DB::table('help')->where('help_id','=',$id)->delete();
     	if ($res) {
 			return "<script>alert('删除成功');location.href='helpShow'</script>" ;
 		}else{
@@ -89,8 +89,8 @@ class HelpController extends Controller{
     public function helpUpdate()
     {
     	$id=$_GET['id'];
-    	$arr=DB::table('lat_hotel')->get();
-    	$res=DB::table('lat_help')->where('help_id','=',$id)->first();
+    	$arr=DB::table('hotel')->get();
+    	$res=DB::table('help')->where('help_id','=',$id)->first();
     	//print_r($res);die;
     	return view('admin.helpupdate')->with('v',$res)->with('res',$arr);
     }
@@ -126,7 +126,7 @@ class HelpController extends Controller{
 			$arr['help_img']= $path;
 		}	
 		
-		$res=DB::table('lat_help')
+		$res=DB::table('help')
             ->where('help_id',$arr['help_id'])
             ->update($arr);
          if ($res) {
@@ -140,7 +140,7 @@ class HelpController extends Controller{
     public function helpJson()
     {
     	$arr=Request::all();
-    	$res=DB::table('lat_help')->where('help_id',$arr['help_id'])->update($arr);
+    	$res=DB::table('help')->where('help_id',$arr['help_id'])->update($arr);
     }
 
     //活动搜索
@@ -150,18 +150,18 @@ class HelpController extends Controller{
     	$hotel_name=isset($_GET['hotel_name'])?$_GET['hotel_name']:'';
     	//echo $search;die;
     	if (!empty($search)&&empty($hotel_name)) {
-    		$arr['arr']=DB::table('lat_help')
-    						->join('lat_hotel', 'lat_help.hotel_id', '=', 'lat_hotel.hotel_id')
+    		$arr['arr']=DB::table('help')
+    						->join('hotel', 'help.hotel_id', '=', 'hotel.hotel_id')
 				    		->where('help_desc','like',"%$search%")
 				    		->paginate(2);
     	}elseif(empty($search) && !empty($hotel_name)) {
-    		$arr['arr']=DB::table('lat_help')
-    						->join('lat_hotel', 'lat_help.hotel_id', '=', 'lat_hotel.hotel_id')
+    		$arr['arr']=DB::table('help')
+    						->join('hotel', 'help.hotel_id', '=', 'hotel.hotel_id')
 				    		->where('hotel_name','like',"%$hotel_name%")
 				    		->paginate(2);
     	}elseif(!empty($search)&&!empty($hotel_name)) {
-    		$arr['arr']=DB::table('lat_help')
-    						->join('lat_hotel', 'lat_help.hotel_id', '=', 'lat_hotel.hotel_id')
+    		$arr['arr']=DB::table('help')
+    						->join('hotel', 'help.hotel_id', '=', 'hotel.hotel_id')
 				    		->where('hotel_name','like',"%$hotel_name%")
 				    		->where('help_desc','like',"%$search%")
 				    		->paginate(2);

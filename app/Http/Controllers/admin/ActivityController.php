@@ -53,11 +53,11 @@ class ActivityController extends Controller{
 		$arr['act_img']= $path;
 		$arr['act_end_time']=strtotime($arr['act_end_time']);
 		//print_r($arr);die;
-		$res=DB::table('lat_activity')->insert($arr);
+		$res=DB::table('activity')->insert($arr);
 		if ($res) {
 			return "<script>alert('添加成功');location.href='activityShow'</script>" ;
 		}else{
-			return "<script>alert('添加失败');location.href='activity'</script>" ;
+			return "<script>alert('添加失败');ocation.href='activity'</script>" ;
 		}
 	    
     }
@@ -66,7 +66,7 @@ class ActivityController extends Controller{
     public function activityShow()
     {	
     	
-    	$arr['arr']=DB::table('lat_activity')->paginate(2);
+    	$arr['arr']=DB::table('activity')->paginate(2);
     	$arr['search']='';
 		$arr['act_start_time']='';
 		$arr['act_end_time']='';   
@@ -78,7 +78,7 @@ class ActivityController extends Controller{
     public function activityDel()
     {
     	$id=$_GET['id'];
-    	$res=DB::table('lat_activity')->where('act_id','=',$id)->delete();
+    	$res=DB::table('activity')->where('act_id','=',$id)->delete();
     	if ($res) {
 			return "<script>alert('删除成功');location.href='activityShow'</script>" ;
 		}else{
@@ -90,7 +90,7 @@ class ActivityController extends Controller{
     public function activityUpdate()
     {
     	$id=$_GET['id'];
-    	$res=DB::table('lat_activity')->where('act_id','=',$id)->first();
+    	$res=DB::table('activity')->where('act_id','=',$id)->first();
     	//print_r($res);
     	return view('admin.activityupdate')->with('v',$res);
     }
@@ -124,7 +124,7 @@ class ActivityController extends Controller{
 		$arr['act_start_time']=strtotime($arr['act_start_time']);
 		$arr['act_img']= "http://www.gridinn.com/photos/201404/3.jpg";
 		$arr['act_end_time']=strtotime($arr['act_end_time']);
-		$res=DB::table('lat_activity')
+		$res=DB::table('activity')
             ->where('act_id',$arr['act_id'])
             ->update($arr);
          if ($res) {
@@ -138,7 +138,7 @@ class ActivityController extends Controller{
     public function activityJson()
     {
     	$arr=Request::all();
-    	$res=DB::table('lat_activity')->where('act_id',$arr['act_id'])->update($arr);
+    	$res=DB::table('activity')->where('act_id',$arr['act_id'])->update($arr);
     }
 
     //活动搜索
@@ -151,14 +151,14 @@ class ActivityController extends Controller{
     	$act_start_time=strtotime($act_start_time);
     	$act_end_time=strtotime($act_end_time);
     	if (!empty($search)&&empty($act_end_time)&&empty($act_start_time)) {
-    		$arr['arr']=DB::table('lat_activity')->where('act_name','like',"%$search%")->paginate(2);
+    		$arr['arr']=DB::table('activity')->where('act_name','like',"%$search%")->paginate(2);
     	}elseif(empty($search)&&!empty($act_end_time)&&!empty($act_start_time)){
-    		$arr['arr']=DB::table('lat_activity')
+    		$arr['arr']=DB::table('activity')
     					->where('act_start_time','<=',$act_start_time)
     					->where('act_end_time','>=',$act_end_time)
     					->paginate(2);
     	}elseif(!empty($search)&&!empty($act_end_time)&&!empty($act_start_time)){
-    		$arr['arr']=DB::table('lat_activity')
+    		$arr['arr']=DB::table('activity')
     					->where('act_name','like',"%$search%")
     					->where('act_start_time','<=',$act_start_time)
     					->where('act_end_time','>=',$act_end_time)

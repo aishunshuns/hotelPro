@@ -187,7 +187,7 @@
       //用户名验证
       function fun(){
         var name = $('input[name=privilege_name]').val();
-        var url = "/admin/power_add";
+        var url = "{{url('admin/power_add')}}";
         var data = {act:'formCheck', name:name};
         if (name == '') {
           $('input[name=check]').val('false');
@@ -217,7 +217,7 @@
             return false;
           }
         } else {
-          var reg = /^(\/)*[a-z]*(\/)*[a-z]*_[a-z]*(\/)*[a-z]*$/i;
+          var reg = /^[a-z]*(\/)[a-z]*_[a-z]*$/i;
           if (reg.test(route)) {
             $('#spans').text('√');
             return true;
@@ -230,17 +230,18 @@
       
       //提交验证
       function funSubmit(){
+		  return true;
         var check = $('input[name=check]').val();
-        // alert(check)
+        alert(check)
         if (check != "no") {
-          if ((check == 'true')&fun1()) {
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          fun();
-          return false;
+         if ((check == 'true')&fun1()) {
+           return true;
+         } else {
+           return false;
+         }
+       } else {
+         fun();
+         return false;
         }
       }
 

@@ -155,7 +155,7 @@
     <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> {{$val['parent']}} </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
        @foreach($val['son'] as $k => $v)
-        <li> <a href="{{$v['privilege_route']}}"> <i class="icon-double-angle-right"></i> {{$v['privilege_name']}}</a> </li> 
+        <li> <a href="{{url($v['privilege_route'])}}"> <i class="icon-double-angle-right"></i> {{$v['privilege_name']}}</a> </li> 
         @endforeach
        </ul> 
     </li>

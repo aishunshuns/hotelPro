@@ -84,7 +84,7 @@
               var new_name = input.val();
               // alert(new_name)
               if (new_name != name) {
-                var url = "/admin/role_list";
+                var url = "{{url('admin/role_list')}}";
                 var data = {act:'checkSave', name:new_name, id:id}
                 $.get(url, data, function(e){
                   if (e == 'false') {
@@ -115,7 +115,7 @@
           $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: '/admin/role_list',
+            url: "{{url('admin/role_list')}}",
             data: { act : 'role_user_select',id : id},
             
             success: function(data){
@@ -155,7 +155,7 @@
              val.push($(this).val()); 
             });
             // alert(val)
-            var url = '/admin/role_list';
+            var url = "{{url('admin/role_list')}}";
             var data =  {act:'role_user_add',user_id:val,id:id};
             $.get(url,data,function(e){
               if (e == 'true') {
@@ -167,7 +167,7 @@
           //删除角色
           function role_del(id){
             var data = {act:'role_del',id:id};
-            var url = "role_list";
+            var url = "{{url('admin/role_list')}}";
             $.get(url,data,function(e){
               if (e == 'true') {
                 $('#tr_'+id).remove();
@@ -183,7 +183,7 @@
           //删除角色及角色与用户关联表
           function role_del_ok(id){
             var data = {act:'role_del_ok',id:id};
-            var url = "role_list";
+            var url = "{{url('admin/role_list')}}";
             $.get(url,data,function(e){
               $('#tr_'+id).remove();
               alert('删除成功');

@@ -222,7 +222,7 @@
       var bw = $("body").width();   
 
        //权限分配角色
-        var url = "power_list";
+        var url = "{{url('admin/power_list')}}";
         var data = {act:'power_role', id:id};
         $.get(url,data,function(data){
           if (data == '0') {
@@ -268,7 +268,7 @@
          val.push($(this).val()); 
         });
         // alert(val)
-        var url = '/admin/power_list';
+        var url = "{{url('admin/power_list')}}";
         var data =  {act:'role_privilege_add',role_id:val,id:id};
         // alert(data)
         $.get(url,data,function(e){

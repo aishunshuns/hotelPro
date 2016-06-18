@@ -12,7 +12,7 @@ class GiftController extends Controller{
 	public function gift_list()
 	{
 		//查询礼品信息
-		$res['arr']=DB::table('lat_gift')->paginate(3);
+		$res['arr']=DB::table('gift')->paginate(3);
 		//print_r($res);
 		$res['gift_name']='';
 		$res['gift_start_time']='';
@@ -84,7 +84,7 @@ class GiftController extends Controller{
 
     	}else{
     	
-    	$res=DB::table('lat_gift')->insert(array(
+    	$res=DB::table('gift')->insert(array(
 			'gift_name'=>$data['gift_name'],
 			'gift_img'=>$path,
 			'gift_integral'=>$data['gift_integral'],
@@ -111,7 +111,7 @@ class GiftController extends Controller{
 	{
 		$gift_id=$_GET['gift_id'];
 		//print_r($res);die;
-		DB::table('lat_gift')->where('gift_id',$gift_id)->delete();
+		DB::table('gift')->where('gift_id',$gift_id)->delete();
 		return Redirect('admin/gift_list');
 	}
 
@@ -124,7 +124,7 @@ class GiftController extends Controller{
 	public function up()
 	{
 		$gift_id=$_GET['gift_id'];
-		$re=DB::table('lat_gift')->where('gift_id',$gift_id)->first();
+		$re=DB::table('gift')->where('gift_id',$gift_id)->first();
 		return view('admin/gift_update',['arr'=>$re]);
 	}
 
@@ -137,7 +137,7 @@ class GiftController extends Controller{
 	 public function gift_up()
 	 {
 	 	$data=Request::all();
-	 	DB::table('lat_gift')->where('gift_id',$data['gift_id'])->update(array(
+	 	DB::table('gift')->where('gift_id',$data['gift_id'])->update(array(
 	 		'gift_name'=>$data['gift_name'],
 			'gift_img'=>$data['gift_img'],
 			'gift_integral'=>$data['gift_integral'],
@@ -179,15 +179,15 @@ class GiftController extends Controller{
 
 
 	 	elseif(!empty($gift_name)&&empty($gift_start_time)&&empty($gift_end_time)){
-	 		$res['arr']=DB::table('lat_gift')->where('gift_name', 'like',"%$gift_name%")->paginate(2);
+	 		$res['arr']=DB::table('gift')->where('gift_name', 'like',"%$gift_name%")->paginate(2);
 	 	}
 	 	elseif(empty($gift_name)&&!empty($gift_start_time)&&!empty($gift_end_time)){
-	 		$res['arr']=DB::table('lat_gift')->where('gift_start_time','<=',$gift_start_time)->where('gift_end_time','>=',$gift_start_time)->paginate(2);
+	 		$res['arr']=DB::table('gift')->where('gift_start_time','<=',$gift_start_time)->where('gift_end_time','>=',$gift_start_time)->paginate(2);
 
 	 	}
 	 	
 	 	elseif(!empty($gift_name)&&!empty($gift_start_time)&&!empty($gift_end_time)){
-	 	$res['arr']=DB::table('lat_gift')->where('gift_name','like',"%$gift_name%")->where('gift_start_time','<=',$gift_start_time)->where('gift_end_time','>=',$gift_start_time)->paginate(2);
+	 	$res['arr']=DB::table('gift')->where('gift_name','like',"%$gift_name%")->where('gift_start_time','<=',$gift_start_time)->where('gift_end_time','>=',$gift_start_time)->paginate(2);
 	 	}
 	 	$res['gift_name']=$gift_name;
 	 	$res['gift_start_time']=$gift_start_time;
