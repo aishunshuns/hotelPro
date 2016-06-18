@@ -151,51 +151,16 @@
      <!-- #sidebar-shortcuts --> 
      <ul class="nav nav-list"> 
       <li class="active"> <a href="{{URL('admin/index')}}"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li> 
-
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    @foreach($dataLeft as $key => $val)
+    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> {{$val['parent']}} </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
-        <li> <a href="{{URL('admin/user_add')}}"> <i class="icon-double-angle-right"></i> 用户添加</a> </li> 
-        <li> <a href="{{URL('admin/user_list')}}"> <i class="icon-double-angle-right"></i> 用户列表</a> </li> 
-       </ul> </li>
+       @foreach($val['son'] as $k => $v)
+        <li> <a href="{{$v['privilege_route']}}"> <i class="icon-double-angle-right"></i> {{$v['privilege_name']}}</a> </li> 
+        @endforeach
+       </ul> 
+    </li>
+	  @endforeach
 	
-	<li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 酒店管理 </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
-        <li> <a href="{{URL('admin/hotel_add')}}"> <i class="icon-double-angle-right"></i> 酒店添加</a> </li> 
-        <li> <a href="{{URL('admin/hotel_list')}}"> <i class="icon-double-angle-right"></i> 酒店列表</a> </li> 
-       </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 户型管理 </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
-        <li> <a href="{{URL('admin/house_add')}}"> <i class="icon-double-angle-right"></i> 户型添加</a> </li> 
-        <li> <a href="{{URL('admin/house_list')}}"> <i class="icon-double-angle-right"></i>户型列表</a> </li> 
-       </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 地区管理 </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
-        <li> <a href="{{URL('admin/address_add')}}"> <i class="icon-double-angle-right"></i> 地区添加</a> </li> 
-        <li> <a href="{{URL('admin/address_list')}}"> <i class="icon-double-angle-right"></i> 地区列表</a> </li> 
-       </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 权限管理 </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
-        <li> <a href="{{URL('admin/power_add')}}"> <i class="icon-double-angle-right"></i> 权限添加</a> </li> 
-        <li> <a href="{{URL('admin/power_list')}}"> <i class="icon-double-angle-right"></i> 权限列表</a> </li> 
-       </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 网站配置 </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
-        <li> <a href="tables.html"> <i class="icon-double-angle-right"></i> 活动</a> </li> 
-        <li> <a href="jqgrid.html"> <i class="icon-double-angle-right"></i> 帮助</a> </li> 
-       </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 礼品管理 </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
-        <li> <a href="{{URL('admin/gift_add')}}"> <i class="icon-double-angle-right"></i> 礼品添加</a> </li> 
-        <li> <a href="{{URL('admin/gift_list')}}"> <i class="icon-double-angle-right"></i> 礼品列表</a> </li> 
-       </ul> </li>
-
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 订单管理 </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
-        <li> <a href="{{URL('admin/cart_add')}}"> <i class="icon-double-angle-right"></i> 订单添加</a> </li> 
-        <li> <a href="{{URL('admin/cart_list')}}"> <i class="icon-double-angle-right"></i> 订单列表</a> </li> 
-       </ul> </li>
-
-     </ul>
      <!-- /.nav-list --> 
      <div class="sidebar-collapse" id="sidebar-collapse"> 
       <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i> 
@@ -223,3 +188,82 @@
               </form>
             </div><!-- #nav-search -->
           </div>
+
+          
+          <script>
+            // alert(1);
+            var pathname = window.location.pathname;
+            // alert(pathname);
+            pathname = pathname.substr(1);
+            // alert(pathname);
+            $("li a").each(function() {
+
+            var href = $(this).attr("href");
+            // alert(href);
+            if(pathname == href){
+
+            $(this).parent().parent().parent().addClass("active");
+
+            $(this).parent().addClass("active");
+
+            }
+
+            });
+
+            </script>
+            <style>
+        body {
+          font-family:Arial, Helvetica, sans-serif;
+          font-size:12px;
+          margin:0;
+          }
+          #main {
+          height:1800px;
+          padding-top:90px;
+          text-align:center;
+          }
+          .col-md-offset-3{
+            padding-top:45px;
+            padding-left:45px;
+          }
+          #fullbg {
+          background-color:gray;
+          left:0;
+          opacity:0.5;
+          position:absolute;
+          top:0;
+          z-index:3;
+          filter:alpha(opacity=50);
+          -moz-opacity:0.5;
+          -khtml-opacity:0.5;
+          }
+          #dialog {
+          background-color:#fff;
+          border:5px solid rgba(0,0,0, 0.4);
+          height:400px;
+          left:50%;
+          margin:-200px 0 0 -200px;
+          padding:1px;
+          position:fixed !important; /* 浮动对话框 */
+          position:absolute;
+          top:50%;
+          width:400px;
+          z-index:5;
+          border-radius:5px;
+          display:none;
+          }
+          #dialog p {
+          margin:0 0 12px;
+          height:24px;
+          line-height:24px;
+          background:#CCCCCC;
+          }
+          #dialog p.close {
+          text-align:right;
+          padding-right:10px;
+          }
+          #dialog p.close a {
+          color:#fff;
+          text-decoration:none;
+          } 
+          </style>

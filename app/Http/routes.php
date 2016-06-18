@@ -79,9 +79,13 @@ Route::get('admin/address_add','admin\AddressController@address_add');
 Route::get('admin/address_list','admin\AddressController@address_list');
 
 //后台权限添加
-Route::get('admin/power_add','admin\PowerController@power_add');
+Route::any('admin/power_add','admin\PowerController@power_add');
 //后台权限列表
 Route::get('admin/power_list','admin\PowerController@power_list');
+//后台角色添加
+Route::any('admin/role_add','admin\PowerController@role_add');
+//后台角色列表
+Route::any('admin/role_list','admin\PowerController@role_list');
 
 
 //后台礼物添加
