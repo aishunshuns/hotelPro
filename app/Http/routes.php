@@ -63,6 +63,7 @@ Route::get('admin/user_add','admin\UserController@user_add');
 Route::get('admin/user_list','admin\UserController@user_list');
 
 
+<<<<<<< HEAD
 
 //后台酒店管理
 Route::get('admin/hotel_list','admin\HotelController@hotel_list');
@@ -72,10 +73,43 @@ Route::get('admin/hotel_add','admin\HotelController@hotel_add');
 
 
 
+=======
+/***
+ *
+ *后台酒店管理系统
+ *
+ */
+// 后台酒店展示页面
+Route::get('admin/hotel_list','admin\HotelController@hotelList');
+// 后台酒店添加页面
+Route::get('admin/hotel_add','admin\HotelController@hotel_add');
+// 后台酒店添加操作
+Route::post('hotelAdd','admin\HotelController@hotelAdd');
+// 后台酒店删除操作
+Route::get('hotelDel','admin\HotelController@hotelDel');
+// 后台酒店修改页面
+Route::get('hotelSave','admin\HotelController@hotelSave');
+// 后台酒店修改操作
+Route::post('hotelUpdate','admin\HotelController@hotelUpdate');
+
+/***
+ *
+ *后台酒店户型管理系统
+ *
+ */
+>>>>>>> origin/lyt
 //后台户型添加
 Route::get('admin/house_add','admin\HouseController@house_add');
 //后台户型列表
 Route::get('admin/house_list','admin\HouseController@house_list');
+// 后台酒店户型添加操作
+Route::post('houseAdd','admin\HouseController@houseAdd');
+// 后台酒店户型删除操作
+Route::get('houseDel','admin\HouseController@houseDel');
+// 后台酒店户型修改页面
+Route::get('houseSave','admin\HouseController@houseSave');
+// 后台酒店户型修改操作
+Route::post('houseUpdate','admin\HouseController@houseUpdate');
 
 
 //后台地区添加
