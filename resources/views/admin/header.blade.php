@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="div1">
  <head> 
   <meta charset="utf-8" /> 
   <title>控制台 - Bootstrap后台管理系统模版Ace下载</title> 
@@ -19,12 +19,15 @@
   <link rel="stylesheet" href="../assets/css/ace.min.css" /> 
   <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" /> 
   <link rel="stylesheet" href="../assets/css/ace-skins.min.css" /> 
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" /> 
+   <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
   <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="../assets/css/ace-ie.min.css" />
 		<![endif]--> 
   <!-- inline styles related to this page --> 
   <!-- ace settings handler --> 
   <script src="../assets/js/ace-extra.min.js"></script> 
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --> 
   <!--[if lt IE 9]>
 		<script src="../assets/js/html5shiv.js"></script>
@@ -158,12 +161,12 @@
         <li> <a href="{{URL('admin/user_list')}}"> <i class="icon-double-angle-right"></i> 用户列表</a> </li> 
        </ul> </li>
 	
-	<li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 酒店管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+	<li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 酒店管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/hotel_add')}}"> <i class="icon-double-angle-right"></i> 酒店添加</a> </li> 
         <li> <a href="{{URL('admin/hotel_list')}}"> <i class="icon-double-angle-right"></i> 酒店列表</a> </li> 
        </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 户型管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 户型管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/house_add')}}"> <i class="icon-double-angle-right"></i> 户型添加</a> </li> 
         <li> <a href="{{URL('admin/house_list')}}"> <i class="icon-double-angle-right"></i>户型列表</a> </li> 
@@ -223,3 +226,24 @@
               </form>
             </div><!-- #nav-search -->
           </div>
+          <script>
+              // alert(1);
+              var pathname = window.location.pathname;
+              // alert(pathname);
+              pathname = pathname.substr(1);
+              // alert(pathname);
+              $("li a").each(function() {
+
+              var href = $(this).attr("href");
+                // alert(href);
+                if(pathname == href){
+
+                $(this).parent().parent().parent().addClass("active");
+
+                $(this).parent().addClass("active");
+
+               }
+
+              });
+
+          </script>
