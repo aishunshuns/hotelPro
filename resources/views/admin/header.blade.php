@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="div1">
  <head> 
   <meta charset="utf-8" /> 
   <title>控制台 - Bootstrap后台管理系统模版Ace下载</title> 
@@ -183,7 +183,7 @@
         <li> <a href="tables.html"> <i class="icon-double-angle-right"></i> 活动</a> </li> 
         <li> <a href="jqgrid.html"> <i class="icon-double-angle-right"></i> 帮助</a> </li> 
        </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 礼品管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 礼品管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/gift_add')}}"> <i class="icon-double-angle-right"></i> 礼品添加</a> </li> 
         <li> <a href="{{URL('admin/gift_list')}}"> <i class="icon-double-angle-right"></i> 礼品列表</a> </li> 
@@ -223,3 +223,26 @@
               </form>
             </div><!-- #nav-search -->
           </div>
+
+
+          <script>
+// alert(1);
+var pathname = window.location.pathname;
+// alert(pathname);
+pathname = pathname.substr(1);
+// alert(pathname);
+$("li a").each(function() {
+
+var href = $(this).attr("href");
+// alert(href);
+if(pathname == href){
+
+$(this).parent().parent().parent().addClass("active");
+
+$(this).parent().addClass("active");
+
+}
+
+});
+
+</script>

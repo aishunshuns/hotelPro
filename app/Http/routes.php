@@ -50,7 +50,9 @@ Route::get('Gift', 'home\GiftController@Gift');
 
 
 
-//后台
+
+/*后台*/
+ 
 Route::get('admin/index','admin\AdminController@index');
 
 //后台登陆页面
@@ -84,10 +86,24 @@ Route::get('admin/power_add','admin\PowerController@power_add');
 Route::get('admin/power_list','admin\PowerController@power_list');
 
 
-//后台礼物添加
+
+//加载后台礼物添加页面
 Route::get('admin/gift_add','admin\GiftController@gift_add');
-//后台礼物列表
+//加载后台礼物列表页面
 Route::get('admin/gift_list','admin\GiftController@gift_list');
+//后台礼品添加
+Route::post('admin/gift_addpro','admin\GiftController@gift_addpro');
+//后台礼品删除
+Route::get('admin/del','admin\GiftController@del');
+//后台礼品编辑查询
+Route::get('admin/up','admin\GiftController@up');
+//后台礼品编辑
+Route::post('admin/gift_up','admin\GiftController@gift_up');
+//后台礼品搜索
+Route::get('admin/giftSer','admin\GiftController@giftSer');
+//后台投票即点即改
+Route::get('admin/gift_dian','admin\GiftController@gift_dian');
+
 
 
 //订单列表
