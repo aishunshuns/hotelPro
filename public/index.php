@@ -6,11 +6,9 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
-<<<<<<< HEAD
+
 header('content-type:text/html;charset=utf8');
-=======
-header('content-type:text/html;charset=utf-8');
->>>>>>> origin/lyt
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
