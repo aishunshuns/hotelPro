@@ -32,8 +32,10 @@ Route::get('News', 'home\ActivityController@News');
 
 //注册及登陆路由
 Route::get('Register', 'home\RegisterController@Register');
+Route::get('register_shu', 'home\RegisterController@Register_shu');
+Route::post('register_add', 'home\RegisterController@Register_add');
 Route::get('Login', 'home\RegisterController@Login');
-
+Route::post('Login_yz', 'home\RegisterController@Login_yz');
 
 //我的订单
 Route::get('myOrder', 'home\MyorderController@myOrder');
@@ -55,11 +57,23 @@ Route::get('admin/index','admin\AdminController@index');
 
 //后台登陆页面
 Route::get('admin', 'admin\LoginController@adminLogin');
+Route::post('admin/login_yz','admin\LoginController@login_yz');
+
+//邮件找回密码
+Route::post('admin/email','admin\LoginController@email');
+
 
 //后台用户管理
 Route::get('admin/user_add','admin\UserController@user_add');
+Route::post('admin/user_addpro','admin\UserController@user_addpro');
 Route::get('admin/user_list','admin\UserController@user_list');
+Route::get('admin/del','admin\UserController@user_del');
+Route::get('admin/upd','admin\UserController@user_upd');
+Route::get('/admin/user_search','admin\UserController@user_search');
 
+
+//后台用户管理分页
+Route::get('admin/user_lista','admin\UserController@user_lista');
 
 //后台酒店列表
 Route::get('admin/hotel_list','admin\HotelController@hotel_list');
@@ -82,6 +96,7 @@ Route::get('admin/address_list','admin\AddressController@address_list');
 Route::get('admin/power_add','admin\PowerController@power_add');
 //后台权限列表
 Route::get('admin/power_list','admin\PowerController@power_list');
+
 
 
 //后台礼物添加

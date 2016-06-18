@@ -110,12 +110,12 @@
         <li> <a href="#"> <img src="../assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" /> <span class="msg-body"> <span class="msg-title"> <span class="blue">Bob:</span> 到底是不是英文 ... </span> <span class="msg-time"> <i class="icon-time"></i> <span>下午3:15</span> </span> </span> </a> </li> 
         <li> <a href="inbox.html"> 查看所有消息 <i class="icon-arrow-right"></i> </a> </li> 
        </ul> </li> 
-      <li class="light-blue"> <a data-toggle="dropdown" href="#" class="dropdown-toggle"> <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> <span class="user-info"> <small>欢迎光临,</small> Jason </span> <i class="icon-caret-down"></i> </a> 
+      <li class="light-blue"> <a data-toggle="dropdown" href="#" class="dropdown-toggle"> <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> <span class="user-info"> <small>欢迎光临,</small><?php echo session('user_name') ?></span> <i class="icon-caret-down"></i> </a> 
        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close"> 
         <li> <a href="#"> <i class="icon-cog"></i> 设置 </a> </li> 
         <li> <a href="#"> <i class="icon-user"></i> 个人资料 </a> </li> 
         <li class="divider"></li> 
-        <li> <a href="#"> <i class="icon-off"></i> 退出 </a> </li> 
+        <li> <a href="/admin"> <i class="icon-off"></i> 退出 </a> </li> 
        </ul> </li> 
      </ul>
      <!-- /.ace-nav --> 
@@ -152,7 +152,7 @@
      <ul class="nav nav-list"> 
       <li class="active"> <a href="{{URL('admin/index')}}"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li> 
 
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li> <a href="" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/user_add')}}"> <i class="icon-double-angle-right"></i> 用户添加</a> </li> 
         <li> <a href="{{URL('admin/user_list')}}"> <i class="icon-double-angle-right"></i> 用户列表</a> </li> 

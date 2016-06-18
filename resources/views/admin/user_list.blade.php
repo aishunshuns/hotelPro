@@ -1,7 +1,64 @@
+
 @include('admin/header')
+<html id="list1">
+      <style>
+          
+body {
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+margin:0;
+}
+#main {
+height:1800px;
+padding-top:90px;
+text-align:center;
+}
+#fullbg {
+background-color:gray;
+left:0;
+opacity:0.5;
+position:absolute;
+top:0;
+z-index:3;
+filter:alpha(opacity=50);
+-moz-opacity:0.5;
+-khtml-opacity:0.5;
+}
+#dialog {
+background-color:#fff;
+border:5px solid rgba(0,0,0, 0.4);
+height:400px;
+left:50%;
+margin:-200px 0 0 -200px;
+padding:1px;
+position:fixed !important; /* 浮动对话框 */
+position:absolute;
+top:50%;
+width:400px;
+z-index:5;
+border-radius:5px;
+display:none;
+}
+#dialog p {
+margin:0 0 12px;
+height:24px;
+line-height:24px;
+background:#CCCCCC;
+}
+#dialog p.close {
+text-align:right;
+padding-right:10px;
+}
+#dialog p.close a {
+color:#fff;
+text-decoration:none;
+}
+
+      </style>
      <div class="page-content"> 
       <div class="page-header"> 
        <h1> 用户列表<small> <i class="icon-double-angle-right"></i></small> </h1> 
+       
       </div>
       <!-- /.page-header --> 
       <div class="row"> 
@@ -11,132 +68,54 @@
          <div class="col-xs-12"> 
           <div class="table-responsive"> 
            <table id="sample-table-1" class="table table-striped table-bordered table-hover"> 
+          <input type="text" placeholder="Search ..." id='search' onblur="search()"/>
+
             <thead> 
-             <tr> 
+             <tr>
               <th class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </th> 
-              <th>Domain</th> 
-              <th>Price</th> 
-              <th class="hidden-480">Clicks</th> 
+              <th>UserName</th> 
+              <th>Email</th> 
+              <th class="hidden-480">idcard</th> 
               <th> <i class="icon-time bigger-110 hidden-480"></i> Update </th> 
               <th class="hidden-480">Status</th> 
               <th></th> 
              </tr> 
             </thead> 
             <tbody> 
+            <div id='sea'>
+             <?php foreach($users as $key=>$v)
+                  {
+              ?>
+            </div>
              <tr> 
               <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">ace.com</a> </td> 
-              <td>$45</td> 
-              <td class="hidden-480">3,330</td> 
-              <td>Feb 12</td> 
-              <td class="hidden-480"> <span class="label label-sm label-warning">Expiring</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">base.com</a> </td> 
-              <td>$35</td> 
-              <td class="hidden-480">2,595</td> 
-              <td>Feb 18</td> 
-              <td class="hidden-480"> <span class="label label-sm label-success">Registered</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">max.com</a> </td> 
-              <td>$60</td> 
-              <td class="hidden-480">4,400</td> 
-              <td>Mar 11</td> 
-              <td class="hidden-480"> <span class="label label-sm label-warning">Expiring</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">best.com</a> </td> 
-              <td>$75</td> 
-              <td class="hidden-480">6,500</td> 
-              <td>Apr 03</td> 
-              <td class="hidden-480"> <span class="label label-sm label-inverse arrowed-in">Flagged</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">pro.com</a> </td> 
-              <td>$55</td> 
-              <td class="hidden-480">4,250</td> 
+              <td> <a href="#"><?php echo $v['user_name'] ?></a> </td> 
+              <td><?php echo $v['user_phone'] ?></td> 
+              <td class="hidden-480"><?php echo $v['user_idcard'] ?></td> 
               <td>Jan 21</td> 
-              <td class="hidden-480"> <span class="label label-sm label-success">Registered</span> </td> 
+              <td class="hidden-480"> <span class="label label-sm label-success"></span> </td> 
               <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
+               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                 <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
+                
+                <button class="btn btn-xs btn-info" onclick="showBg(<?php echo $v['user_id'] ?>)"> <i class="icon-edit bigger-120"></i> </button> 
+                
+                
+                <button class="btn btn-xs btn-danger" onclick="del(<?php echo $v['user_id'] ?>)"> <i class="icon-trash bigger-120"></i> </button> 
                 <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
                </div> 
+               </div> 
+               <div id="fullbg"></div> 
+                <div id="dialog">
+                <p class="close"><a href="#" onclick="closeBg();">关闭</a></p>
+
+
+                <!-- 遮罩层表单 -->
+                <div id="upd_data">
+                  
+                 
+                </div>
+                </div>
                <div class="visible-xs visible-sm hidden-md hidden-lg"> 
                 <div class="inline position-relative"> 
                  <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
@@ -148,8 +127,12 @@
                 </div> 
                </div> </td> 
              </tr> 
+             <?php
+                  }
+              ?>
             </tbody> 
-           </table> 
+           </table>
+           {!! $ye !!}
           </div>
           <!-- /.table-responsive --> 
          </div>
@@ -178,45 +161,25 @@
             <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top"> 
              <thead> 
               <tr> 
-               <th>Domain</th> 
-               <th>Price</th> 
-               <th>Clicks</th> 
+               <th>UserName</th> 
+               <th>Phone</th> 
+               <th>IdCard</th> 
                <th> <i class="icon-time bigger-110"></i> Update </th> 
               </tr> 
              </thead> 
              <tbody> 
+             <?php foreach($users as $k=>$s){
+              ?>
+             
               <tr> 
-               <td> <a href="#">ace.com</a> </td> 
-               <td>$45</td> 
-               <td>3,330</td> 
-               <td>Feb 12</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">base.com</a> </td> 
-               <td>$35</td> 
-               <td>2,595</td> 
-               <td>Feb 18</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">max.com</a> </td> 
-               <td>$60</td> 
-               <td>4,400</td> 
-               <td>Mar 11</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">best.com</a> </td> 
-               <td>$75</td> 
-               <td>6,500</td> 
-               <td>Apr 03</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">pro.com</a> </td> 
-               <td>$55</td> 
-               <td>4,250</td> 
+               <td> <a href="#"><?php echo $v['user_name'] ?></a> </td> 
+               <td><?php echo $v['user_phone'] ?></td> 
+               <td><?php echo $v['user_idcard'] ?></td> 
                <td>Jan 21</td> 
               </tr> 
+              <?php } ?>
              </tbody> 
-            </table> 
+            </table>
            </div> 
            <div class="modal-footer no-margin-top"> 
             <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal"> <i class="icon-remove"></i> Close </button> 
@@ -290,8 +253,8 @@
 <![endif]--> 
   <!--[if !IE]> --> 
   <script type="text/javascript">
-			window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script> 
+      window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    </script> 
   <!-- <![endif]--> 
   <!--[if IE]>
 <script type="text/javascript">
@@ -299,8 +262,8 @@
 </script>
 <![endif]--> 
   <script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script> 
+      if("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script> 
   <script src="../assets/js/bootstrap.min.js"></script> 
   <script src="../assets/js/typeahead-bs2.min.js"></script> 
   <!-- page specific plugin scripts --> 
@@ -311,41 +274,86 @@
   <script src="../assets/js/ace.min.js"></script> 
   <!-- inline scripts related to this page --> 
   <script type="text/javascript">
-			jQuery(function($) {
-				var oTable1 = $('#sample-table-2').dataTable( {
-				"aoColumns": [
-			      { "bSortable": false },
-			      null, null,null, null, null,
-				  { "bSortable": false }
-				] } );
-				
-				
-				$('table th input:checkbox').on('click' , function(){
-					var that = this;
-					$(this).closest('table').find('tr > td:first-child input:checkbox')
-					.each(function(){
-						this.checked = that.checked;
-						$(this).closest('tr').toggleClass('selected');
-					});
-						
-				});
-			
-			
-				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('table')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
-			
-					var off2 = $source.offset();
-					var w2 = $source.width();
-			
-					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-					return 'left';
-				}
-			})
-		</script> 
+      jQuery(function($) {
+        var oTable1 = $('#sample-table-2').dataTable( {
+        "aoColumns": [
+            { "bSortable": false },
+            null, null,null, null, null,
+          { "bSortable": false }
+        ] } );
+        
+        
+        $('table th input:checkbox').on('click' , function(){
+          var that = this;
+          $(this).closest('table').find('tr > td:first-child input:checkbox')
+          .each(function(){
+            this.checked = that.checked;
+            $(this).closest('tr').toggleClass('selected');
+          });
+            
+        });
+      
+      
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+          var $source = $(source);
+          var $parent = $source.closest('table')
+          var off1 = $parent.offset();
+          var w1 = $parent.width();
+      
+          var off2 = $source.offset();
+          var w2 = $source.width();
+      
+          if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+          return 'left';
+        }
+      })
+    </script> 
+    <script>
+        function  del(id){
+          $.get("/admin/del",{'id':id},function(e){
+              $('#list1').html(e);
+          })
+        }
+    </script>
+    <script type="text/javascript">
+      //显示灰色 jQuery 遮罩层
+      function showBg(id) {
+      $.get("/admin/upd",{'id':id},function(e){
+          $('#upd_data').html(e);
+      })
+      var bh = $("body").height();
+      var bw = $("body").width();
+      $("#fullbg").css({
+      height:bh,
+      width:bw,
+      display:"block"
+      });
+      $("#dialog").show();
+      }
+      //关闭灰色 jQuery 遮罩
+      function closeBg() {
+      $("#fullbg,#dialog").hide();
+      }
+      function fun_upd(){
+        var id = $('input:hidden').val();
+        var uname = $('#username').val();
+        var email = $('#email').val();
+        var idcard = $('#idcard').val();
+        $.get("/admin/user_update",{'id':id,'uname':uname,'email':email,'idcard':idcard},function(e){
+          $('#list1').html(e);
+        })
+        
+      }
+</script>
+<script>
+    function fun(page){
+      $.get("/admin/user_list",{'page':page},function(e){
+          $('#list1').html(e);
+      })
+    }
+</script>
+
   <div style="display:none">
    <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script>
   </div>   
