@@ -136,9 +136,6 @@ Route::get('admin/gift_dian','admin\GiftController@gift_dian');
 
 //订单列表
 Route::get('admin/cart_list','admin\CartController@cart_list');
-//订单添加
-Route::get('admin/cart_add','admin\CartController@cart_add');
-
 
 //后台网络配置
 //活动
@@ -159,3 +156,8 @@ Route::get('admin/helpDel','admin\HelpController@helpDel');
 Route::post('admin/helpUp','admin\HelpController@helpUp');
 Route::get('admin/helpJson','admin\HelpController@helpJson');
 Route::get('admin/helpSearch','admin\HelpController@helpSearch');
+
+//订单删除
+Route::get('admin/cart_del','admin\CartController@cart_del');
+//订单搜索
+Route::get('admin/cart_sou','admin\CartController@cart_sou');
