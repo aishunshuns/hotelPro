@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="div1">
  <head> 
   <meta charset="utf-8" /> 
   <title>控制台 - Bootstrap后台管理系统模版Ace下载</title> 
@@ -152,44 +152,44 @@
      <ul class="nav nav-list"> 
       <li class="active"> <a href="{{URL('admin/index')}}"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li> 
 
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/user_add')}}"> <i class="icon-double-angle-right"></i> 用户添加</a> </li> 
         <li> <a href="{{URL('admin/user_list')}}"> <i class="icon-double-angle-right"></i> 用户列表</a> </li> 
        </ul> </li>
 	
-	<li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 酒店管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+	<li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 酒店管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/hotel_add')}}"> <i class="icon-double-angle-right"></i> 酒店添加</a> </li> 
         <li> <a href="{{URL('admin/hotel_list')}}"> <i class="icon-double-angle-right"></i> 酒店列表</a> </li> 
        </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 户型管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 户型管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/house_add')}}"> <i class="icon-double-angle-right"></i> 户型添加</a> </li> 
         <li> <a href="{{URL('admin/house_list')}}"> <i class="icon-double-angle-right"></i>户型列表</a> </li> 
        </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 地区管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 地区管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/address_add')}}"> <i class="icon-double-angle-right"></i> 地区添加</a> </li> 
         <li> <a href="{{URL('admin/address_list')}}"> <i class="icon-double-angle-right"></i> 地区列表</a> </li> 
        </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 权限管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 权限管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/power_add')}}"> <i class="icon-double-angle-right"></i> 权限添加</a> </li> 
         <li> <a href="{{URL('admin/power_list')}}"> <i class="icon-double-angle-right"></i> 权限列表</a> </li> 
        </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 网站配置 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 网站配置 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="tables.html"> <i class="icon-double-angle-right"></i> 活动</a> </li> 
         <li> <a href="jqgrid.html"> <i class="icon-double-angle-right"></i> 帮助</a> </li> 
        </ul> </li>
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 礼品管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 礼品管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/gift_add')}}"> <i class="icon-double-angle-right"></i> 礼品添加</a> </li> 
         <li> <a href="{{URL('admin/gift_list')}}"> <i class="icon-double-angle-right"></i> 礼品列表</a> </li> 
        </ul> </li>
 
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 订单管理 </span> <b class="arrow icon-angle-down"></b> </a> 
+    <li class="active"> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 订单管理 </span> <b class="arrow icon-angle-down"></b> </a> 
        <ul class="submenu"> 
         <li> <a href="{{URL('admin/cart_add')}}"> <i class="icon-double-angle-right"></i> 订单添加</a> </li> 
         <li> <a href="{{URL('admin/cart_list')}}"> <i class="icon-double-angle-right"></i> 订单列表</a> </li> 
@@ -223,3 +223,25 @@
               </form>
             </div><!-- #nav-search -->
           </div>
+<script src="../js/jq.js"></script>
+<script>
+// alert(1);
+var pathname = window.location.pathname;
+// alert(pathname);
+pathname = pathname.substr(1);
+// alert(pathname);
+$("li a").each(function() {
+
+var href = $(this).attr("href");
+// alert(href);
+if(pathname == href){
+
+$(this).parent().parent().parent().addClass("active");
+
+$(this).parent().addClass("active");
+
+}
+
+});
+
+</script>
