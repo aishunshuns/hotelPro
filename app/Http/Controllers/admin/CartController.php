@@ -18,11 +18,11 @@ class CartController extends Controller{
             ->join('users', 'card.user_id', '=', 'users.user_id')
             ->select('card.*', 'hotel.hotel_name', 'house.house_name','users.user_name')
             ->simplePaginate(3);
-        //echo $sql;die;
+        print_r( $users);die;
             
         $hotel =  DB::table('hotel')->get();
         $house =  DB::table('house')->get();
-           //print_r($hotel);die;
+           print_r($hotel);die;
 
 		return view('admin/cart_list',['users' => $users,'hotel' => $hotel,'house' => $house]);
 	}
@@ -100,7 +100,7 @@ class CartController extends Controller{
     {
         $id = Request::input('id');
         //echo $id;die;
-        $a= DB::delete("delete from card where card_id=?",[$id]);
+        $a= DB::delete("delete from lat_card where card_id=?",[$id]);
         if ($a) {
             return redirect('admin/cart_list');
         } else {
