@@ -69,18 +69,19 @@
 
 											<div class="space-6"></div>
 
-											<form>
+											<form action="admin/login_yz" method="post">
+											<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="请输入用户名" />
+															<input type="text" name="username" class="form-control" placeholder="请输入用户名" />
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="请输入密码" />
+															<input type="password" name="password" class="form-control" placeholder="请输入密码" />
 															<i class="icon-lock"></i>
 														</span>
 													</label>
@@ -93,7 +94,7 @@
 															<span class="lbl">记住密码</span>
 														</label>
 
-														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="icon-key"></i>
 															登陆
 														</button>
@@ -153,17 +154,18 @@
 												输入您的电子邮件和接收指令
 											</p>
 
-											<form>
+											<form action="admin/email" method="post">
+											<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="Email" />
+															<input type="email" name="user_email" class="form-control" placeholder="Email" />
 															<i class="icon-envelope"></i>
 														</span>
 													</label>
 
 													<div class="clearfix">
-														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-danger">
 															<i class="icon-lightbulb"></i>
 															给我！
 														</button>

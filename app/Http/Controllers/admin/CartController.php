@@ -18,21 +18,22 @@ class CartController extends Controller{
             ->join('users', 'card.user_id', '=', 'users.user_id')
             ->select('card.*', 'hotel.hotel_name', 'house.house_name','users.user_name')
             ->simplePaginate(3);
-        print_r( $users);die;
+        // print_r( $users);die;
             
         $hotel =  DB::table('hotel')->get();
         $house =  DB::table('house')->get();
-           print_r($hotel);die;
+           // print_r($hotel);die;
 
 		return view('admin/cart_list',['users' => $users,'hotel' => $hotel,'house' => $house]);
 	}
 	//订单搜索
 	public function cart_sou(){
 		 $where = Request::input('where');
+        //$sql="SELECT * FROM lat_card d LEFT JOIN lat_hotel a ON a.hotel_id = d.hotel_id LEFT JOIN lat_house b ON b.house_id = d.house_id LEFT JOIN lat_users c ON c.user_id = d.user_id WHERE ".$where;
         $users=DB::select("SELECT * FROM lat_card d LEFT JOIN lat_hotel a ON a.hotel_id = d.hotel_id LEFT JOIN lat_house b ON b.house_id = d.house_id LEFT JOIN lat_users c ON c.user_id = d.user_id WHERE ".$where);
         $hotel =  DB::table('hotel')->get();
         $house =  DB::table('house')->get();
-        //print_r($card);die;
+        //echo $sql;die;
         echo "<table id='sample-table-1' class='table table-striped table-bordered table-hover'> 
             <thead> 
              <tr> 

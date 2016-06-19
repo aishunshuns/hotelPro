@@ -110,7 +110,7 @@
             var card_status=document.getElementById('card_status').value
             var where="1";
             if (user_name!="") {
-                  where= where+" and c.user_name='"+user_name+"'";
+                  where= where+" and c.user_name like '%"+user_name+"%'";
             };
             if (hotel_id!="") {
                   where= where+" and d.hotel_id="+hotel_id;
