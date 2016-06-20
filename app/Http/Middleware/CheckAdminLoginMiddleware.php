@@ -14,7 +14,7 @@ use Illuminate\Contracts\Routing\Middleware;
  * @author Robin
  *
  */
-class CheckLoginMiddleware implements Middleware
+class CheckAdminLoginMiddleware implements Middleware
 {
 
     public function handle($request, Closure $next)
