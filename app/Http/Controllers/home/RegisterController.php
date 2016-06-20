@@ -50,12 +50,14 @@ class RegisterController extends Controller{
 	{
 		$txtusername = $_POST['txtUserName'];
 		$txtpassword = $_POST['txtPassword'];
+		$act = $_POST['act'];
 		$arr = DB::select("select * from lat_users where user_phone='$txtusername' || user_name='$txtusername' || user_idcard='$txtusername'");
 		if($arr){
 			foreach($arr as $Key=>$v){
 				if($txtpassword== $v['user_pwd']){
 					session(['user_id'=>$v['user_id']]);
 					session(['user_name'=>$v['user_name']]);
+					session(['act'=>$act]);
 					echo "<script> alert('登陆成功');parent.location.href='/'; </script>"; 
 				}else{
 					echo "<script> alert('登陆失败');parent.location.href='/Login'; </script>";
