@@ -1,5 +1,5 @@
 @include('admin/header')
-     <div class="page-content" > 
+     <div class="page-content"> 
       <div class="page-header"> 
        <h1> 用户列表<small> <i class="icon-double-angle-right"></i></small> </h1> 
     <a href="{{URL('address_josn')}}">生成JSON</a>
@@ -10,8 +10,19 @@
         <!-- PAGE CONTENT BEGINS --> 
         <div class="row"> 
          <div class="col-xs-12"> 
-          <div class="table-responsive" > 
-            <tr>
+          <div class="table-responsive"> 
+         
+        <form action="{{url('address_jia')}}" method="post">
+             
+        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top"> 
+           <?php foreach ($arr as $k => $v) { ?>
+                     
+             <tr >
+             <input type="hidden" name="hotel_id" value="<?php echo $v['hotel_id']?>">
+               <td >酒店名称 <input type="text" name="hotel_name" value="<?php echo $v['hotel_name']?>"></td>
+            
+             </tr>
+             <tr>
                 
                 <td width='40%'>
                    省<select name="hotel_address[]" id="pro" onchange="">
@@ -24,113 +35,18 @@
                         <option value="">请选择</option>
                     </select>
                 </td>
-            </tr><button id="sou">搜索</button>
-           <table id="sample-table-1" class="table table-striped table-bordered table-hover"> 
-            <thead> 
-             <tr> 
-              <th class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </th> 
-              <th>酒店名称</th> 
-              <th>酒店照片</th> 
-              <th>酒店详细地址</th>                    
-              <th> <i class="icon-time bigger-110 hidden-480"></i> 酒店详细地址 </th> 
-              <th class="hidden-480">酒店描述</th>
-          
-               <th class="hidden-480">详细电话</th> 
-              
-             </tr> 
-            </thead> 
-            <tbody> 
-           <?php foreach ($arr['info'] as $k => $v) { ?>
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-          
-            
-              
-              <td> <a href="#"><?php echo $v['hotel_name']?></a> </td> 
-              <td><img src="<?php echo $v['hotel_img']?>"></td> 
-              <td><?php echo $v['city_id']?></td> 
-              <td><?php echo $v['hotel_address']?></td> 
-         
-              <td class="hidden-480"> <span class="label label-sm label-warning"><?php echo $v['hotel_desc']?></span> </td> 
-               <td class="hidden-480"> <span class="label label-sm label-warning"><?php echo $v['hotel_phone']?></span> </td> 
-
-             </tr> 
-             <?php }?> 
-      
-           </table> 
-          <?php echo $arr['str']?>
-             
-          </div>
-          <!-- /.table-responsive --> 
-         </div>
-         <!-- /span --> 
-        </div>
-        <!-- /row --> 
-        <div class="hr hr-18 dotted hr-double"></div> 
-        <h4 class="pink"> <i class="icon-hand-right icon-animated-hand-pointer blue"></i> <a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a> </h4> 
-        <div class="hr hr-18 dotted hr-double"></div> 
-        </td> 
-             </tr> 
-            </tbody> 
-           </table> 
-          </div> 
-         </div> 
-        </div> 
-        <div id="modal-table" class="modal fade" tabindex="-1"> 
-         <div class="modal-dialog"> 
-          <div class="modal-content"> 
-           <div class="modal-header no-padding"> 
-            <div class="table-header"> 
-             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <span class="white">&times;</span> </button> Results for &quot;Latest Registered Domains 
-            </div> 
-           </div> 
-           <div class="modal-body no-padding"> 
-            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top"> 
-             <thead> 
-              <tr> 
-               <th>酒店名称</th> 
-               <th>酒店照片</th> 
-               <th>酒店描述</th>
-               <th>酒店类型</th>  
-               <th> <i class="icon-time bigger-110"></i> Update </th> 
-              </tr> 
-             </thead> 
-             <tbody> 
-              <tr> 
-               <td> <a href="#">ace.com</a> </td> 
-               <td>$45</td> 
-               <td>3,330</td> 
-               <td>Feb 12</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">base.com</a> </td> 
-               <td>$35</td> 
-               <td>2,595</td> 
-               <td>Feb 18</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">max.com</a> </td> 
-               <td>$60</td> 
-               <td>4,400</td> 
-               <td>Mar 11</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">best.com</a> </td> 
-               <td>$75</td> 
-               <td>6,500</td> 
-               <td>Apr 03</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">pro.com</a> </td> 
-               <td>$55</td> 
-               <td>4,250</td> 
-               <td>Jan 21</td> 
-              </tr> 
-             </tbody> 
-            </table> 
+            </tr>
+         <?php  }?>
+            <tr>
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <td><input type="submit" value="添加"></td>
+                
+            </tr>
+      </table> 
+      </form>
            </div> 
            <div class="modal-footer no-margin-top"> 
-            <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal"> <i class="icon-remove"></i> Close </button> 
+    
             <ul class="pagination pull-right no-margin"> 
              <li class="prev disabled"> <a href="#"> <i class="icon-double-angle-left"></i> </a> </li> 
              <li class="active"> <a href="#">1</a> </li> 
@@ -195,7 +111,7 @@
   <!-- /.main-container --> 
   <!-- basic scripts --> 
   <!--[if !IE]> --> 
-  <script src="../assets/js/jquery-2.0.3.min.js"></script> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> 
   <!-- <![endif]--> 
   <!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -274,7 +190,7 @@
         str+= "<option value=''>--请选择--</option>";
         for(v in obj.province){
            
-            str+= "<option value='"+v+"' >"+obj.province[v]+"</option>";
+            str+= "<option value='"+v+"'>"+obj.province[v]+"</option>";
             
         }
         $('#pro').html(str);
@@ -287,7 +203,7 @@
         //alert(cid)
         str+= "<option value=''>--请选择--</option>";
         for(v in obj.city[cid]){
-            str+= "<option value='"+v+"' >"+obj.city[cid][v]+"</option>";
+            str+= "<option value='"+v+"'>"+obj.city[cid][v]+"</option>";
             var str1= "<option value=''>--请选择--</option>";
         }
         $('#city').html(str);
@@ -309,25 +225,3 @@
 
 </script>
 
-<script type="text/javascript">
-  $('#sou').click(function(){
-    var sheng=$('#pro').val();
-     var shi=$('#city').val();
-      var qu=$('#county').val();
-   $.get('address_list',{'sheng':sheng,'shi':shi,'qu':qu},function(bool){
-    
-        $('#div1').html(bool);
-   })
-  })
-
-      //分页
-  function change_page(p){
-    //通过ajax传递页码
-    var data={'p':p};
-
-    $.get('address_list',data,function(i){
-      //alert(i);
-      $("#div1").html(i);
-    });
-  }
-</script>

@@ -110,9 +110,16 @@ Route::any('houseUpdate','admin\HouseController@houseUpdate');
 
 
 //后台地区添加
-Route::get('admin/address_add','admin\AddressController@address_add');
+Route::any('admin/address_add','admin\AddressController@address_add');
 //后台地区列表
-Route::get('admin/address_list','admin\AddressController@address_list');
+Route::any('admin/address_list','admin\AddressController@address_list');
+//后台地区生成JSON
+Route::any('address_josn','admin\AddressController@address_josn');
+
+Route::any('address_jia','admin\AddressController@address_jia');
+//后台地区搜索
+Route::any('address_show','admin\AddressController@address_show');
+
 
 //后台权限添加
 Route::any('admin/power_add','admin\PowerController@power_add');
