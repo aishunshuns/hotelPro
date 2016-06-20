@@ -7,6 +7,8 @@
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
+header('content-type:text/html;charset=utf8');
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

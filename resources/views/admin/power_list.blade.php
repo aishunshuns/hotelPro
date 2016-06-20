@@ -16,154 +16,54 @@
               <th class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </th> 
               <th>Domain</th> 
               <th>Price</th> 
-              <th class="hidden-480">Clicks</th> 
-              <th> <i class="icon-time bigger-110 hidden-480"></i> Update </th> 
-              <th class="hidden-480">Status</th> 
               <th></th> 
              </tr> 
             </thead> 
             <tbody> 
-             <tr> 
+             @foreach($arr as $key => $v)
+             <tr id="tr_{{$v['privilege_id']}}"> 
               <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">ace.com</a> </td> 
-              <td>$45</td> 
-              <td class="hidden-480">3,330</td> 
-              <td>Feb 12</td> 
-              <td class="hidden-480"> <span class="label label-sm label-warning">Expiring</span> </td> 
+              <td> <a href="javascript:void(0)" id="">{{str_repeat('--',$v['level'])}}{{$v['privilege_name']}}</a> </td> 
               <td> 
                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
+                <button class="btn btn-xs btn-info" onclick="showBg({{$v['privilege_id']}})"> <i class="icon-edit bigger-120"></i> </button> 
+                <button class="btn btn-xs btn-danger" onclick="privilege_del({{$v['privilege_id']}})"> <i class="icon-trash bigger-120"></i> </button> 
                 <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
                </div> 
                <div class="visible-xs visible-sm hidden-md hidden-lg"> 
                 <div class="inline position-relative"> 
                  <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
                 </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">base.com</a> </td> 
-              <td>$35</td> 
-              <td class="hidden-480">2,595</td> 
-              <td>Feb 18</td> 
-              <td class="hidden-480"> <span class="label label-sm label-success">Registered</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
                </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
+              </td> 
              </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">max.com</a> </td> 
-              <td>$60</td> 
-              <td class="hidden-480">4,400</td> 
-              <td>Mar 11</td> 
-              <td class="hidden-480"> <span class="label label-sm label-warning">Expiring</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">best.com</a> </td> 
-              <td>$75</td> 
-              <td class="hidden-480">6,500</td> 
-              <td>Apr 03</td> 
-              <td class="hidden-480"> <span class="label label-sm label-inverse arrowed-in">Flagged</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">pro.com</a> </td> 
-              <td>$55</td> 
-              <td class="hidden-480">4,250</td> 
-              <td>Jan 21</td> 
-              <td class="hidden-480"> <span class="label label-sm label-success">Registered</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-            </tbody> 
-           </table> 
-          </div>
-          <!-- /.table-responsive --> 
-         </div>
-         <!-- /span --> 
-        </div>
-        <!-- /row --> 
-        <div class="hr hr-18 dotted hr-double"></div> 
-        <h4 class="pink"> <i class="icon-hand-right icon-animated-hand-pointer blue"></i> <a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a> </h4> 
-        <div class="hr hr-18 dotted hr-double"></div> 
-        </td> 
-             </tr> 
+             @endforeach
             </tbody> 
            </table> 
           </div> 
+
+          <!-- 遮罩层 -->
+          <!-- <div id="main"><a href="javascript:showBg();">点击这里查看效果</a> -->
+            <div id="fullbg"></div>
+            <div id="dialog">
+            <p class="close"><a href="#" onclick="closeBg();">关闭</a></p>
+            <div></div>
+
+            <div class="control-group">
+            <label class="control-label bolder blue">Checkbox</label>
+            <div class="checkbox">            
+            </div>
+            <div class="col-md-offset-3">
+                <button class="btn btn-info" type="button" onclick = "submit()">
+                  <i class="icon-ok bigger-110"></i>
+                  提交
+                </button>
+            </div>
+
+            </div>
+          </div> 
+          <!-- end遮罩层 -->
+
          </div> 
         </div> 
         <div id="modal-table" class="modal fade" tabindex="-1"> 
@@ -184,38 +84,7 @@
                <th> <i class="icon-time bigger-110"></i> Update </th> 
               </tr> 
              </thead> 
-             <tbody> 
-              <tr> 
-               <td> <a href="#">ace.com</a> </td> 
-               <td>$45</td> 
-               <td>3,330</td> 
-               <td>Feb 12</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">base.com</a> </td> 
-               <td>$35</td> 
-               <td>2,595</td> 
-               <td>Feb 18</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">max.com</a> </td> 
-               <td>$60</td> 
-               <td>4,400</td> 
-               <td>Mar 11</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">best.com</a> </td> 
-               <td>$75</td> 
-               <td>6,500</td> 
-               <td>Apr 03</td> 
-              </tr> 
-              <tr> 
-               <td> <a href="#">pro.com</a> </td> 
-               <td>$55</td> 
-               <td>4,250</td> 
-               <td>Jan 21</td> 
-              </tr> 
-             </tbody> 
+             
             </table> 
            </div> 
            <div class="modal-footer no-margin-top"> 
@@ -283,10 +152,10 @@
   <!-- /.main-container --> 
   <!-- basic scripts --> 
   <!--[if !IE]> --> 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> 
+ <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> 
   <!-- <![endif]--> 
   <!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--> 
 <![endif]--> 
   <!--[if !IE]> --> 
   <script type="text/javascript">
@@ -346,8 +215,106 @@
 				}
 			})
 		</script> 
+    <script type="text/javascript">
+      //显示灰色 jQuery 遮罩层
+      function showBg(id) {
+      var bh = $("body").height();
+      var bw = $("body").width();   
+
+       //权限分配角色
+        var url = "{{url('admin/power_list')}}";
+        var data = {act:'power_role', id:id};
+        $.get(url,data,function(data){
+          if (data == '0') {
+            alert('该权限是最高权限，无法修操作');
+          } else {
+            $("#fullbg").css({
+              height:bh,
+              width:bw,
+              display:"block"
+            });  
+            $("#dialog").show();
+             var str = '';
+              for(var i in data) {
+                if ( data[i]['checked'] == 'true') {
+                  var checked = "checked";
+                } else {
+                  var checked = "";
+                }
+                str += "<label>";
+                str += "<input value='"+data[i]['role_id']+"' type='checkbox' class='ace'  "+checked+"/>";
+                str += "<span class='lbl'>"+data[i]['role_name']+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>";
+                str += "</label>";
+                if ((i+1)%4 == '0') {
+                  str += "<br/>";
+                }
+              }
+              str += "<input type='hidden' name='privilege_id' value="+data['id']+">";
+              $('.checkbox').html(str);
+          }
+        },'json');
+
+      }    
+
+      //获取被选中的复选框的值
+      function submit()
+      {
+        var val = [];
+        var id = $('input[name=privilege_id]').val();
+        // alert(id)
+        // val = $('.checkbox input[type=checkbox]:checked').val();
+        $('.checkbox input[type=checkbox]:checked').each(function()
+        {
+         val.push($(this).val()); 
+        });
+        // alert(val)
+        var url = "{{url('admin/power_list')}}";
+        var data =  {act:'role_privilege_add',role_id:val,id:id};
+        // alert(data)
+        $.get(url,data,function(e){
+          // console.log(e)
+          if (e == 'true') {
+            alert('操作成功')
+          }
+        });
+      }
+
+      //权限删除
+      function privilege_del(id){
+        var data = {act:'privilege_del',id:id};
+        var url = "power_list";
+        $.get(url,data,function(e){
+          if (e == '1') {
+            alert('请先删除该权限下的子权限');
+          } else if (e == 'true') {
+            $('#tr_'+id).remove();
+            alert('删除成功');
+          } else {
+            if (confirm('该权限不为空，是否删除')) {
+              privilege_del_ok(id)
+            }
+          }
+        });
+      }   
+
+      //删除角色及角色与用户关联表
+      function privilege_del_ok(id){
+        var data = {act:'privilege_del_ok',id:id};
+        var url = "power_list";
+        $.get(url,data,function(e){
+          // alert(e)
+          $('#tr_'+id).remove();
+          alert('删除成功');
+        })
+      }       
+
+      //关闭灰色 jQuery 遮罩
+      function closeBg() {
+      $("#fullbg,#dialog").hide();
+      }
+    </script>
   <div style="display:none">
-   <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script>
+   <!--<script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script>--> 
   </div>   
  </body>
 </html>

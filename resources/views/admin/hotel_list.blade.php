@@ -1,7 +1,8 @@
 @include('admin/header')
      <div class="page-content"> 
+     <script src="../jquery.js"></script>
       <div class="page-header"> 
-       <h1> 用户列表<small> <i class="icon-double-angle-right"></i></small> </h1> 
+       <h1>酒店列表<small> <i class="icon-double-angle-right"></i></small> </h1> 
       </div>
       <!-- /.page-header --> 
       <div class="row"> 
@@ -9,148 +10,79 @@
         <!-- PAGE CONTENT BEGINS --> 
         <div class="row"> 
          <div class="col-xs-12"> 
+          <div style="padding:10px;"><input type="text" id="search" placeholder="酒店名称" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-success" id="fun">搜索</button>
+          </div>
+<script>
+  $('#fun').click(function(){
+            var search = $('#search').val();
+           location.href="{{URL('admin/hotel_list')}}?search="+search;
+          
+          })
+
+</script>
           <div class="table-responsive"> 
            <table id="sample-table-1" class="table table-striped table-bordered table-hover"> 
             <thead> 
-             <tr> 
-              <th class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </th> 
-              <th>Domain</th> 
-              <th>Price</th> 
-              <th class="hidden-480">Clicks</th> 
-              <th> <i class="icon-time bigger-110 hidden-480"></i> Update </th> 
-              <th class="hidden-480">Status</th> 
-              <th></th> 
+             <tr>
+              <th class="center">酒店名称</th> 
+              <th class="center">酒店所在城市</th> 
+              <th class="center">酒店地址</th> 
+              <th class="center"> <span class="glyphicon glyphicon-phone-alt"></span> 酒店电话 </th> 
+              <th class="center">酒店描述</th> 
+              <th class="center">酒店照片</th> 
+              <th class="center">操作</th>
              </tr> 
             </thead> 
             <tbody> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">ace.com</a> </td> 
-              <td>$45</td> 
-              <td class="hidden-480">3,330</td> 
-              <td>Feb 12</td> 
-              <td class="hidden-480"> <span class="label label-sm label-warning">Expiring</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
+            @foreach($arr['array'] as $k => $v)
+             <tr>  
+              <td class="center"><a href="#">{{$v['hotel_name']}}</a> </td> 
+              <td class="center">{{$v['city']}}</td> 
+              <td class="center">{{$v['hotel_address']}}</td> 
+              <td class="center">{{$v['hotel_phone']}}</td> 
+              <td class="center">{{$v['hotel_desc']}}</td> 
+              <td class="center"><img src="../{{$v['hotel_img']}}" alt="" width="60" height="50"></td>
+              <td>
+                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
+                <a class="btn btn-xs btn-info" href="{{URL('hotelSave')}}?hotel_id={{$v['hotel_id']}}" > <i class="icon-edit bigger-120"></i> </a> 
+                <a class="btn btn-xs btn-danger" href="{{URL('hotelDel')}}?hotel_id={{$v['hotel_id']}}"> <i class="icon-trash bigger-120"></i> </a> 
+
+               </div>  
+              </td> 
              </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">base.com</a> </td> 
-              <td>$35</td> 
-              <td class="hidden-480">2,595</td> 
-              <td>Feb 18</td> 
-              <td class="hidden-480"> <span class="label label-sm label-success">Registered</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">max.com</a> </td> 
-              <td>$60</td> 
-              <td class="hidden-480">4,400</td> 
-              <td>Mar 11</td> 
-              <td class="hidden-480"> <span class="label label-sm label-warning">Expiring</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">best.com</a> </td> 
-              <td>$75</td> 
-              <td class="hidden-480">6,500</td> 
-              <td>Apr 03</td> 
-              <td class="hidden-480"> <span class="label label-sm label-inverse arrowed-in">Flagged</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
-             <tr> 
-              <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="#">pro.com</a> </td> 
-              <td>$55</td> 
-              <td class="hidden-480">4,250</td> 
-              <td>Jan 21</td> 
-              <td class="hidden-480"> <span class="label label-sm label-success">Registered</span> </td> 
-              <td> 
-               <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-info"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
-               </div> 
-               <div class="visible-xs visible-sm hidden-md hidden-lg"> 
-                <div class="inline position-relative"> 
-                 <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"> <i class="icon-cog icon-only bigger-110"></i> </button> 
-                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"> 
-                  <li> <a href="#" class="tooltip-info" data-rel="tooltip" title="View"> <span class="blue"> <i class="icon-zoom-in bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a> </li> 
-                  <li> <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a> </li> 
-                 </ul> 
-                </div> 
-               </div> </td> 
-             </tr> 
+             @endforeach
             </tbody> 
-           </table> 
+           </table>
+           <center>
+           <ul class="pagination">
+              <li><a href="{{URL('admin/hotel_list')}}?page=1&&search={{$search}}">首页</a></li>
+              <li><a href="{{URL('admin/hotel_list')}}?page={{$arr['last']}}&&search={{$search}}">上一页</a></li>
+              <li><a href="{{URL('admin/hotel_list')}}?page={{$arr['next']}}&&search={{$search}}">下一页</a></li>
+              <li><a href="{{URL('admin/hotel_list')}}?page={{$arr['pagesum']}}&&search={{$search}}">尾页</a></li>
+            </ul>
+            </center>
           </div>
+          <script>
+            //即点即改
+             function butt(obj){
+                $(obj).css('display','none');
+                $(obj).next().css('display','block');
+             }
+
+             function but(obj){
+              var help_desc=$(obj).val();
+              var help_id=$(obj).attr('id');
+              //alert(act_id)
+              $(obj).prev().html(act_name);
+              $(obj).css('display','none');
+              $(obj).prev().css('display','block');
+             
+             $.get("{{URL('admin/helJson')}}",{help_desc:help_desc,help_id:help_id},function(obj){
+              
+             })
+            }
+          </script>
           <!-- /.table-responsive --> 
          </div>
          <!-- /span --> 
@@ -283,7 +215,7 @@
   <!-- /.main-container --> 
   <!-- basic scripts --> 
   <!--[if !IE]> --> 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> 
+ <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
   <!-- <![endif]--> 
   <!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -347,7 +279,7 @@
 			})
 		</script> 
   <div style="display:none">
-   <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script>
+  <!-- <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script>-->
   </div>   
  </body>
 </html>
