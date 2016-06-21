@@ -21,7 +21,7 @@
               <th>UserName</th> 
               <th>Email</th> 
               <th class="hidden-480">idcard</th> 
-              <th> <i class="icon-time bigger-110 hidden-480"></i> Update </th> 
+              <th> <i class="icon-time bigger-110 hidden-480"></i> photo </th> 
               <th class="hidden-480">Status</th> 
               <th></th> 
              </tr> 
@@ -37,7 +37,7 @@
               <td> <a href="#"><?php echo $v['user_name'] ?></a> </td> 
               <td><?php echo $v['user_phone'] ?></td> 
               <td class="hidden-480"><?php echo $v['user_idcard'] ?></td> 
-              <td>Jan 21</td> 
+              <td><img src="{{URL('file')}}/<?php echo $v['user_file']?>" width='100' height='50' alt=""></td> 
               <td class="hidden-480"> <span class="label label-sm label-success"></span> </td> 
               <td> 
                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
