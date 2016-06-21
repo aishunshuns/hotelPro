@@ -11,7 +11,7 @@
         <div class="row"> 
          <div class="col-xs-12"> 
           <div class="table-responsive"> 
-          <form action="{{url('admin/user_addpro')}}" method="post" onsubmit="return check();">
+          <form action="{{url('admin/user_addpro')}}" method="post" enctype="multipart/form-data">
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
           <table>
             <tr>
@@ -22,8 +22,15 @@
               <th style="color:#666666;">密码</th>
               <td><input type="password" name="password" id='password' onblur="fun1()" ><span id='list1'></span></td>
             </tr>
+            <input id="lefile" name="myfile" type="file" style="display:none">
+            <div class="input-append">
+              <input id="photoCover" name="myfile" class="input-large" type="text" style="height:30px;">
+              <a class="btn" onclick="$('input[id=lefile]').click();">头像上传</a>
+            </div>
+             
+            
             <tr> 
-              <th style="color:#666666">邮箱</th>
+              <th style="color:#666666">手机号</th>
               <td><input type="text" name="email" id='mobile_phone' onblur="fun2()"><span id='list2'></span></td>
             </tr>
             <tr>
@@ -157,6 +164,11 @@
   <!-- <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script> --> 
   </div>   
  </body>
+<script type="text/javascript">
+        $('input[id=lefile]').change(function() {
+        $('#photoCover').val($(this).val());
+        });
+        </script>
  <script>
     function fun(){
         var username = document.getElementById('username').value;
@@ -199,18 +211,18 @@
         var mobile_phone = document.getElementById('mobile_phone').value;
         $.get("{{url('register_shu')}}",{'email':mobile_phone},function(e){
             if(e==0){
-                var reg=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                var reg=/^\d{11}$/;
                 if(reg.test(mobile_phone)){
-                    document.getElementById('list2').innerHTML='邮箱正确';
+                    document.getElementById('list2').innerHTML='手机号正确';
                     document.getElementById('list2').style.color='green';
                     return true;
                 }else{
-                    document.getElementById('list2').innerHTML='您的电子邮箱不正确';
+                    document.getElementById('list2').innerHTML='请输入11位数字';
                     document.getElementById('list2').style.color='red';
                     return false;
                 }
             }else{
-                document.getElementById('list2').innerHTML='该邮箱已经注册过账号';
+                document.getElementById('list2').innerHTML='该手机已经注册过账号';
                 document.getElementById('list2').style.color='red';
                 return false;
             }
