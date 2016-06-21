@@ -18,7 +18,7 @@ class CartController extends Controller{
             ->join('users', 'card.user_id', '=', 'users.user_id')
             ->select('card.*', 'hotel.hotel_name', 'house.house_name','users.user_name')
             ->simplePaginate(3);
-        // print_r( $users);die;
+         //print_r( $users);die;
             
         $hotel =  DB::table('hotel')->get();
         $house =  DB::table('house')->get();
@@ -69,16 +69,25 @@ class CartController extends Controller{
               <td>";
                 if ($v['card_status']==0) {
                   echo "未付款";
-                } else {
+                } else if ($v['card_status']==1){
                   echo "已付款";
+                } else if ($v['card_status']==2){
+                  echo  "未消费<a href='cart_xiu?id'></a>";
+                }else{
+                  echo "已消费";
                 }
                 
               echo "</td> 
               <td> 
                <div class='visible-md visible-lg hidden-sm hidden-xs btn-group'> 
-               
-                <a href='cart_xiu?id=".$v['card_id']."'><button class='btn btn-xs btn-info'> <i class='icon-edit bigger-120'></i> </button> </a>
-                <a href='cart_del?id=".$v['card_id']."'><button class='btn btn-xs btn-danger'> <i class='icon-trash bigger-120'></i> </button> </a>
+               ";
+                  if ($v['card_status']==1) {
+                   echo "<a href='cart_xiu?id=".$v['card_id']."'><button class='btn btn-xs btn-info'> <i class='icon-edit bigger-120'></i> </button> </a>";
+                  } else {
+                   echo "<a href='javascript:void(0)'><button class='btn btn-xs btn-info'> <i class='icon-edit bigger-120'></i> </button> </a>";
+                  }
+                  
+                echo "<a href='cart_del?id=".$v['card_id']."'><button class='btn btn-xs btn-danger'> <i class='icon-trash bigger-120'></i> </button> </a>
                  
                </div> 
                <div class='visible-xs visible-sm hidden-md hidden-lg'> 
@@ -97,11 +106,23 @@ class CartController extends Controller{
            </table> ";
 	}
 	//订单删除
-	 public function cart_del()
+   public function cart_del()
     {
         $id = Request::input('id');
         //echo $id;die;
         $a= DB::delete("delete from lat_card where card_id=?",[$id]);
+        if ($a) {
+            return redirect('admin/cart_list');
+        } else {
+            echo "no";
+        }
+    }
+    //订单状态修改
+   public function cart_xiu()
+    {
+        $id = Request::input('id');
+        //echo $id;die;
+        $a = DB::update('update lat_card set card_status = 2 where card_id = ?', [$id]);
         if ($a) {
             return redirect('admin/cart_list');
         } else {
