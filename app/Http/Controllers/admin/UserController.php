@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
-use DB;
+use DB,Input;
 class UserController extends Controller{
 
 	//用户列表
@@ -42,12 +42,32 @@ class UserController extends Controller{
 
 	public function user_addpro()
 	{
+
+		 $file = Input::file('myfile');
+		if($file -> isValid()){
+
+		    //检验一下上传的文件是否有效.
+
+		    $clientName = $file -> getClientOriginalName();
+
+		    $tmpName = $file ->getFileName(); // 缓存在tmp文件夹中的文件名 例如 php8933.tmp 这种类型的.
+
+		   	$realPath = $file -> getRealPath();    //这个表示的是缓存在tmp文件夹下的文件的绝对路径
+
+		  	$entension = $file -> getClientOriginalExtension(); //上传文件的后缀.
+
+		    $mimeTye = $file -> getMimeType();//大家对mimeType应该不陌生了. 我得到的结果是 image/jpeg.
+
+		  	$path = $file -> move("file",$clientName);
+		} 
+
+		$myfile = $clientName;
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 		$idcard = $_POST['idcard'];
 		$arr = DB::table('users')->insert(
-            array('user_name'=>$username,'user_pwd'=>$password,'user_phone' => $email,'user_idcard'=>$idcard)
+            array('user_name'=>$username,'user_pwd'=>$password,'user_phone' => $email,'user_idcard'=>$idcard,'user_act'=>'admin','user_file'=>$myfile)
         );
         return redirect('admin/user_list');
 	}
