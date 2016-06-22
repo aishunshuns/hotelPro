@@ -26,7 +26,7 @@ class LoginController extends Controller{
 					Session::put('act', $act);
 					Session::put('user_file', "file/".$v['user_file']);
 					Session::save();
-					echo "<script> alert('登陆成功');parent.location.href='".url('admin/index')."'; </script>"; 
+					echo "<script> alert('登陆成功');parent.location.href='index'; </script>"; 
 				}else{
 					echo "<script> alert('登陆失败');parent.location.href='".url('admin')."'; </script>";
 				}
