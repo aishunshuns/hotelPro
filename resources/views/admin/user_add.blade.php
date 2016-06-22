@@ -1,9 +1,11 @@
 @include('admin/header')
-      
      <div class="page-content"> 
       <div class="page-header"> 
-       <h1>用户添加<small> <i class="icon-double-angle-right"></i></small> </h1> 
+       <h1> 用户添加<small> <i class="icon-double-angle-right"></i></small> </h1> 
       </div>
+
+  <script src="../jedate/jedate.js"></script>
+  <script src="../jedate/jedate.min.js"></script>
       <!-- /.page-header --> 
       <div class="row"> 
        <div class="col-xs-12"> 
@@ -11,38 +13,56 @@
         <div class="row"> 
          <div class="col-xs-12"> 
           <div class="table-responsive"> 
+          
           <form action="{{url('admin/user_addpro')}}" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-          <table>
+          <center>
+           <table id="sample-table-1" class="table table-striped table-bordered table-hover"> 
             <tr>
-              <th style="color:#666666;">用户名</th>
-              <td><input type="text" name="username" id='username' onblur="fun()"><span id='list'></span></td>
+              <td align="center">用户名</td>
+              <td>
+                <input type="text" name="username" id='username' onblur="fun()"><span id='list'></span>
+              </td>
             </tr>
             <tr>
-              <th style="color:#666666;">密码</th>
-              <td><input type="password" name="password" id='password' onblur="fun1()" ><span id='list1'></span></td>
+              <td align="center">密码</td>
+              <td>
+                <input type="password" name="password" id='password' onblur="fun1()" ><span id='list1'>
+              </td>
             </tr>
-            <input id="lefile" name="myfile" type="file" style="display:none">
-            <div class="input-append">
-              <input id="photoCover" name="myfile" class="input-large" type="text" style="height:30px;">
-              <a class="btn" onclick="$('input[id=lefile]').click();">头像上传</a>
-            </div>
-             
+            <tr>
+              <td align="center"><a class="btn" onclick="$('input[id=lefile]').click();">头像上传</a></td>
+              <td>
+                <input id="lefile" name="myfile" type="file" style="display:none">
+                <div class="input-append">
+                  <input id="photoCover" name="myfile" class="input-large" type="text" style="height:30px;width:157px;">
+                </div>
+
+              </td>
+            </tr>
+            <tr>
+              <td align="center">手机号</td>
+              <td>
+                <input type="text" name="email" id='mobile_phone' onblur="fun2()"><span id='list2'></span>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" id="dateinfo1">身份证号</td>
+              <td>
+                 <input type="text" name="idcard" id='id_card' onblur="fun3()"><span id='list3'></span>
+              </td>
+            </tr>
+            <tr>
+              <td align="right"><input type="reset" class="btn"></td>
+              <td align="left">
+                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <input type="submit" class="btn btn-info" value="添加" />
+              </td>
             
-            <tr> 
-              <th style="color:#666666">手机号</th>
-              <td><input type="text" name="email" id='mobile_phone' onblur="fun2()"><span id='list2'></span></td>
             </tr>
-            <tr>
-              <th style="color:#666666">身份证号</th>
-              <td><input type="text" name="idcard" id='id_card' onblur="fun3()"><span id='list3'></span></td>
-            </tr>
-            <tr>
-              <td><input type="reset" value="重置"></td>
-              <td><input type="submit" value="提交"></td>
-            </tr>
-          </table>
-          </form>
+           </table> 
+           </center>
+           </form>
+           
           </div>
           <!-- /.table-responsive --> 
          </div>
@@ -133,14 +153,14 @@
   <!-- /.main-container --> 
   <!-- basic scripts --> 
   <!--[if !IE]> --> 
- <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>  --> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> 
   <!-- <![endif]--> 
   <!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <![endif]--> 
   <!--[if !IE]> --> 
   <script type="text/javascript">
-      window.jQuery || document.write("<script src='{{url('assets/js/jquery-2.0.3.min.js')}}'>"+"<"+"/script>");
+      window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
     </script> 
   <!-- <![endif]--> 
   <!--[if IE]>
@@ -149,27 +169,55 @@
 </script>
 <![endif]--> 
   <script type="text/javascript">
-      if("ontouchend" in document) document.write("<script src='{{url('assets/js/jquery.mobile.custom.min.js')}}'>"+"<"+"/script>");
+      if("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
     </script> 
-  <script src="{{url('assets/js/bootstrap.min.js')}}"></script> 
-  <script src="{{url('assets/js/typeahead-bs2.min.js')}}"></script> 
+  <script src="../assets/js/bootstrap.min.js"></script> 
+  <script src="../assets/js/typeahead-bs2.min.js"></script> 
   <!-- page specific plugin scripts --> 
-  <script src="{{url('assets/js/jquery.dataTables.min.js')}}"></script> 
-  <script src="{{url('assets/js/jquery.dataTables.bootstrap.js')}}"></script> 
+  <script src="../assets/js/jquery.dataTables.min.js"></script> 
+  <script src="../assets/js/jquery.dataTables.bootstrap.js"></script> 
   <!-- ace scripts --> 
-  <script src="{{url('assets/js/ace-elements.min.js')}}"></script> 
-  <script src="{{url('assets/js/ace.min.js')}}"></script> 
+  <script src="../assets/js/ace-elements.min.js"></script> 
+  <script src="../assets/js/ace.min.js"></script> 
   <!-- inline scripts related to this page --> 
-  <div style="display:none">
-  <!-- <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script> --> 
-  </div>   
- </body>
-<script type="text/javascript">
-        $('input[id=lefile]').change(function() {
-        $('#photoCover').val($(this).val());
+  <script type="text/javascript">
+      jQuery(function($) {
+        var oTable1 = $('#sample-table-2').dataTable( {
+        "aoColumns": [
+            { "bSortable": false },
+            null, null,null, null, null,
+          { "bSortable": false }
+        ] } );
+        
+        
+        $('table th input:checkbox').on('click' , function(){
+          var that = this;
+          $(this).closest('table').find('tr > td:first-child input:checkbox')
+          .each(function(){
+            this.checked = that.checked;
+            $(this).closest('tr').toggleClass('selected');
+          });
+            
         });
-        </script>
- <script>
+      
+      
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+          var $source = $(source);
+          var $parent = $source.closest('table')
+          var off1 = $parent.offset();
+          var w1 = $parent.width();
+      
+          var off2 = $source.offset();
+          var w2 = $source.width();
+      
+          if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+          return 'left';
+        }
+      })
+    </script> 
+
+    <script>
     function fun(){
         var username = document.getElementById('username').value;
         $.get("{{url('register_shu')}}",{'username':username},function(e){
@@ -250,14 +298,14 @@
         })
         
     }
-    function check(){
-        if(fun1()){
-          alert(1)
-            return true;
-        }else{
-          alert(2)
-            return false;
-        }
-    }
 </script>
+<script type="text/javascript">
+      $('input[id=lefile]').change(function() {
+      $('#photoCover').val($(this).val());
+      });
+</script>
+  <div style="display:none">
+   <script src="http://v7.cnzz.com/stat.php?id=155540&amp;web_id=155540" language="JavaScript" charset="gb2312"></script>
+  </div>   
+ </body>
 </html>

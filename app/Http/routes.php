@@ -68,6 +68,7 @@ Route::get('admin/user_list','admin\UserController@user_list');
 Route::get('admin/user_del','admin\UserController@user_del');
 Route::get('admin/upd','admin\UserController@user_upd');
 Route::get('admin/user_update','admin\UserController@user_update');
+Route::any('admin/user_search','admin\UserController@user_search');
 
 
 
