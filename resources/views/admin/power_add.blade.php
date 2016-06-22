@@ -230,16 +230,18 @@
       
       //提交验证
       function funSubmit(){
-		  return true;
         var check = $('input[name=check]').val();
-        alert(check)
         if (check != "no") {
+          alert(check)
          if ((check == 'true')&fun1()) {
+          alert('ok');
            return true;
          } else {
+          alert('no')
            return false;
          }
        } else {
+        alert('nos')
          fun();
          return false;
         }
