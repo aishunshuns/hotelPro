@@ -55,6 +55,13 @@ Route::get('myGift', 'home\UseraccountController@myGift');
 
 //礼品商城
 Route::get('Gift', 'home\GiftController@Gift');
+//礼品积分兑换
+Route::post('Convert', 'home\GiftController@Convert');
+//礼品收藏
+Route::get('Collection', 'home\GiftController@Collection');
+//礼品详情页面返回首页
+Route::get('shou', 'home\GiftController@shou');
+
 
 /*后台*/
  

@@ -52,7 +52,7 @@ class GiftController extends Controller{
 		     // echo app_path();die;
 		    $newName=time().rand(0,9999).'.'.$entension;
 		    $mimeTye = $file -> getMimeType();
-		    $path1 = $file -> move('gift',$newName);
+		    $path1 = $file -> move('gife',$newName);
 		    //$path2 = substr($path1,4,1);
 		    //echo $path2;die;
 		    //$path=str_replace('\','/',$path1);
@@ -90,7 +90,11 @@ class GiftController extends Controller{
 			'gift_integral'=>$data['gift_integral'],
 			'gift_start_time'=>$data['gift_start_time'],
 			'gift_end_time'=>$data['gift_end_time'],
-			'gift_stock'=>$data['gift_stock']
+			'gift_stock'=>$data['gift_stock'],
+			'gift_brand'=>$data['gift_brand'],
+			'gift_model'=>$data['gift_model'],
+			'gift_color'=>$data['gift_color']
+
 			));
     	if($res){
     		echo "<script>alert('添加成功')</script>";
