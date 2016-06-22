@@ -82,16 +82,19 @@
             })
             input.blur(function(){
               var new_name = input.val();
-              // alert(new_name)
-              if (new_name != name) {
+              if ( (new_name != name) && (new_name != '') ) {
                 var url = "{{url('admin/role_list')}}";
                 var data = {act:'checkSave', name:new_name, id:id}
                 $.get(url, data, function(e){
                   if (e == 'false') {
                     alert('改名称已存在');
+                    input.hide();
+                    $('#span_'+id).show().text(name);
+                    input.unbind();
                   } else if (e == 'true') {
                      input.hide();
                      $('#span_'+id).show().text(new_name);
+                     input.unbind();
                   }
                 })
               } else {

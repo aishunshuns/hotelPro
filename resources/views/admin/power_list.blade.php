@@ -23,7 +23,7 @@
              @foreach($arr as $key => $v)
              <tr id="tr_{{$v['privilege_id']}}"> 
               <td class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </td> 
-              <td> <a href="javascript:void(0)" id="">{{str_repeat('--',$v['level'])}}{{$v['privilege_name']}}</a> </td> 
+              <td>{{str_repeat('--',$v['level'])}} <input type="text" id="input_{{$v['privilege_id']}}" style="display:none"><span onclick="save({{$v['privilege_id']}})" id="span_{{$v['privilege_id']}}">{{$v['privilege_name']}}</span></td> 
               <td> 
                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
                 <button class="btn btn-xs btn-info" onclick="showBg({{$v['privilege_id']}})"> <i class="icon-edit bigger-120"></i> </button> 
@@ -180,6 +180,41 @@
   <script src="../assets/js/ace.min.js"></script> 
   <!-- inline scripts related to this page --> 
   <script type="text/javascript">
+
+      function save(id){
+            var name = $('#span_'+id).text();
+            var input = $('#input_'+id);
+            input.show();
+            input.focus().val(name);
+            $('#span_'+id).hide();
+            $('#span_'+id).click(function(){
+              return false;
+            })
+            input.blur(function(){
+              var new_name = input.val();
+              if ( (new_name != name) && (new_name != '') ) {
+                var url = "{{url('admin/power_list')}}";
+                var data = {act:'checkSave', name:new_name, id:id}
+                $.get(url, data, function(e){
+                  if (e == 'false') {
+                    alert('改名称已存在');
+                    input.hide();
+                    $('#span_'+id).show().text(name);
+                    input.unbind();
+                  } else if (e == 'true') {
+                     input.hide();
+                     $('#span_'+id).show().text(new_name);
+                     input.unbind();
+                  }
+                })
+              } else {
+                input.hide();
+                $('#span_'+id).show();
+              }
+            })
+          }
+
+
 			jQuery(function($) {
 				var oTable1 = $('#sample-table-2').dataTable( {
 				"aoColumns": [
