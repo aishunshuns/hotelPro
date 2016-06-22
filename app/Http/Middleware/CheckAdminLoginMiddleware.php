@@ -19,7 +19,7 @@ class CheckAdminLoginMiddleware implements Middleware
 
     public function handle($request, Closure $next)
     {
-        if(Session::get('act') != 'admin'){
+        if(Session::get('admin_act') != 'admin'){
             echo "<script>alert('请先登录！'); parent.location.href='".url('admin')."';</script>";
         } else {
             $id = Session::get('user_id');

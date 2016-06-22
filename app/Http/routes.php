@@ -52,7 +52,7 @@ Route::group(["middleware" => 'home_login'], function() {
 
 //后台登陆页面
 Route::get('admin', 'admin\LoginController@adminLogin');
-Route::post('admin/login_yz', 'admin\LoginController@login_yz');
+Route::any('admin/login_yz', 'admin\LoginController@login_yz');
 
 //邮件找回密码
 Route::post('admin/email','admin\LoginController@email');

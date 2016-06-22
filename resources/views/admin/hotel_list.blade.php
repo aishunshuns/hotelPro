@@ -42,7 +42,7 @@
               <td class="center">{{$v['hotel_address']}}</td> 
               <td class="center">{{$v['hotel_phone']}}</td> 
               <td class="center">{{$v['hotel_desc']}}</td> 
-              <td class="center"><img src="../{{$v['hotel_img']}}" alt="" width="60" height="50"></td>
+              <td class="center"><img src="{{url($v['hotel_img'])}}" alt="" width="60" height="50"></td>
               <td>
                 <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
                 <a class="btn btn-xs btn-info" href="{{URL('hotelSave')}}?hotel_id={{$v['hotel_id']}}" > <i class="icon-edit bigger-120"></i> </a> 
