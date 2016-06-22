@@ -24,8 +24,10 @@ class IndexController extends Controller{
 
 	//礼品商城
 	public function GiftList()
-	{
-		return view('home.GiftList');
+	{	
+		$sql="select * from lat_gift";
+		$res=DB::select($sql);
+		return view('home.GiftList',['arr'=>$res]);
 	}
 
 	//帮助咨询

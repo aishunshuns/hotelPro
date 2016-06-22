@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>礼品中心</title>
+<script src="../js/jquery.js"></script> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
 <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -13,11 +14,11 @@
 </head>
 <body>
  <div class="header">
- <a href="index.html" class="home">
+ <a href="{{url('shou')}}" class="home">
             <span class="header-icon header-icon-home"></span>
             <span class="header-name">主页</span>
 </a>
-<div class="title" id="titleString">礼品中心</div>
+<div class="title" id="titleString">礼品兑换中心</div>
 <a href="javascript:history.go(-1);" class="back">
             <span class="header-icon header-icon-return"></span>
             <span class="header-name">返回</span>
@@ -25,7 +26,7 @@
  </div>
 
         
-   <form name="aspnetForm" method="post" action="Gift.aspx?id=13" id="aspnetForm">
+   <form method="post" action="{{url('Convert')}}" >
 <div>
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMjUyMzU2NTUzD2QWAmYPZBYCAgEPZBYCAgEPZBYCAgEPZBYGZg8PFgIeBFRleHQFD+iQqOaRqeWFheeUteWunWRkAgEPDxYCHwAFBDk2MDBkZAICDxYCHwAF4Qc8cCBzdHlsZT0idGV4dC1pbmRlbnQ6MHB4O2NvbG9yOiM5OTk5OTk7Ij4NCgk8ZW0+PHN0cm9uZz7kuqflk4Hlj4LmlbDvvJo8L3N0cm9uZz48L2VtPg0KPC9wPg0KPHVsIHN0eWxlPSJ0ZXh0LWluZGVudDowcHg7Y29sb3I6IzQwNDA0MDsiPg0KCTxsaSBzdHlsZT0iY29sb3I6IzY2NjY2Njt2ZXJ0aWNhbC1hbGlnbjp0b3A7Ij4NCgkJ5ZOB54mMOiZuYnNwO2VtaWUv5Lq/6KeF44CCDQoJPC9saT4NCgk8bGkgc3R5bGU9ImNvbG9yOiM2NjY2NjY7dmVydGljYWwtYWxpZ246dG9wOyI+DQoJCeWei+WPtzombmJzcDtlbWll6JCo5pGp56e75Yqo55S15rqQDQoJPC9saT4NCgk8bGkgc3R5bGU9ImNvbG9yOiM2NjY2NjY7dmVydGljYWwtYWxpZ246dG9wOyI+DQoJCeminOiJsuWIhuexuzombmJzcDvpu4ToibLokKjmkakmbmJzcDvnmb3oibLokKjmkakr6aaZ5riv5r2u6ZuG5YWF55S15aS0Jm5ic3A76buE6Imy6JCo5pGpK+mmmea4r+a9rumbhuWFheeUteWktCZuYnNwO+eZveiJsuiQqOaRqQ0KCTwvbGk+DQoJPGxpIHN0eWxlPSJjb2xvcjojNjY2NjY2O3ZlcnRpY2FsLWFsaWduOnRvcDsiPg0KCQnnlLXmsaDlrrnph486Jm5ic3A7NTAwMU1BaCjlkKspLTYwMDBNQWgo5ZCrKQ0KCTwvbGk+DQoJPGxpIHN0eWxlPSJjb2xvcjojNjY2NjY2O3ZlcnRpY2FsLWFsaWduOnRvcDsiPg0KCQnmmK/lkKbmlK/mjIHlpKrpmLPog706Jm5ic3A75ZCmDQoJPC9saT4NCgk8bGkgc3R5bGU9ImNvbG9yOiM2NjY2NjY7dmVydGljYWwtYWxpZ246dG9wOyI+DQoJCemAgueUqOexu+WeizombmJzcDvpgJrnlKgNCgk8L2xpPg0KCTxsaSBzdHlsZT0iY29sb3I6IzY2NjY2Njt2ZXJ0aWNhbC1hbGlnbjp0b3A7Ij4NCgkJTEVE54Gv54Wn5piOOiZuYnNwO+WQpg0KCTwvbGk+DQoJPGxpIHN0eWxlPSJjb2xvcjojNjY2NjY2O3ZlcnRpY2FsLWFsaWduOnRvcDsiPg0KCQnnlLXmsaDnsbvlnos6Jm5ic3A76ZSC55S15rGgDQoJPC9saT4NCjwvdWw+DQo8cD4NCgkmbmJzcDsNCjwvcD5kZHUtAGPcaINW5BgtgZf7KsDAZt1n" />
 </div>
@@ -37,38 +38,49 @@
    <div id="ctl00_ContentPlaceHolder1_Panel1">
 	
         <div class="container width90">
-        <h3><span id="ctl00_ContentPlaceHolder1_txtGiftName">萨摩充电宝</span></h3>
-        <p>所需积分：<span id="ctl00_ContentPlaceHolder1_txtGiftCost">9600</span></p>
-        <p><img style="display: block;" src="http://www.gridinn.com/photos/gift/13.jpg" height="300" width="300"></p>
+        <?php foreach ($arr as $k => $v) { ?>
+        	
+        
+        <h3><span id="ctl00_ContentPlaceHolder1_txtGiftName"><?php echo $v['gift_name'] ?></span></h3>
+        <p>所需积分：<span id="ctl00_ContentPlaceHolder1_txtGiftCost"><?php echo $v['gift_integral'] ?></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{url('Collection')}}"><img src="img/index.png" width="30" /></a>
+  
+        
+  
+
+        <span style="font-size:12px; color:pink "><?php echo $arr2 ?>人已经收藏过了</span></p>
+
+
+        <p><img style="display: block;" src="../<?php echo $v['gift_img'] ?>" height="300" width="300"></p>
         <p><p style="text-indent:0px;color:#999999;">
 	<em><strong>产品参数：</strong></em>
 </p>
 <ul style="text-indent:0px;color:#404040;">
 	<li style="color:#666666;vertical-align:top;">
-		品牌:&nbsp;emie/亿觅。
+		品牌:&nbsp;<?php echo $v['gift_brand'] ?>
 	</li>
 	<li style="color:#666666;vertical-align:top;">
-		型号:&nbsp;emie萨摩移动电源
+		型号:&nbsp;<?php echo $v['gift_model'] ?>
 	</li>
 	<li style="color:#666666;vertical-align:top;">
-		颜色分类:&nbsp;黄色萨摩&nbsp;白色萨摩+香港潮集充电头&nbsp;黄色萨摩+香港潮集充电头&nbsp;白色萨摩
+		颜色分类:&nbsp;<?php echo $v['gift_color'] ?>
 	</li>
 	<li style="color:#666666;vertical-align:top;">
-		电池容量:&nbsp;5001MAh(含)-6000MAh(含)
+		适用类型:&nbsp;<?php if($v['is_tong']==0){ ?>
+						通用
+			<?php }else{ ?>
+						不通用
+				<?php }?>
 	</li>
-	<li style="color:#666666;vertical-align:top;">
-		是否支持太阳能:&nbsp;否
+	<?php foreach ($arr1 as $key => $value) { ?>
+	<li>
+		<a>您的剩余积分为:<?php echo $value['user_intergral'] ?></a>
 	</li>
-	<li style="color:#666666;vertical-align:top;">
-		适用类型:&nbsp;通用
-	</li>
-	<li style="color:#666666;vertical-align:top;">
-		LED灯照明:&nbsp;否
-	</li>
-	<li style="color:#666666;vertical-align:top;">
-		电池类型:&nbsp;锂电池
-	</li>
+	<?php } ?>
+	
+	<input type="hidden" name="convert" value="<?php echo $v['gift_id'] ?>" />
+	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 </ul>
+<?php } ?>
 <p>&nbsp;
 	
 </p></p>
@@ -78,6 +90,7 @@
              <p class="red"></p> 
       <input type="submit" name="ctl00$ContentPlaceHolder1$btnOK" value="立即兑换" id="ctl00_ContentPlaceHolder1_btnOK" class="btn-large green button width80" style="width:80%;" />
         </div>
+
     </div>
    
 </div>
@@ -102,3 +115,5 @@
 
 </body>
 </html>
+
+

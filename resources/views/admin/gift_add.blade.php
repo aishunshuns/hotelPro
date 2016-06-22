@@ -54,6 +54,25 @@
               </td>
             </tr>
             <tr>
+              <td align="center">品牌</td>
+              <td>
+                <input type="text" name="gift_brand" />
+              </td>
+            </tr>
+            <tr>
+              <td align="center">型号</td>
+              <td>
+                <input type="text" name="gift_model" />
+              </td>
+            </tr>
+            <tr>
+              <td align="center">颜色</td>
+              <td>
+                <input type="text" name="gift_color" />
+              </td>
+            </tr>
+            
+            <tr>
               
               <td align="center">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
