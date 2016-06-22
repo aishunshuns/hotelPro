@@ -10,24 +10,38 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::group( ["middleware" => 'adminCheck'], function() {
+	Route::get('/', 'home\IndexController@Index');
+	Route::get('CityList', 'home\IndexController@CityList');
+	Route::get('ActiVitys', 'home\IndexController@ActiVitys');
+	Route::get('GiftList', 'home\IndexController@GiftList');
+	Route::get('Help', 'home\IndexController@Help');
+	Route::get('MyOrder', 'home\IndexController@MyOrder');
+	Route::get('Help', 'home\IndexController@Help');
+
+	//预定酒店路由
+	Route::get('HotelList', 'home\CitylistController@HotelList');
+	Route::get('Hotel', 'home\CitylistController@Hotel');
+	Route::get('HotelInfo', 'home\CitylistController@HotelInfo');
+	Route::get('HotelMap', 'home\CitylistController@HotelMap');
+	Route::get('HotelReview', 'home\CitylistController@HotelReview');
+
+	//最新活动路由
+	Route::get('News', 'home\ActivityController@News');
+	//我的订单
+	Route::get('myOrder', 'home\MyorderController@myOrder');
+
+	//我的格子
+	Route::get('userAccount', 'home\UseraccountController@userAccount');
+	Route::get('myList', 'home\UseraccountController@myList');
+	Route::get('myGift', 'home\UseraccountController@myGift');
+
+	//礼品商城
+	Route::get('Gift', 'home\GiftController@Gift');
+});
 //首页页面路由
-Route::get('/', 'home\IndexController@Index');
-Route::get('CityList', 'home\IndexController@CityList');
-Route::get('ActiVitys', 'home\IndexController@ActiVitys');
-Route::get('GiftList', 'home\IndexController@GiftList');
-Route::get('Help', 'home\IndexController@Help');
-Route::get('MyOrder', 'home\IndexController@MyOrder');
-Route::get('Help', 'home\IndexController@Help');
 
-//预定酒店路由
-Route::get('HotelList', 'home\CitylistController@HotelList');
-Route::get('Hotel', 'home\CitylistController@Hotel');
-Route::get('HotelInfo', 'home\CitylistController@HotelInfo');
-Route::get('HotelMap', 'home\CitylistController@HotelMap');
-Route::get('HotelReview', 'home\CitylistController@HotelReview');
-
-//最新活动路由
-Route::get('News', 'home\ActivityController@News');
 
 
 //注册及登陆路由
@@ -37,16 +51,7 @@ Route::post('register_add', 'home\RegisterController@Register_add');
 Route::get('Login', 'home\RegisterController@Login');
 Route::post('Login_yz', 'home\RegisterController@Login_yz');
 
-//我的订单
-Route::get('myOrder', 'home\MyorderController@myOrder');
 
-//我的格子
-Route::get('userAccount', 'home\UseraccountController@userAccount');
-Route::get('myList', 'home\UseraccountController@myList');
-Route::get('myGift', 'home\UseraccountController@myGift');
-
-//礼品商城
-Route::get('Gift', 'home\GiftController@Gift');
 
 /*后台*/
  
