@@ -17,7 +17,7 @@
 	Route::post('register_add', 'home\RegisterController@Register_add');
 	Route::get('Login', 'home\RegisterController@Login');
 	Route::post('Login_yz', 'home\RegisterController@Login_yz');
-Route::group( ["middleware" => 'adminCheck'], function() {
+Route::group( ["middleware" => 'homeCheck'], function() {
 	//首页页面路由
 	Route::get('/', 'home\IndexController@Index');
 	Route::get('CityList', 'home\IndexController@CityList');
@@ -52,7 +52,13 @@ Route::group( ["middleware" => 'adminCheck'], function() {
 
 	//最新活动路由
 	Route::get('News', 'home\ActivityController@News');
-
+	
+	//我的订单
+	Route::get('myOrder', 'home\MyorderController@myOrder');
+	//我的格子
+	Route::get('userAccount', 'home\UseraccountController@userAccount');
+	Route::get('myList', 'home\UseraccountController@myList');
+	Route::get('myGift', 'home\UseraccountController@myGift');
 
 	//礼品商城
 	Route::get('Gift', 'home\GiftController@Gift');
