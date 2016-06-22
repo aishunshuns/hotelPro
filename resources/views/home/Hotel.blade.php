@@ -125,21 +125,21 @@
 			<li class="first">
            <a href="#BookRoom"  class="active">房型</a>
 			</li>
-			<li><a href="HotelInfo">简介</a></li>
-			<li><a href="HotelMap">地图</a></li>
-			<li><a href="HotelReview">评论</a></li>
+			<li><a href="HotelInfo?hotel_id={{$arr[0]['hotel_id']}}">简介</a></li>
+			<li><a href="HotelMap?hotel_id={{$arr[0]['hotel_id']}}">地图</a></li>
+			<li><a href="HotelReview?hotel_id={{$arr[0]['hotel_id']}}">评论</a></li>
 </ul>
  <div id="BookRoom" class="tab-pane active fade in">   
 <div class="detail-address-bar">
 	<img alt="" src="images/location_icon.png">
-	<p>秀灵路55号（出入境管理局旁）</p>
+	<p>{{$arr[0]['hotel_address']}}</p>
 </div>     
 <div id="datetab" class="detail-time-bar">
 	<img alt="" src="images/calendar.png">
-	<p>04月11日 - 04月12日</p>
+	<p>{{$start_time}} - {{$end_time}}</p>
    <span class="icon-down"></span>
 </div>  
-<form action="hotel.aspx" method="GET">
+<form action="updateTime" method="post">
 <div id="datebox" class="section none">
    <div class="filter clearfix">
        <p style="margin-bottom: 10px;display: block;">入住：<a id="datestart" href="javascript:void(0)"><span class="ui-icon-down"></span></a></p>
@@ -152,17 +152,18 @@
            <div id="datepicker_start"></div>
        </div>
        <div id="dp_end">
+       <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
            <p>离开时间：</p>
            <div id="datepicker_end"></div>
        </div>
    </div>
+   <input id="hotel_id" name="hotel_id" type="hidden" value="{{$arr[0]['hotel_id']}}" />
+    <input id="CheckInDate" name="CheckInDate" type="hidden" value="2014-4-11" />
+    <input id="CheckOutDate" name="CheckOutDate" type="hidden" value="2014-4-12" />
    <div class="result">
        <input type="submit" class="btn" value="确定修改" />
        <span class="btn" id="datecancel">取消</span>
-   </div>
-    <input id="id" name="id" type="hidden" value="5" />
-    <input id="CheckInDate" name="CheckInDate" type="hidden" value="2014-4-11" />
-    <input id="CheckOutDate" name="CheckOutDate" type="hidden" value="2014-4-12" />
+   </div>   
 </div>
 </form>  
 <script type="text/javascript">
@@ -259,119 +260,29 @@
     })(Zepto);
 </script>
 <ul class="unstyled roomlist">
-     
-        <li>
+     @foreach($arr as $v)
+    <li>
         <div class="roomtitle">
-        <div class="roomname">上下铺</div>
+        <div class="roomname">{{$v['house_name']}}</div>
           
         <div class="fr">
           <em class="orange roomprice">
-              ￥134 起
+              ￥{{$v['diamond_price']}} 起
          </em>
-       
-		<a href='login.aspx@page=_2Forderhotel.aspx&hotelid=5&roomtype=5&checkInDate=2014-4-11&checkOutDate=2014-4-12' title='立即预定' class='btn btn-success iframe'>预定</a>
-
+       @if($v['house_num']>0)
+	     <a href="HotelOrder?hotel_id={{$v['hotel_id']}}&house_id={{$v['house_id']}}&start_time={{Session::get('start_time')}}&end_time={{Session::get('end_time')}}" title='立即预定' class='btn btn-success iframe'>预定</a>
+       @else
+        <span class="btn">满房</span>
+        @endif
 		</div>
         </div>
         
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201304/20130411152105m.jpg">
+                     <a class="fl roompic" bigsrc="..\{{$v['house_img']}}">
                             <img title="秀灵上下铺" 
-                             src="http://www.gridinn.com/photos/201304/20130411152105s.jpg"></a>
+                             src="..\{{$v['house_img']}}"></a>
                     
     </li>  
-       
-        <li>
-        <div class="roomtitle">
-        <div class="roomname">榻榻米</div>
-          
-        <div class="fr">
-          <em class="orange roomprice">
-              ￥124 起
-         </em>
-       
-		<a href='login.html' title='立即预定' class='btn btn-success iframe'>预定</a>
-
-		</div>
-        </div>
-        
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201311/20131107115608m.jpg">
-                            <img title="榻榻米" 
-                             src="http://www.gridinn.com/photos/201311/20131107115608s.jpg"></a>
-                    
-    </li>  
-       
-        <li>
-        <div class="roomtitle">
-        <div class="roomname">阳光房</div>
-          
-        <div class="fr">
-          <em class="orange roomprice">
-              ￥124 起
-         </em>
-       
-		<span class='btn'>满房</span>
-
-		</div>
-        </div>
-        
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201304/20130411152015m.jpg">
-                            <img title="秀灵阳光" 
-                             src="http://www.gridinn.com/photos/201304/20130411152015s.jpg"></a>
-                    
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201307/20130729222733m.jpg">
-                            <img title="阳光房" 
-                             src="http://www.gridinn.com/photos/201307/20130729222733s.jpg"></a>
-                    
-    </li>  
-       
-        <li>
-        <div class="roomtitle">
-        <div class="roomname">阁楼房</div>
-          
-        <div class="fr">
-          <em class="orange roomprice">
-              ￥144 起
-         </em>
-       
-		<span class='btn'>满房</span>
-
-		</div>
-        </div>
-        
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201304/20130411151851m.jpg">
-                            <img title="秀灵阁楼" 
-                             src="http://www.gridinn.com/photos/201304/20130411151851s.jpg"></a>
-                    
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201307/20130729222806m.jpg">
-                            <img title="阁楼房" 
-                             src="http://www.gridinn.com/photos/201307/20130729222806s.jpg"></a>
-                    
-    </li>  
-       
-        <li>
-        <div class="roomtitle">
-        <div class="roomname">迷你房</div>
-          
-        <div class="fr">
-          <em class="orange roomprice">
-              ￥103 起
-         </em>
-       
-		<span class='btn'>满房</span>
-
-		</div>
-        </div>
-        
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201304/20130411151945m.jpg">
-                            <img title="秀灵迷你" 
-                             src="http://www.gridinn.com/photos/201304/20130411151945s.jpg"></a>
-                    
-                     <a class="fl roompic" bigsrc="http://www.gridinn.com/photos/201307/20130729222654m.jpg">
-                            <img title="迷你房" 
-                             src="http://www.gridinn.com/photos/201307/20130729222654s.jpg"></a>
-                    
-    </li>  
-          
+    @endforeach   
 </ul>
 <div style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);" class="hotel-prompt">
 			<span class="hotel-prompt-title" id="digxx">特别提示</span>

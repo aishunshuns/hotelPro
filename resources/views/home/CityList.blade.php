@@ -21,22 +21,21 @@
             <span class="header-icon header-icon-return"></span>
             <span class="header-name">返回</span>
         </a>
- </div>
-
-        
+ </div>      
     <script type="text/javascript" src="calendar/touch.js"></script><!--新版zepto合并版中不包括touch.js-->
     <script type="text/javascript" src="calendar/highlight.js"></script>
     <script type="text/javascript" src="calendar/gmu.js"></script>
     <script type="text/javascript" src="calendar/event.js"></script>
     <script type="text/javascript" src="calendar/widget.js"></script>
     <script type="text/javascript" src="calendar/calendar.js"></script>
-	
+    <script type="text/javascript" src="jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="calendar/calendar.css" />
     <link rel="stylesheet" type="text/css" href="calendar/calendar.default.css" />
 	
        <div class="container width90 pt20">
  <form class="form-horizontal" action="HotelList" method="GET" id="form1">
-<ul class="search-group unstyled">
+ <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+ <ul class="search-group unstyled">
 	  <style>
         .section {
             background: #f3f3f3;
@@ -115,16 +114,18 @@
 					    <span class="coupon-input"> <span style="font-size: 16px; line-height: 35px;" id="cityname">全部城市</span></span>
 					</div>
                    <div class="citybox">
-                      @foreach($res as $k => $v)
-                         <span cityId="{{$k}}">{{$v}}</span>
-                      @endforeach
+
+                   @foreach($result as $k => $v)
+                        <span cityId="{{$k}}">{{$v}}</span> 
+                   @endforeach                    
+
                    </div>
 				</li>
 			<li>
 					<div class="coupon-nav coupon-nav-style">
 						<span class="search-icon time-icon"></span>
 						<span class="coupon-label">入住日期：</span>
-					    <span class="coupon-input"><a id="datestart" class="datebox" href="javascript:void(0)"><span class="ui-icon-down"></span></a></span>
+					    <span class="coupon-input"><a id="datestart" class="datebox" href="javascript:void(0)"><span class="ui-icon-down" id="start_time"></span></a></span>
 					</div>
                     <div id="dp_start" class="none">
                      <div id="datepicker_start"></div>
@@ -134,7 +135,7 @@
 					<div class="coupon-nav coupon-nav-style">
 						<span class="search-icon time-icon"></span>
 						<span class="coupon-label">离店日期：</span>
-					    <span class="coupon-input"><a id="dateend"  class="datebox"  href="javascript:void(0)"><span class="ui-icon-down"></span></a></span>
+					    <span class="coupon-input"><a id="dateend"  class="datebox"  href="javascript:void(0)"><span class="ui-icon-down" id="end_time"></span></a></span>
 					</div>
                     <div id="dp_end" class="none">
                      <div id="datepicker_end"></div>
@@ -142,20 +143,22 @@
 				</li>
    
                 </ul>
-               <input id="checkInDate" name="checkInDate" value="2014-04-11" type="hidden" />
+
+                 <input id="checkInDate" name="checkInDate" value="2014-04-11" type="hidden" />
                 <input id="checkOutDate" name="checkOutDate" value="2014-04-12" type="hidden" />
-                <input id="cityID" name="cityID" value="0" type="hidden" /> 
+                <input id="cityID" name="cityID" value="0" type="hidden" />
 <script type="text/javascript">
     (function ($, undefined) {
         $(function () {//dom ready
+
             var open = null, today = new Date();
             var beginday = '2014-04-11';
             var endday = '2014-04-12';
             //设置开始时间为今天
-            $('#datestart').html(beginday + '<span class="ui-icon-down"></span>');
+            $('#datestart').html(beginday + '<span class="ui-icon-down" id="start_time"></span>');
             //设置结束事件
             $('#dateend').html(endday +
-                '<span class="ui-icon-down"></span>');
+                '<span class="ui-icon-down" id="end_time"></span>');
             $('#datepicker_start').calendar({//初始化开始时间的datepicker
                 date: $('#datestart').text(), //设置初始日期为文本内容
                 minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()), //设置最小日期为当月第一天，既上一月的不能选
@@ -165,10 +168,10 @@
                     $('#datepicker_end').calendar('minDate', day1).calendar('refresh'); //将结束时间的datepick的最小日期设成所选日期
                     $('#dp_start').toggle();
                     //把所选日期赋值给文本
-                    $('#datestart').html(dateStr + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
+                    $('#datestart').html(dateStr + '<span class="ui-icon-down" id="start_time"></span>').removeClass('ui-state-active');
                     $('#checkInDate').val(dateStr);
                     
-                    $('#dateend').html($.calendar.formatDate(day1) + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
+                    $('#dateend').html($.calendar.formatDate(day1) + '<span class="ui-icon-down" id="start_time"></span>').removeClass('ui-state-active');
                     $('#checkOutDate').val($.calendar.formatDate(day1));
                 }
             });
@@ -181,7 +184,7 @@
                     open = null;
                     $('#dp_end').toggle();
                     //把所选日期赋值给文本
-                    $('#dateend').html(dateStr + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
+                    $('#dateend').html(dateStr + '<span class="ui-icon-down" id="end_time"></span>').removeClass('ui-state-active');
                     $('#checkOutDate').val(dateStr);
                 }
             });
@@ -208,16 +211,14 @@
         });
     })(Zepto);
 </script>
-     <div class="control-group tc">
-         <button class="btn-large green button width80" style="padding-left:0px;padding-right: 0px;" ID="btnOK" ><a href="HotelList">立即查找</a></button>
+  <div class="control-group tc">
+         <input type="submit" class="btn-large green button width80" style="padding-left:0px;padding-right: 0px; width:345px;" ID="btnOK" value="立即查找" />
   </div>
   <div class="control-group tc">
          <a href="NearHotel.aspx" style="padding-left:0px;padding-right: 0px;"  class="btn-large green button width80">附近酒店</a>
   </div>
                 </form>
          </div>
-
-
   <div class="footer">
   <div class="gezifooter">
       

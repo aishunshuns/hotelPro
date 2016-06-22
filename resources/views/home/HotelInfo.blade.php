@@ -17,7 +17,7 @@
             <span class="header-icon header-icon-home"></span>
             <span class="header-name">主页</span>
 </a>
-<div class="title" id="titleString"></div>
+<div class="title" id="titleString">酒店简介</div>
 <a href="javascript:history.go(-1);" class="back">
             <span class="header-icon header-icon-return"></span>
             <span class="header-name">返回</span>
@@ -39,17 +39,17 @@
     <script type="text/javascript" src="http://gmu.baidu.com/src/widget/slider/$autoplay.js"></script>
     <script type="text/javascript" src="http://gmu.baidu.com/src/widget/slider/$lazyloadimg.js"></script>
     <script type="text/javascript" src="http://gmu.baidu.com/src/widget/slider/imgzoom.js"></script>
-      <link rel="stylesheet" type="text/css" href="http://gmu.baidu.com/assets/widget/slider/slider.css" />
-        <link rel="stylesheet" type="text/css" href="http://gmu.baidu.com/assets/widget/slider/slider.default.css" />
+    <link rel="stylesheet" type="text/css" href="http://gmu.baidu.com/assets/widget/slider/slider.css" />
+    <link rel="stylesheet" type="text/css" href="http://gmu.baidu.com/assets/widget/slider/slider.default.css" />
     
 <div class="container">
 <ul class="unstyled hotel-bar">
 	<li class="first">
-    <a href="Hotel">房型</a>
+    <a href="Hotel?hotel_id={{$arr['hotel_id']}}">房型</a>
 	</li>
 	<li><a href="HotelInfo"  class="active">简介</a></li>
-	<li><a href="HotelMap">地图</a></li>
-	<li><a href="HotelReview">评论</a></li>
+	<li><a href="HotelMap?hotel_id={{$arr['hotel_id']}}">地图</a></li>
+	<li><a href="HotelReview?hotel_id={{$arr['hotel_id']}}">评论</a></li>
 </ul>
 <script type="text/javascript">
     $('#titleString').text($(document)[0].title);
@@ -77,18 +77,15 @@
 </div>
 <div id="hotelinfo" class="hotel-prompt ">
 			<span class="hotel-prompt-title">酒店简介</span>
-			<p>格子微酒店南宁南宁秀灵路店位于广西最著名大学广西大学东门旁，紧邻邕江边，周边超市、餐饮、银行等配套设施完善，出行便利。 酒店倡导低碳环保，客房内配有24小时热水、wifi网络、电视等设施，客房虽小，设施齐全。酒店服务周到细致，是您出行的不错选择。 酒店开业时间2012年12月。</p>
-            <p>地址：秀灵路55号（出入境管理局旁）</p>
-            <p>电话：0771-3391588</p>
+			      <p>{{$arr['hotel_desc']}}</p>
+            <p>地址：{{$arr['hotel_address']}}</p>
+            <p>电话：{{$arr['hotel_phone']}}</p>
 		</div>
 </div>
 <script>
     //创建slider组件
     $('#slider').slider({ imgZoom: true });
 </script>
-
-
-  <div class="footer">
   <div class="gezifooter">
       
       <a href="Loginx" class="ui-link">立即登陆</a> <font color="#878787">|</font> 
@@ -100,7 +97,7 @@
   <div class="gezifooter">
     <p style="color:#bbb;">格子微酒店连锁 &copy; 版权所有 2012-2014</p>
   </div>
-  </div>
+
 
 </body>
 </html>
