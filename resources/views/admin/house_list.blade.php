@@ -58,7 +58,7 @@
               <td class="center"><span class="label label-info arrowed arrowed-in-right">{{$v['gold_price']}}</span></td> 
               <td class="center"> <span class="label label-sm label-warning">{{$v['diamond_price']}}</span> </td> 
               <td class="center">{{$v['house_num']}}</td> 
-              <td class="center"><img src="../{{$v['house_img']}}" alt="" width="60" height="50"></td>
+              <td class="center"><img src="..\{{$v['house_img']}}" alt="" width="60" height="50"></td>
               <td>
                 <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
                 <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 

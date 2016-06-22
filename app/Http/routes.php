@@ -25,6 +25,15 @@ Route::get('Hotel', 'home\CitylistController@Hotel');
 Route::get('HotelInfo', 'home\CitylistController@HotelInfo');
 Route::get('HotelMap', 'home\CitylistController@HotelMap');
 Route::get('HotelReview', 'home\CitylistController@HotelReview');
+Route::get('HotelOrder', 'home\CitylistController@HotelOrder');
+Route::post('updateTime', 'home\CitylistController@updateTime');
+Route::get('HotelShow', 'home\CitylistController@HotelShow');
+Route::get('HotelNav', 'home\CitylistController@HotelNav');
+
+//收藏酒店
+Route::get('Collection', 'home\CitylistController@Collection');
+Route::get('Cancel', 'home\CitylistController@Cancel');
+	
 
 //最新活动路由
 Route::get('News', 'home\ActivityController@News');

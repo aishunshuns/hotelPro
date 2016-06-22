@@ -20,17 +20,16 @@
             <span class="header-name">返回</span>
         </a>
  </div>
-
         
     <div class="container width90">
         <ul class="unstyled activitylist">
              
-                <li>
+            <li>
                 <a href="News">
                 <img src="http://www.gridinn.com/photos/201404/3.jpg"/>
                 <p>选出您最喜欢的格子微分店（2014-04-08）</p>
                 </a>
-            </li> 
+            </li>
             
                 <li>
                 <a href="News">
