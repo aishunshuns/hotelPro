@@ -115,10 +115,9 @@
 					    <span class="coupon-input"> <span style="font-size: 16px; line-height: 35px;" id="cityname">全部城市</span></span>
 					</div>
                    <div class="citybox">
-                      <span cityId="0">全部</span> 
-                      <span cityId="771">南宁</span> 
-                      <span cityId="773">桂林</span> 
- <span cityId="371">郑州</span> 
+                      @foreach($res as $k => $v)
+                         <span cityId="{{$k}}">{{$v}}</span>
+                      @endforeach
                    </div>
 				</li>
 			<li>
@@ -143,9 +142,9 @@
 				</li>
    
                 </ul>
-                <!--  <input id="checkInDate" name="checkInDate" value="2014-04-11" type="hidden" />
+               <input id="checkInDate" name="checkInDate" value="2014-04-11" type="hidden" />
                 <input id="checkOutDate" name="checkOutDate" value="2014-04-12" type="hidden" />
-                <input id="cityID" name="cityID" value="0" type="hidden" /> -->
+                <input id="cityID" name="cityID" value="0" type="hidden" /> 
 <script type="text/javascript">
     (function ($, undefined) {
         $(function () {//dom ready
