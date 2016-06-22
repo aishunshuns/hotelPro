@@ -16,13 +16,15 @@ class LoginController extends Controller{
 	{
 		$txtusername = $_POST['username'];
 		$txtpassword = $_POST['password'];
+		$act = $_POST['act'];
 		$arr = DB::select("select * from lat_users where user_phone='$txtusername' || user_name='$txtusername' || user_idcard='$txtusername'");
 		if($arr){
 			foreach($arr as $Key=>$v){
 				if($txtpassword == $v['user_pwd']){
 					Session::put('user_id', $v['user_id']);
 					Session::put('user_name', $v['user_name']);
-					Session::put('admin_act', $act);
+					Session::put('act', $act);
+					Session::put('user_file', "file/".$v['user_file']);
 					Session::save();
 					echo "<script> alert('登陆成功');parent.location.href='".url('admin/index')."'; </script>"; 
 				}else{
