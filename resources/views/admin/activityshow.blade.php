@@ -53,7 +53,7 @@
                     </td> 
                     <td class="center">{{date('Y-m-d H:i:s',$v['act_start_time'])}}</td> 
                     <td class="hidden-480">{{date('Y-m-d H:i:s',$v['act_end_time'])}}</td> 
-                    <td class="center"><img src="{{$v['act_img']}}" width="80" ></td> 
+                    <td class="center"><img src="{{url($v['act_img'])}}" width="80" ></td> 
                     <td class="hidden-480"> {{$v['act_num']}} </td> 
                     <td class="center"> 
                      <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
