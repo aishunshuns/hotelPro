@@ -17,7 +17,13 @@ Route::get('ActiVitys', 'home\IndexController@ActiVitys');
 Route::get('GiftList', 'home\IndexController@GiftList');
 Route::get('Help', 'home\IndexController@Help');
 Route::get('MyOrder', 'home\IndexController@MyOrder');
-Route::get('Help', 'home\IndexController@Help');
+
+//帮助咨询
+Route::get('Help', 'home\HelpController@Help');
+Route::get('helpContact', 'home\HelpController@helpContact');
+Route::get('helpCenter', 'home\HelpController@helpCenter');
+Route::get('helpFeedback', 'home\HelpController@helpFeedback');
+Route::post('feedbackAdd', 'home\HelpController@feedbackAdd');
 
 //预定酒店路由
 Route::get('HotelList', 'home\CitylistController@HotelList');
@@ -25,6 +31,8 @@ Route::get('Hotel', 'home\CitylistController@Hotel');
 Route::get('HotelInfo', 'home\CitylistController@HotelInfo');
 Route::get('HotelMap', 'home\CitylistController@HotelMap');
 Route::get('HotelReview', 'home\CitylistController@HotelReview');
+Route::get('HotelShow', 'home\CitylistController@HotelShow');
+Route::get('HotelNav', 'home\CitylistController@HotelNav');
 
 //最新活动路由
 Route::get('News', 'home\ActivityController@News');

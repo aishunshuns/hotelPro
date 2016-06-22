@@ -6,7 +6,9 @@ class ActivityController extends Controller{
 
 	//选择喜欢的格子
 	public function News()
-	{
-		return view('home.news');
+	{	
+		$id=$_GET['id'];
+		$res=DB::table('activity')->where('act_id','=',$id)->first();
+		return view('home.news')->with('v',$res);
 	}
 }
