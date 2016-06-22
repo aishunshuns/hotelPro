@@ -54,8 +54,7 @@ class CitylistController extends Controller{
 	// 预订酒店时间修改
 	public function updateTime()
 	{
-		$info = Request::all();
-		
+		$info = Request::all();	
 		 // print_r($info['hotel_id']);die;
 		Session::put('start_time',$info['CheckInDate']);
 		Session::put('end_time',$info['CheckOutDate']);
@@ -185,8 +184,7 @@ class CitylistController extends Controller{
 	// 取消收藏
 	public function Cancel()
 	{
-		$user_id = 21 
-		;
+		$user_id = 21;
 		/*$s_time = Session::get('start_time');
 		$e_time = Session::get('end_time');*/
 		$hotel_id = Request::input('hotel_id');

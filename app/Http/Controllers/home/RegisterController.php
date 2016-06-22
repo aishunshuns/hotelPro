@@ -33,8 +33,8 @@ class RegisterController extends Controller{
 		$id_card = $_POST['id_card'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$arr = DB::table('lat_users')->insert(
-            array('user_name'=>$username,'user_pwd'=>$password,'user_phone' => $mobile_phone,'user_idcard'=>$id_card)
+		$arr = DB::table('users')->insert(
+            array('user_name'=>$username,'user_pwd'=>$password,'user_phone' => $mobile_phone,'user_idcard'=>$id_card,'user_act'=>'home')
         );
         return redirect('Login');
 	}
@@ -53,7 +53,7 @@ class RegisterController extends Controller{
 		$arr = DB::select("select * from lat_users where user_phone='$txtusername' || user_name='$txtusername' || user_idcard='$txtusername'");
 		if($arr){
 			foreach($arr as $Key=>$v){
-				if($txtpassword== $v['user_pwd']){
+				if($txtpassword== $v['user_pwd'] && $v['user_act']=='home'){
 					session(['user_id'=>$v['user_id']]);
 					session(['user_name'=>$v['user_name']]);
 					echo "<script> alert('登陆成功');parent.location.href='/'; </script>"; 
@@ -66,4 +66,5 @@ class RegisterController extends Controller{
 		}
 	
 	}
+
 }
