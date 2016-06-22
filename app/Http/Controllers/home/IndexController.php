@@ -13,11 +13,11 @@ class IndexController extends Controller{
 
 	//预定酒店首页
 	public function CityList()
-	{	
+	{
 		$arr = DB::table('hotel')->lists('city_id');
 		$data = array();
 		$res = array();
-		foreach($arr as $k => $v){
+foreach($arr as $k => $v){
 			$data[] = explode(',',$v);
 		}	
 		// dd($data);die;
@@ -25,10 +25,11 @@ class IndexController extends Controller{
 			$res[] = $v[1];
 		}
 		// print_r($res);die;
-		$res = DB::table('region')->whereIn('region_id',$res)->lists('region_name','region_id');
-		//dd($res);die;
-		//print_r($res);die;
-		return view('home.CityList')->with('res',$res);	
+
+		$result = DB::table('region')->whereIn('region_id',$res)->lists('region_name','region_id');
+		//dd($result);
+		return view('home.CityList')->with('result',$result);
+
 	}
 
 	//最新活动首页
