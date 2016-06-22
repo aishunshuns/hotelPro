@@ -35,8 +35,8 @@ class HotelController extends Controller
 
 			  $newName = md5(date('ymdhis').$clientName).".".$extension;
 
-			  $path = $file -> move('storage\uploads\hotel',$newName);
-			  //echo $path;die;		  
+			  $path = $file -> move('storage/uploads/hotel',$newName);
+			  $path = str_replace("\\", "/", $path);		  
 		}
 		//echo $path;die;
 		$arr = Request::input();

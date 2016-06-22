@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
-use DB;
+use DB,Input;
 class UserController extends Controller{
 
 	//用户列表
@@ -22,7 +22,7 @@ class UserController extends Controller{
 			   <a href='javascript:void(0)' onclick='fun($count_wei)'>尾页</a>
 		";
 		$users = DB::select("select * from lat_users limit $limit,$length");
-		return view('admin/user_list',['users'=>$users,'ye'=>$ye]);
+		return view('admin/user_list',['users'=>$users,'ye'=>$ye,'val'=>array('0'=>'')]);
 	}
 	
 
@@ -42,12 +42,32 @@ class UserController extends Controller{
 
 	public function user_addpro()
 	{
+
+		 $file = Input::file('myfile');
+		if($file -> isValid()){
+
+		    //检验一下上传的文件是否有效.
+
+		    $clientName = $file -> getClientOriginalName();
+
+		    $tmpName = $file ->getFileName(); // 缓存在tmp文件夹中的文件名 例如 php8933.tmp 这种类型的.
+
+		   	$realPath = $file -> getRealPath();    //这个表示的是缓存在tmp文件夹下的文件的绝对路径
+
+		  	$entension = $file -> getClientOriginalExtension(); //上传文件的后缀.
+
+		    $mimeTye = $file -> getMimeType();//大家对mimeType应该不陌生了. 我得到的结果是 image/jpeg.
+
+		  	$path = $file -> move("file",$clientName);
+		} 
+
+		$myfile = $clientName;
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 		$idcard = $_POST['idcard'];
 		$arr = DB::table('users')->insert(
-            array('user_name'=>$username,'user_pwd'=>$password,'user_phone' => $email,'user_idcard'=>$idcard)
+            array('user_name'=>$username,'user_pwd'=>$password,'user_phone' => $email,'user_idcard'=>$idcard,'user_act'=>'admin','user_file'=>$myfile)
         );
         return redirect('admin/user_list');
 	}
@@ -92,10 +112,22 @@ class UserController extends Controller{
 	}
 
 	public function user_search(){
-		$val = $_GET['val'];
-		$arr = DB::select("select * from lat_users where user_name like '%$val%'");
-		$str['val'] = $val;
-		print_r($arr);
+		$search = $_GET['search'];
+		$arr = DB::select("select * from lat_users where user_name like '%$search%'");
+		$page = isset($_GET['page'])?$_GET['page']:1;
+		$length = 5 ;
+		$limit = ($page-1)*$length;
+		$count = count($arr);
+		$count_wei = ceil($count/$length);
+		$up = $page-1<1?$page:$page-1;
+		$down = $page+1>$count_wei?$count_wei:$page+1;
+		$ye = "<a href='javascript:void(0)' onclick='fun(1)'>首页</a>
+			   <a href='javascript:void(0)' onclick='fun($up)'>上一页</a>
+			   <a href='javascript:void(0)' onclick='fun($down)'>下一页</a>
+			   <a href='javascript:void(0)' onclick='fun($count_wei)'>尾页</a>
+		";
+		$users = DB::select("select * from lat_users where user_name like '%$search%' limit $limit,$length");
+		return view('admin/user_list',['users'=>$users,'ye'=>$ye,'val'=>array('0'=>$search)]);
 		
 	}
 }

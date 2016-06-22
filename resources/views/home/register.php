@@ -22,7 +22,7 @@
                 <span class="header-name">返回</span></a>
         </div>
         <div class="container width80 pt20">
-            <form name="aspnetForm" method="post" action="register_add" id="aspnetForm" class="form-horizontal" onsubmit="return check()">
+            <form name="aspnetForm" method="post" action="register_add" id="aspnetForm" class="form-horizontal">
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="control-group">
                     <input name="username" type="text" onblur="fun()" id="username" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入用户名" />
@@ -33,7 +33,7 @@
                     <span id='list1'></span>
                 </div>
                 <div class="control-group">
-                    <input name="mobile_phone" type="text" onblur="fun2()" id="mobile_phone" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入邮箱账号" />
+                    <input name="mobile_phone" type="text" onblur="fun2()" id="mobile_phone" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入手机号" />
                     <span id='list2'></span>
                 </div>
                 <div class="control-group">
@@ -84,7 +84,7 @@
                 document.getElementById('list').style.color='red';
                 return false;
             }
-        })
+        });
         
     }
     function fun1(){
@@ -105,18 +105,18 @@
         var mobile_phone = document.getElementById('mobile_phone').value;
         $.get("register_shu",{'email':mobile_phone},function(e){
             if(e==0){
-                var reg=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                var reg=/^[0-9]{11}$/;
                 if(reg.test(mobile_phone)){
-                    document.getElementById('list2').innerHTML='邮箱正确';
+                    document.getElementById('list2').innerHTML='手机号正确';
                     document.getElementById('list2').style.color='green';
                     return true;
                 }else{
-                    document.getElementById('list2').innerHTML='您的电子邮箱不正确';
+                    document.getElementById('list2').innerHTML='手机号码为11位数字';
                     document.getElementById('list2').style.color='red';
                     return false;
                 }
             }else{
-                document.getElementById('list2').innerHTML='该邮箱已经注册过账号';
+                document.getElementById('list2').innerHTML='该手机号已经注册过账号';
                 document.getElementById('list2').style.color='red';
                 return false;
             }
@@ -139,7 +139,7 @@
                 }
             }else{
                 document.getElementById('list3').innerHTML='该身份证号已经注册过账号';
-                document.getElementById('list3').style.color='reds';
+                document.getElementById('list3').style.color='red';
                 return false;
             }
         })
@@ -147,10 +147,13 @@
     }
     function check(){
         if(fun1() && fun2() && fun3()){
+            alert(1);
             return true;
         }else{
+            alert(2);
             return false;
         }
+       
     }
 </script>
 </html>

@@ -46,6 +46,8 @@ class ActivityController extends Controller{
 		    $newName=time().rand(0,9999).'.'.$entension;
 		    $mimeTye = $file -> getMimeType();
 		    $path = $file -> move('storage/uploads/activity',$newName);
+		    $path=stripslashes($path);
+		    $path=str_replace($newName,'/'.$newName, $path);
 		}
 		      //echo $path;
 		
@@ -118,11 +120,13 @@ class ActivityController extends Controller{
 		    $mimeTye = $file -> getMimeType();
 
 		    $path = $file -> move('storage/uploads/activity',$newName);
+		     $path=stripslashes($path);
+		    $path=str_replace($newName,'/'.$newName, $path);
 		}
 		//echo $arr['act_id'];die;
 		//print_r($arr);die;
 		$arr['act_start_time']=strtotime($arr['act_start_time']);
-		$arr['act_img']= "http://www.gridinn.com/photos/201404/3.jpg";
+		$arr['act_img']= $path;
 		$arr['act_end_time']=strtotime($arr['act_end_time']);
 		$res=DB::table('activity')
             ->where('act_id',$arr['act_id'])
