@@ -38,7 +38,7 @@ Route::get('HotelShow', 'home\CitylistController@HotelShow');
 Route::get('HotelNav', 'home\CitylistController@HotelNav');
 
 //收藏酒店
-Route::get('Collection', 'home\CitylistController@Collection');
+Route::get('CollectionHotel', 'home\CitylistController@Collection');
 Route::get('Cancel', 'home\CitylistController@Cancel');
 
 
