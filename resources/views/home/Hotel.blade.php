@@ -277,9 +277,9 @@
 		</div>
         </div>
         
-                     <a class="fl roompic" bigsrc="..\{{$v['house_img']}}">
+                     <a class="fl roompic" bigsrc="{{$v['house_img']}}">
                             <img title="秀灵上下铺" 
-                             src="..\{{$v['house_img']}}"></a>
+                             src="{{$v['house_img']}}"></a>
                     
     </li>  
     @endforeach   
