@@ -36,7 +36,7 @@
             <?php foreach ($arr['arr'] as $k => $v) {?>
              <tr>
               <td align="center"> <a href="#"><?php echo $v['gift_name'] ?></a> </td> 
-              <td align="center"><img src="../<?php echo $v['gift_img'] ?>" width="100" height="80"/></td> 
+              <td align="center"><img src="{{url($v['gift_img'])}}" width="100" height="80"/></td> 
               <td class="hidden-480" align="center">
                 <span onclick="fun2(this)"><?php echo $v['gift_integral'] ?></span>
                 <input type="text" style="display:none" onblur="fun3(this)" id="<?php echo $v['gift_id'] ?>" value="<?php echo $v['gift_integral'] ?>"/>

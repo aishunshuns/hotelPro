@@ -2,18 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>酒店实景</title>
+<title>酒店列表</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/NewGlobal.css" rel="stylesheet" />
 
 <script type="text/javascript" src="js/zepto.js"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Q61GB88kpbirioyp2QGQZtoivU7uHvmO"></script>
 <style>
-  
-    #panorama {width:100%; height: 500px;}
-    #result {width:100%;font-size:12px;}
+ 
 #main { 
 height:1800px; 
 padding-top:90px; 
@@ -67,7 +64,7 @@ text-decoration:none;
             <span class="header-icon header-icon-home"></span>
             <span class="header-name">主页</span>
 </a>
-<div class="title" id="titleString">酒店实景</div>
+<div class="title" id="titleString">酒店列表</div>
 <a href="javascript:history.go(-1);" class="back">
             <span class="header-icon header-icon-return"></span>
             <span class="header-name">返回</span>
@@ -76,28 +73,51 @@ text-decoration:none;
 
         
   <div class="container hotellistbg">
-   <div id="panorama"></div>
-  <div id="result">
-
+         <ul class="unstyled hotellist">
+         @foreach($res as $k => $v)           
+             <li>
+              <a href="Hotel?hotel_id={{$v['hotel_id']}}">
+                 <img class="hotelimg fl" src="{{$v['hotel_img']}}" />
+              <div class="inline">
+                  <h3>{{$v['hotel_name']}}</h3>
+                  <p>地址：{{$v['hotel_address']}}</p>
+                  <p>评分：{{$v['a_score']}} （{{$v['sum_peo']}}人已评）</p>       
+              </div>
+              <div class="clear"></div>  
+               </a> 
+               <span style="margin-left:400px" id="shou_{{$v['hotel_id']}}">
+                @if(!isset($v['collect']))
+                  <a href="javascript:collection({{$v['hotel_id']}});"><img src="collection.jpg" alt="收藏本店" width="25" /></a>
+                @else
+                  <a href="javascript:cancel({{$v['hotel_id']}})"><img src="cancel.jpg" alt="取消收藏" width="25" /></a>
+                @endif
+                </span>
+               <ul class="unstyled">
+                   <li><a href="Hotel?hotel_id={{$v['hotel_id']}}" class="order">预订</a></li>
+                   <li><a href="HotelNav?hotel_id={{$v['hotel_id']}}" class="gps">导航</a></li>
+                   <li><a href="HotelShow?hotel_id={{$v['hotel_id']}}" class="reality">实景</a></li>
+               </ul>
+             </li>
+          @endforeach
+              </ul>
   </div>
+  <script>
+      function collection(hotel_id){
+        
+        //alert(hotel_id);
+        $.get('CollectionHotel',{hotel_id:hotel_id},function(msg){
+          $('#shou_'+hotel_id).html(msg);
+        });
+      }
 
-<script type="text/javascript"> 
-//显示灰色 jQuery 遮罩层 
-function showBg() { 
-var bh = $("body").height(); 
-var bw = $("body").width(); 
-$("#fullbg").css({ 
-height:bh, 
-width:bw, 
-display:"block" 
-}); 
-$("#dialog").show(); 
-} 
-//关闭灰色 jQuery 遮罩 
-function closeBg() { 
-$("#fullbg,#dialog").hide(); 
-} 
-</script>
+      function cancel(hotel_id){
+        
+        //alert(hotel_id);
+        $.get('Cancel',{hotel_id:hotel_id},function(msg){
+          $('#shou_'+hotel_id).html(msg);
+        });
+      }
+  </script>
   <div class="footer">
   <div class="gezifooter">
       
@@ -114,23 +134,3 @@ $("#fullbg,#dialog").hide();
 
 </body>
 </html>
-<script type="text/javascript">
-  var panorama = new BMap.Panorama('panorama');
-  panorama.setPosition(new BMap.Point(116.403925,39.913903));//坐标点在天安门
-
-  var labelPosition = new BMap.Point(116.403925,39.913903);
-  var labelOptions = {
-      position: labelPosition,
-    altitude:5
-  };//设置标注点的经纬度位置和高度
-  var label = new BMap.PanoramaLabel('自定义标注-天安门广场', labelOptions);
-  panorama.addOverlay(label);//在全景地图里添加该标注
-  panorama.setPov(label.getPov()); //修改点的视角，朝向该label
-
-  label.addEventListener('click', function() { //给标注点注册点击事件
-    panorama.setPov({  //修改点的视角
-      pitch: 10, 
-      heading: 14
-    });
-  });
-</script>
