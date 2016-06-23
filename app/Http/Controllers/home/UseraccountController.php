@@ -24,4 +24,11 @@ class UseraccountController extends Controller{
 		$res=DB::select($sql);
 		return view('home.my_gift',['arr'=>$res]);
 	}
+
+	//用户退出
+	public function out()
+	{
+		Session::flush();
+		return Redirect(url('Login'));
+	}
 }

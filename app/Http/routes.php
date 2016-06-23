@@ -62,7 +62,7 @@ Route::group( ["middleware" => 'homeCheck'], function() {
 	Route::get('userAccount', 'home\UseraccountController@userAccount');
 	Route::get('myList', 'home\UseraccountController@myList');
 	Route::get('myGift', 'home\UseraccountController@myGift');
-
+	Route::get('out', 'home\UseraccountController@out');
 	//礼品商城
 	Route::get('Gift', 'home\GiftController@Gift');
 	//礼品积分兑换
