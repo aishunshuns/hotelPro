@@ -34,10 +34,10 @@
 <div class="container">
 <ul class="unstyled hotel-bar">
 	<li class="first">
-    <a href="Hotel">房型</a>
+    <a href="Hotel?hotel_id={{$arr[0]['hotel_id']}}">房型</a>
 	</li>
-	<li><a href="HotelInfo">简介</a></li>
-	<li><a href="HotelMap">地图</a></li>
+	<li><a href="HotelInfo?hotel_id={{$arr[0]['hotel_id']}}">简介</a></li>
+	<li><a href="HotelMap?hotel_id={{$arr[0]['hotel_id']}}">地图</a></li>
 	<li><a href="HotelReview" class="active">评论</a></li>
 </ul>
 <script type="text/javascript">
