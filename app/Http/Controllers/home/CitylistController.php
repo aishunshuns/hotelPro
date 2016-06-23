@@ -9,16 +9,29 @@ class CitylistController extends Controller{
 	{
 		$info = Request::all();
 		// dd($info);
-		$user_id = 21;
+		$user_id = Session::get('user_id');
 		Session::put('start_time',$info['checkInDate']);
 		Session::put('end_time',$info['checkOutDate']);
-		$arr = DB::table('region')->where('region_id',$info['cityID'])->pluck('parent_id');
-		$city_id = $arr.','.$info['cityID'];
-		$res = DB::table('hotel')
-		            ->where('hotel.city_id','like',"$city_id%")
-		            ->get();
-		// dd($res);
-		 if(!empty($user_id)){
+		if($info['cityID'] != 0){
+			$arr = DB::table('region')->where('region_id',$info['cityID'])->pluck('parent_id');
+			$city_id = $arr.','.$info['cityID'];
+			$res = DB::table('hotel')
+			            ->where('hotel.city_id','like',"$city_id%")
+			            ->get();
+		}else{
+			$res = DB::table('hotel')->get();
+		}
+		foreach($res as $k => $v){
+			$res[$k]['sum_peo'] = DB::table('comment')->where('hotel_id',$v['hotel_id'])->count();
+			$res[$k]['score'] = DB::table('comment')->where('hotel_id',$v['hotel_id'])->lists('hotel_score');
+			if($res[$k]['sum_peo'] != 0){
+				$res[$k]['a_score'] = round(array_sum($res[$k]['score'])/($res[$k]['sum_peo']),1);
+			}else{
+				$res[$k]['a_score'] = 0;
+			}
+		}
+		 // dd($res);		
+		if(!empty($user_id)){
             // 收藏
             $arr = DB::table('collection')->where('user_id',$user_id)->lists('hotel_id');
             // print_R($res);die;
@@ -31,7 +44,7 @@ class CitylistController extends Controller{
                     }
                 }
             }
-        }
+         } 
         // dd($res);
 		return view('home.HotelList')->with('res',$res);
 	}
@@ -39,6 +52,7 @@ class CitylistController extends Controller{
 	//酒店房型
 	public function Hotel()
 	{
+		$user_id = Session::get('user_id');
 		$hotel_id = Request::Input('hotel_id');
 		$start_time = Session::get('start_time');
 		$end_time = Session::get('end_time');
@@ -48,7 +62,13 @@ class CitylistController extends Controller{
 					->where('hotel.hotel_id',$hotel_id)
 					->get();
 		 // dd($arr);
-		return view('home.Hotel')->with('arr',$arr)->with('start_time',$start_time)->with('end_time',$end_time);
+		if(!empty($user_id)){
+		  $data = DB::table('users')->where('user_id',$user_id)->pluck('user_num');
+        }else{
+        	$data = -1;
+        }
+
+		return view('home.Hotel')->with('arr',$arr)->with('start_time',$start_time)->with('end_time',$end_time)->with('data',$data);
 	}
 
 	// 预订酒店时间修改
@@ -67,7 +87,7 @@ class CitylistController extends Controller{
 	public function HotelOrder()
 	{
 		$info = Request::all();
-		$info['user_id'] = 21;
+		$info['user_id'] = Session::get('user_id');
 		$info['card_number'] = "H".time().rand(10000,99999);
 		$user_num = DB::table('users')->where('user_id',$info['user_id'])->pluck('user_num');
 		 // dd($user_num);
@@ -139,7 +159,22 @@ class CitylistController extends Controller{
 	public function HotelReview()
 	{
 		$hotel_id = Request::input('hotel_id');
-		return view('home.HotelReview');
+		$arr = DB::table('comment')
+					  ->join('users','comment.user_id','=','users.user_id')
+		              ->where('comment.hotel_id',$hotel_id)
+		              ->get();
+		$count = count($arr);
+        $num = 5;
+        $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
+        $page_count = ceil($count/$num);
+        $limit = ($page-1)*$num;
+        // 上一页
+        $last = ($page-1<1) ? 1 : $page-1;
+        // 下一页
+        $next = ($page+1>$page_count) ? $page_count : $page+1;
+        $arr = DB::table('comment')->join('users','comment.user_id','=','users.user_id')->where('hotel_id',$hotel_id)->skip($limit)->take($num)->get();
+        // print_r($arr);die;
+        return view('home/HotelReview')->with(['arr'=>$arr,'next'=>$next,'last'=>$last,'page'=>$page,'page_count'=>$page_count,'hotel_id'=>$hotel_id]);
 	}
 
 
@@ -163,7 +198,7 @@ class CitylistController extends Controller{
 	// 酒店收藏
 	public function Collection()
 	{
-		$arr['user_id'] = 21;
+		$arr['user_id'] = Session::get('user_id');
 		if(!empty($arr['user_id'])){
 			/*$s_time = Session::get('start_time');
 			$e_time = Session::get('end_time');*/
@@ -184,7 +219,7 @@ class CitylistController extends Controller{
 	// 取消收藏
 	public function Cancel()
 	{
-		$user_id = 21;
+		$user_id = Session::get('user_id');
 		/*$s_time = Session::get('start_time');
 		$e_time = Session::get('end_time');*/
 		$hotel_id = Request::input('hotel_id');
