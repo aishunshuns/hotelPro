@@ -66,17 +66,26 @@
               <td>".$v['card_number']."</td> 
               <td>".$v['card_phone']."</td> 
               <td>";
-                if ($v['card_status']==0) {
+               if ($v['card_status']==0) {
                   echo "未付款";
-                } else {
-                  echo "已付款";
+                } else if ($v['card_status']==1){
+                  echo "已付款但未消费";
+                } else{
+                  echo  "已消费<a href='cart_xiu?id'></a>";
                 }
                 
               echo "</td> 
               <td> 
                <div class='visible-md visible-lg hidden-sm hidden-xs btn-group'> 
                
-                <a href='cart_xiu?id=".$v['card_id']."'><button class='btn btn-xs btn-info'> <i class='icon-edit bigger-120'></i> </button> </a>
+                ";
+                  if ($v['card_status']==1) {
+                   echo "<a href='cart_xiu?id=".$v['card_id']."'><button class='btn btn-xs btn-info'> <i class='icon-edit bigger-120'></i> </button> </a>";
+                  } else {
+                   echo "<a href='javascript:void(0)'><button class='btn btn-xs btn-info'> <i class='icon-edit bigger-120'></i> </button> </a>";
+                  }
+                  
+                echo "
                 <a href='cart_del?id=".$v['card_id']."'><button class='btn btn-xs btn-danger'> <i class='icon-trash bigger-120'></i> </button> </a>
                  
                </div> 
