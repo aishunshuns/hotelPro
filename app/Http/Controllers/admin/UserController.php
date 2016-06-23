@@ -22,7 +22,7 @@ class UserController extends Controller{
 			   <a href='javascript:void(0)' onclick='fun($count_wei)'>尾页</a>
 		";
 		$users = DB::select("select * from lat_users limit $limit,$length");
-		return view('admin/user_list',['users'=>$users,'ye'=>$ye]);
+		return view('admin/user_list',['users'=>$users,'ye'=>$ye,'val'=>array('0'=>'')]);
 	}
 	
 
@@ -112,10 +112,22 @@ class UserController extends Controller{
 	}
 
 	public function user_search(){
-		$val = $_GET['val'];
-		$arr = DB::select("select * from lat_users where user_name like '%$val%'");
-		$str['val'] = $val;
-		print_r($arr);
+		$search = $_GET['search'];
+		$arr = DB::select("select * from lat_users where user_name like '%$search%'");
+		$page = isset($_GET['page'])?$_GET['page']:1;
+		$length = 5 ;
+		$limit = ($page-1)*$length;
+		$count = count($arr);
+		$count_wei = ceil($count/$length);
+		$up = $page-1<1?$page:$page-1;
+		$down = $page+1>$count_wei?$count_wei:$page+1;
+		$ye = "<a href='javascript:void(0)' onclick='fun(1)'>首页</a>
+			   <a href='javascript:void(0)' onclick='fun($up)'>上一页</a>
+			   <a href='javascript:void(0)' onclick='fun($down)'>下一页</a>
+			   <a href='javascript:void(0)' onclick='fun($count_wei)'>尾页</a>
+		";
+		$users = DB::select("select * from lat_users where user_name like '%$search%' limit $limit,$length");
+		return view('admin/user_list',['users'=>$users,'ye'=>$ye,'val'=>array('0'=>$search)]);
 		
 	}
 }

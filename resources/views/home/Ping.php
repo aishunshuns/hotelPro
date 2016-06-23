@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div>
-		<form action="myOrderping" method="post">
+		<form action="<?php echo url('myOrderping') ?>" method="post">
 			<CENTER>
 				<h1>用户评论</h1>
 				<table>

@@ -30,7 +30,7 @@ class PowerController extends Controller{
 					}
 				}
 				$arr['id'] = $privilege_id;
-				// dd($arr);
+				dd($arr);
 				return json_encode($arr);
 			}
 		}
@@ -81,6 +81,19 @@ class PowerController extends Controller{
 			$id = Request::input('id');
 			$a1 = DB::table('privilege')->where('privilege_id',$id)->delete();
 			$a2 = DB::table('role_privilege')->where('privilege_id',$id)->delete();
+		}
+
+		//权限名称修改验证
+		elseif (Request::input('act') == 'checkSave') {
+			$name = Request::input('name');
+			$id = Request::input('id');
+			$num = DB::table('privilege')->where('privilege_name', $name)->count();
+			if ($num == '0') {
+				DB::table('privilege')->where('privilege_id', $id)->update(['privilege_name' => $name]);
+				return 'true';
+			} else {
+				return 'false';
+			}
 		}
 
 		//展示权限列表
@@ -159,7 +172,7 @@ class PowerController extends Controller{
 		//用户添加角色展示
 		if (Request::input('act') == 'role_user_select'){
 			$id = Request::input('id');
-			$arr = DB::table('users') -> get();
+			$arr = DB::table('users') -> where('user_act', 'admin') -> get();
 			$arr_user_id = DB::table('role_user') -> where('role_id',$id) -> select('user_id') -> get();
 			foreach ($arr as $key => $v) {
 				$arr[$key]['checked'] = "";

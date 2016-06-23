@@ -21,7 +21,6 @@
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 
 		<!-- ace styles -->
 
@@ -69,8 +68,9 @@
 
 											<div class="space-6"></div>
 
-											<form action="admin/login_yz" method="post">
+											<form action="{{url('admin/login_yz')}}" method="post">
 											<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+											<input type="hidden" name="act" value="admin">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -268,7 +268,6 @@
 
 		<!--[if !IE]> -->
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -302,6 +301,5 @@
 			 jQuery('#'+id).addClass('visible');
 			}
 		</script>
-	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
 </html>

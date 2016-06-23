@@ -13,8 +13,19 @@
          <div class="col-xs-12"> 
           <div class="table-responsive"> 
            <table id="sample-table-1" class="table table-striped table-bordered table-hover"> 
-          <input type="text" placeholder="Search ..." id='search' onblur="search()"/>
-
+           <form action="{{URL('admin/user_search')}}" method="get">
+           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+           <?php foreach($val as $k=>$v){
+           
+           ?>
+             <input type='text' placeholder='Search ...' value='<?php print_r($v); ?>' name='search'/>
+            <?php 
+                }
+            ?>
+             <input type="submit" class="btn btn-success" style="width:60px; height:30px; line-height:10px; margin-left:10px;" value="搜索">
+           </form>
+          
+          
             <thead> 
              <tr>
               <th class="center"> <label> <input type="checkbox" class="ace" /> <span class="lbl"></span> </label> </th> 
@@ -22,7 +33,7 @@
               <th>Email</th> 
               <th class="hidden-480">idcard</th> 
               <th> <i class="icon-time bigger-110 hidden-480"></i> photo </th> 
-              <th class="hidden-480">Status</th> 
+              <th class="hidden-480">user</th> 
               <th></th> 
              </tr> 
             </thead> 
@@ -38,16 +49,19 @@
               <td><?php echo $v['user_phone'] ?></td> 
               <td class="hidden-480"><?php echo $v['user_idcard'] ?></td> 
               <td><img src="{{URL('file')}}/<?php echo $v['user_file']?>" width='100' height='50' alt=""></td> 
-              <td class="hidden-480"> <span class="label label-sm label-success"></span> </td> 
+              <td class="hidden-480"> <span class="label label-sm label-success"></span>
+                    <?php if($v['user_act']=='home'){
+                      echo "前台用户";
+                    }else{
+                      echo "后台用户";
+                    }
+                    ?>
+              </td> 
               <td> 
                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
                 
                 <button class="btn btn-xs btn-info" onclick="showBg(<?php echo $v['user_id'] ?>)"> <i class="icon-edit bigger-120"></i> </button> 
-                
-                
                 <button class="btn btn-xs btn-danger" onclick="del(<?php echo $v['user_id'] ?>)"> <i class="icon-trash bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
                </div> 
                </div> 
                <div id="fullbg"></div> 
