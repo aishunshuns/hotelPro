@@ -37,7 +37,7 @@
      </ul>
      <ul class="unstyled defaultlist">
          <li class="a">
-             <a href="myOrder">
+             <a href="myOrder?card_status=3">
                   <h3>我的订单</h3>
               <figure class="hb_icon"></figure>
              </a>

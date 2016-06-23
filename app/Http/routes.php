@@ -39,6 +39,8 @@ Route::post('Login_yz', 'home\RegisterController@Login_yz');
 
 //我的订单
 Route::get('myOrder', 'home\MyorderController@myOrder');
+//订单评论提交
+Route::post('myOrderping', 'home\MyorderController@myOrderping');
 
 //我的格子
 Route::get('userAccount', 'home\UseraccountController@userAccount');
@@ -174,7 +176,10 @@ Route::post('admin/helpUp','admin\HelpController@helpUp');
 Route::get('admin/helpJson','admin\HelpController@helpJson');
 Route::get('admin/helpSearch','admin\HelpController@helpSearch');
 
-//订单删除
+//后台订单删除
 Route::get('admin/cart_del','admin\CartController@cart_del');
-//订单搜索
+//后台订单状态修改
+Route::get('admin/cart_xiu','admin\CartController@cart_xiu');
+//后台订单搜索
 Route::get('admin/cart_sou','admin\CartController@cart_sou');
+

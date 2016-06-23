@@ -86,11 +86,10 @@ text-decoration:none;
                </a> 
                <ul class="unstyled">
                    <li><a href="javascript:showBg();" class="order">预订</a></li>
-                   <li><a href="Hotelmap.aspx@id=14" class="gps">导航</a></li>
                    <li><a href="Hotelinfo.aspx@id=14" class="reality">实景</a></li>
                </ul>
              </li>
-                  <div><a href="">点击这里查看效果</a> 
+                  <div>
                   <div id="fullbg"></div> 
                   <div id="dialog"> 
                   <p class="close"><a href="#" onclick="closeBg();">关闭</a></p> 
