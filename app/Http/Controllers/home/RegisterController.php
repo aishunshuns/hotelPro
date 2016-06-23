@@ -58,13 +58,13 @@ class RegisterController extends Controller{
 					session(['user_id'=>$v['user_id']]);
 					session(['user_name'=>$v['user_name']]);
 					session(['act'=>$act]);
-					echo "<script> alert('登陆成功');parent.location.href='/'; </script>"; 
+					echo "<script> alert('登陆成功');parent.location.href='".url('/')."'; </script>"; 
 				}else{
-					echo "<script> alert('登陆失败');parent.location.href='/Login'; </script>";
+					echo "<script> alert('登陆失败');parent.location.href='".url('Login')."'; </script>";
 				}
 			}
 		}else{
-			echo "<script> alert('登陆失败');parent.location.href='/Login'; </script>";
+			echo "<script> alert('登陆失败');parent.location.href='".url('Login')."'; </script>";
 		}
 	
 	}

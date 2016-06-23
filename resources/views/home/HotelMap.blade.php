@@ -78,6 +78,7 @@ text-decoration:none;
   <div class="container hotellistbg">
    <div id="panorama"></div>
   <div id="result">
+
   </div>
 
 <script type="text/javascript"> 

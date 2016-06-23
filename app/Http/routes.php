@@ -11,6 +11,7 @@
 |
 */
 
+
 	//注册及登陆路由
 	Route::get('Register', 'home\RegisterController@Register');
 	Route::get('register_shu', 'home\RegisterController@Register_shu');
@@ -55,6 +56,8 @@ Route::group( ["middleware" => 'homeCheck'], function() {
 	
 	//我的订单
 	Route::get('myOrder', 'home\MyorderController@myOrder');
+	//订单详情
+	Route::post('myOrderping', 'home\MyorderController@myOrderping');
 	//我的格子
 	Route::get('userAccount', 'home\UseraccountController@userAccount');
 	Route::get('myList', 'home\UseraccountController@myList');
@@ -80,6 +83,7 @@ Route::any('admin/login_yz', 'admin\LoginController@login_yz');
 
 //邮件找回密码
 Route::post('admin/email','admin\LoginController@email');
+
 
 
 
