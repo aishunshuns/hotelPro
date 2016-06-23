@@ -77,7 +77,7 @@ text-decoration:none;
          @foreach($res as $k => $v)           
              <li>
               <a href="Hotel?hotel_id={{$v['hotel_id']}}">
-                 <img class="hotelimg fl" src="..\{{$v['hotel_img']}}" /> 
+                 <img class="hotelimg fl" src="../{{$v['hotel_img']}}" /> 
               <div class="inline">
                   <h3>{{$v['hotel_name']}}</h3>
                   <p>地址：{{$v['hotel_address']}}</p>
