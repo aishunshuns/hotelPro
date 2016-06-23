@@ -268,7 +268,7 @@
         <div class="fr">
           <em class="orange roomprice">
           <?php if($data < 1000){?>
-              门市价：￥{{$v['house_price']}} 
+              门市价：￥{{$v['house_price']}}
           <?php }elseif($data >=1000 && $data<2000){?>
                <p style="text-decoration:line-through;">门市价：￥{{$v['house_price']}} </p>
                <p>VIP价：￥{{$v['member_price']}} </p>
@@ -298,7 +298,7 @@
         </div>
         
                      <a class="fl roompic" bigsrc="{{$v['house_img']}}">
-                            <img title="{{$v['house_name']}}" 
+                            <img title="{{$v['house_name']}}"
                              src="{{$v['house_img']}}"></a>
                     
     </li>  
