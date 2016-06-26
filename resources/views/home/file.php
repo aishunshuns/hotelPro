@@ -5,7 +5,7 @@
 	<title>Document</title>
 </head>
 <body>
-	<form method="post" action="file" enctype="multipart/form-data">
+	<form method="post" action="<?php echo url('files')?>" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>图片：</td>

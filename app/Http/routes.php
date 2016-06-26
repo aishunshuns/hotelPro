@@ -10,21 +10,29 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+
 	//注册及登陆路由
 	Route::get('Register', 'home\RegisterController@Register');
 	Route::get('register_shu', 'home\RegisterController@Register_shu');
 	Route::post('register_add', 'home\RegisterController@Register_add');
 	Route::get('Login', 'home\RegisterController@Login');
 	Route::post('Login_yz', 'home\RegisterController@Login_yz');
-Route::group(["middleware" => 'home_login'], function() {
+Route::group( ["middleware" => 'homeCheck'], function() {
 	//首页页面路由
 	Route::get('/', 'home\IndexController@Index');
 	Route::get('CityList', 'home\IndexController@CityList');
 	Route::get('ActiVitys', 'home\IndexController@ActiVitys');
 	Route::get('GiftList', 'home\IndexController@GiftList');
-	Route::get('Help', 'home\IndexController@Help');
+
 	Route::get('MyOrder', 'home\IndexController@MyOrder');
-	Route::get('Help', 'home\IndexController@Help');
+
+	//帮助咨询
+	Route::get('Help', 'home\HelpController@Help');
+	Route::get('helpContact', 'home\HelpController@helpContact');
+	Route::get('helpCenter', 'home\HelpController@helpCenter');
+	Route::get('helpFeedback', 'home\HelpController@helpFeedback');
+	Route::post('feedbackAdd', 'home\HelpController@feedbackAdd');
 
 	//预定酒店路由
 	Route::get('HotelList', 'home\CitylistController@HotelList');
@@ -33,36 +41,60 @@ Route::group(["middleware" => 'home_login'], function() {
 	Route::get('HotelMap', 'home\CitylistController@HotelMap');
 	Route::get('HotelReview', 'home\CitylistController@HotelReview');
 
+	Route::get('HotelOrder', 'home\CitylistController@HotelOrder');
+	Route::post('updateTime', 'home\CitylistController@updateTime');
+	Route::get('HotelShow', 'home\CitylistController@HotelShow');
+	Route::get('HotelNav', 'home\CitylistController@HotelNav');
+
+	//收藏酒店
+	Route::get('Collection', 'home\CitylistController@Collection');
+	Route::get('Cancel', 'home\CitylistController@Cancel');
+
+
 	//最新活动路由
 	Route::get('News', 'home\ActivityController@News');
-
+	
 	//我的订单
 	Route::get('myOrder', 'home\MyorderController@myOrder');
-
+	//订单详情
+	Route::post('myOrderping', 'home\MyorderController@myOrderping');
+	//评论页面
+	Route::get('Ping', 'home\MyorderController@Ping');
 	//我的格子
 	Route::get('userAccount', 'home\UseraccountController@userAccount');
 	Route::get('myList', 'home\UseraccountController@myList');
 	Route::get('myGift', 'home\UseraccountController@myGift');
 	Route::get('collect', 'home\UseraccountController@collect');
-	Route::any('file', 'home\UseraccountController@file');
+	Route::any('files', 'home\UseraccountController@file');
 
 	//礼品商城
 	Route::get('Gift', 'home\GiftController@Gift');
+	//礼品积分兑换
+	Route::post('Convert', 'home\GiftController@Convert');
+	//礼品收藏
+	Route::get('Collection', 'home\GiftController@Collection');
+	//礼品详情页面返回首页
+	Route::get('shou', 'home\GiftController@shou');
 });
 
+/*后台*/
+ 
 
 
 //后台登陆页面
 Route::get('admin', 'admin\LoginController@adminLogin');
-Route::post('admin/login_yz', 'admin\LoginController@login_yz');
+Route::any('admin/login_yz', 'admin\LoginController@login_yz');
 
 //邮件找回密码
 Route::post('admin/email','admin\LoginController@email');
 
-Route::group(["middleware" => 'admin_login'], function() {
-   // Route::controller("/", "my\MyTest2Controller");
-   Route::get('admin/index','admin\AdminController@index');
 
+
+
+
+Route::group( ["middleware" => 'adminCheck'], function() {
+
+	Route::get('admin/index','admin\AdminController@index');
 	//后台用户管理
 	Route::get('admin/user_add','admin\UserController@user_add');
 	Route::post('admin/user_addpro','admin\UserController@user_addpro');
@@ -70,6 +102,7 @@ Route::group(["middleware" => 'admin_login'], function() {
 	Route::get('admin/user_del','admin\UserController@user_del');
 	Route::get('admin/upd','admin\UserController@user_upd');
 	Route::get('admin/user_update','admin\UserController@user_update');
+	Route::any('admin/user_search','admin\UserController@user_search');
 
 
 
@@ -151,6 +184,8 @@ Route::group(["middleware" => 'admin_login'], function() {
 	//后台投票即点即改
 	Route::get('admin/gift_dian','admin\GiftController@gift_dian');
 
+
+
 	//订单列表
 	Route::get('admin/cart_list','admin\CartController@cart_list');
 
@@ -180,5 +215,3 @@ Route::group(["middleware" => 'admin_login'], function() {
 	Route::get('admin/cart_sou','admin\CartController@cart_sou');
 
 });
-/*后台*/
- 

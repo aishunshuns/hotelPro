@@ -14,37 +14,48 @@
     
     <body>
         <div class="header">
-            <a href="index.html" class="home">
+            <a href="/" class="home">
                 <span class="header-icon header-icon-home"></span>
                 <span class="header-name">主页</span></a>
-            <div class="title" id="titleString">我的信息</div>
+            <div class="title" id="titleString">我的足迹</div>
             <a href="javascript:history.go(-1);" class="back">
                 <span class="header-icon header-icon-return"></span>
                 <span class="header-name">返回</span></a>
         </div>
         <div class="container width80 pt20">
-            <div class="order-nav">
-                <a class="selected" href="">全部</a>
-                <a href="">未完成</a>
-                <a class="last-a" href="">已完成</a>
-            </div>
+           
+ <?php foreach ($arr as $k => $v) { ?>
+            
+           
+               
+            
+                 <ul class="giftlist unstyled">
+         
+        <li>
+        
+    
+   
+   
 
-            <div class="order-list">
-                <ul>
-                    <li>
+     <span class="order-time"><?php echo $v['gift_integral'] ?></span> 
+     <span class="order-hotel-name"><img src="../<?php echo $v['gift_img'] ?>"> </span>
+    <span class="order-time"><?php echo $v['gift_name'] ?></span>
+    
+  
+        </li>
+
+                    <!-- <li>
                         <span class="order-hotel-name">玩具熊</span>
                         <span class="order-time">2016-05-20 12:23:34</span>
                     </li>
                     <li>
                         <span class="order-hotel-name">玩具熊</span>
                         <span class="order-time">2016-05-20 12:23:34</span>
-                    </li>
-                    <li>
-                        <span class="order-hotel-name">玩具熊</span>
-                        <span class="order-time">2016-05-20 12:23:34</span>
-                    </li>
+                    </li> -->
+                    
                 </ul>
-            </div>
+           
+            <?php } ?>
         </div>
         <div class="footer">
             <div class="gezifooter">

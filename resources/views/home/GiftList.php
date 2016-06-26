@@ -25,19 +25,22 @@
 
         
     <div class="container">
+    <?php foreach ($arr as $k => $v) { ?>
+      
+    
     <ul class="giftlist unstyled">
          
         <li>
             <div class="imgbox">
-   <a href="Gift"><img src="http://www.gridinn.com/photos/gift/13.jpg"> </a> 
+   <a href="Gift?gift_id=<?php echo $v['gift_id'] ?>"><img src="../<?php echo $v['gift_img'] ?>"> </a> 
    </div>
     <div class="desc">
-   <a href="Gift.aspx@id=13">萨摩充电宝</a> <br/>
-     <a href="Gift.aspx@id=13"><em>9600 积分 </em></a> 
+   <a href="Gift?gift_id=<?php echo $v['gift_id'] ?>"><?php echo $v['gift_name'] ?></a> <br/>
+     <a href="Gift?gift_id=<?php echo $v['gift_id'] ?>"><em><?php echo $v['gift_integral'] ?> </em></a> 
   </div>
         </li>
-         
-        <li>
+         <?php } ?>
+        <!-- <li>
             <div class="imgbox">
    <a href="Gift.aspx@id=7"><img src="http://www.gridinn.com/photos/gift/7.jpg"> </a> 
    </div>
@@ -185,7 +188,7 @@
    <a href="Gift.aspx@id=14">积分升级金卡</a> <br/>
      <a href="Gift.aspx@id=14"><em>2999 积分 </em></a> 
   </div>
-        </li>
+        </li> -->
          
     </ul>
     </div>

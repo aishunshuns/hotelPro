@@ -28,7 +28,7 @@
     <div class="container width80 pt20">
 <form name="aspnetForm" method="post" action="Login_yz" id="aspnetForm" class="form-horizontal">
  <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
- <input type="hidden" name="act" value="home"/>
+ <input type="hidden" name="act" value="home">
 <div>
 <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
 <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />

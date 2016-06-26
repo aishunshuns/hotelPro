@@ -51,7 +51,7 @@
             <ul class="user-function-list">
                 <li onclick="javascript:location.href='myList';">我的信息</li>
                 <li onclick="javascript:location.href='myOrder';">我的订单</li>
-                <li onclick="javascript:location.href='myGift';">礼品兑换</li>
+                <li onclick="javascript:location.href='myGift';">历史记录</li>
                 <li onclick="javascript:location.href='collect';">我的收藏</li>
             </ul>
         </div>

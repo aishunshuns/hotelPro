@@ -21,7 +21,6 @@
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 
 		<!-- ace styles -->
 
@@ -269,7 +268,6 @@
 
 		<!--[if !IE]> -->
 
-	<!--	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
 
 		<!-- <![endif]-->
 
@@ -303,6 +301,5 @@
 			 jQuery('#'+id).addClass('visible');
 			}
 		</script>
-	<!--<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>-->
 </body>
 </html>
