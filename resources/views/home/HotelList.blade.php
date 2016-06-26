@@ -77,12 +77,11 @@ text-decoration:none;
          @foreach($res as $k => $v)           
              <li>
               <a href="Hotel?hotel_id={{$v['hotel_id']}}">
-                 <img class="hotelimg fl" src="{{$v['hotel_img']}}" />
-
+                 <img class="hotelimg fl" src="..\{{$v['hotel_img']}}" /> 
               <div class="inline">
                   <h3>{{$v['hotel_name']}}</h3>
                   <p>地址：{{$v['hotel_address']}}</p>
-                  <p>评分：{{$v['a_score']}} （{{$v['sum_peo']}}人已评）</p>       
+                  <p>评分：5.0 （267人已评）</p>                 
               </div>
               <div class="clear"></div>  
                </a> 
@@ -106,7 +105,7 @@ text-decoration:none;
       function collection(hotel_id){
         
         //alert(hotel_id);
-        $.get('CollectionHotel',{hotel_id:hotel_id},function(msg){
+        $.get('Collection',{hotel_id:hotel_id},function(msg){
           $('#shou_'+hotel_id).html(msg);
         });
       }
