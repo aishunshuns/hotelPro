@@ -152,12 +152,15 @@
      <ul class="nav nav-list"> 
       <li class="active"> <a href="{{URL('admin/index')}}"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li> 
     @foreach($dataLeft as $key => $val)
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> {{$val['parent']}} </span> <b class="arrow icon-angle-down"></b> </a> 
-       <ul class="submenu"> 
+        <li> <a href="" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> {{$val['parent']}} </span> <b class="arrow icon-angle-down"></b> </a> 
+
+       <ul class="submenu" > 
        @foreach($val['son'] as $k => $v)
-        <li> <a href="{{url($v['privilege_route'])}}"> <i class="icon-double-angle-right"></i> {{$v['privilege_name']}}</a> </li> 
+
+        <li > <a href="{{url($v['privilege_route'])}}"> <i class="icon-double-angle-right"></i> {{$v['privilege_name']}}</a> </li> 
         @endforeach
        </ul> 
+
     </li>
     @endforeach
   
@@ -191,17 +194,16 @@
           </div>
 
           <!-- gs -->
+          
 
           <script>
             // alert(1);
             var pathname = window.location.pathname;
-            // alert(pathname);
-            pathname = pathname.substr(1);
-            // alert(pathname);
+
             $("li a").each(function() {
 
             var href = $(this).attr("href");
-            // alert(href);
+            alert(href);
             if(pathname == href){
 
             $(this).parent().parent().parent().addClass("active");
@@ -214,6 +216,7 @@
 
             </script>
             <style>
+            
         body {
           font-family:Arial, Helvetica, sans-serif;
           font-size:12px;

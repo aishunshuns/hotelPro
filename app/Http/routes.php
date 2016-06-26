@@ -43,6 +43,8 @@ Route::group(["middleware" => 'home_login'], function() {
 	Route::get('userAccount', 'home\UseraccountController@userAccount');
 	Route::get('myList', 'home\UseraccountController@myList');
 	Route::get('myGift', 'home\UseraccountController@myGift');
+	Route::get('collect', 'home\UseraccountController@collect');
+	Route::any('file', 'home\UseraccountController@file');
 
 	//礼品商城
 	Route::get('Gift', 'home\GiftController@Gift');

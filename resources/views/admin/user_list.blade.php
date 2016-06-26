@@ -43,10 +43,10 @@
                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                 <button class="btn btn-xs btn-success"> <i class="icon-ok bigger-120"></i> </button> 
                 
-                <button class="btn btn-xs btn-info" onclick="showBg(<?php echo $v['user_id'] ?>)"> <i class="icon-edit bigger-120"></i> </button> 
+                <button class="btn btn-xs btn-info" onclick="showBg(<?php echo $v['user_id'] ?>)" title="修改"> <i class="icon-edit bigger-120"></i> </button> 
                 
                 
-                <button class="btn btn-xs btn-danger" onclick="del(<?php echo $v['user_id'] ?>)"> <i class="icon-trash bigger-120"></i> </button> 
+                <button class="btn btn-xs btn-danger" onclick="del(<?php echo $v['user_id'] ?>)" title="删除"> <i class="icon-trash bigger-120"></i> </button> 
                 <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
                </div> 
                </div> 
