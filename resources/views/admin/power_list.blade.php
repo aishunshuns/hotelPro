@@ -26,8 +26,8 @@
               <td>{{str_repeat('--',$v['level'])}} <input type="text" id="input_{{$v['privilege_id']}}" style="display:none"><span onclick="save({{$v['privilege_id']}})" id="span_{{$v['privilege_id']}}">{{$v['privilege_name']}}</span></td> 
               <td> 
                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group"> 
-                <button class="btn btn-xs btn-info" onclick="showBg({{$v['privilege_id']}})"> <i class="icon-edit bigger-120"></i> </button> 
-                <button class="btn btn-xs btn-danger" onclick="privilege_del({{$v['privilege_id']}})"> <i class="icon-trash bigger-120"></i> </button> 
+                <button class="btn btn-xs btn-info" onclick="showBg({{$v['privilege_id']}})" title="修改"> <i class="icon-edit bigger-120"></i> </button> 
+                <button class="btn btn-xs btn-danger" onclick="privilege_del({{$v['privilege_id']}})" title="删除"> <i class="icon-trash bigger-120"></i> </button> 
                 <button class="btn btn-xs btn-warning"> <i class="icon-flag bigger-120"></i> </button> 
                </div> 
                <div class="visible-xs visible-sm hidden-md hidden-lg"> 

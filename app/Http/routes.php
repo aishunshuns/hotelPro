@@ -13,6 +13,7 @@
 	Route::get('aaa', 'home\api\AaaController@aaa');
 
 	// gs
+
 	//注册及登陆路由
 	Route::get('Register', 'home\RegisterController@Register');
 	Route::get('register_shu', 'home\RegisterController@Register_shu');
@@ -58,6 +59,8 @@ Route::group( ["middleware" => 'homeCheck'], function() {
 	Route::get('MyOrder', 'home\IndexController@MyOrder');
 	//订单详情
 	Route::post('myOrderping', 'home\MyorderController@myOrderping');
+	//评论页面
+	Route::get('Ping', 'home\MyorderController@Ping');
 	//我的格子
 	Route::get('userAccount', 'home\UseraccountController@userAccount');
 	Route::get('myList', 'home\UseraccountController@myList');
@@ -68,6 +71,19 @@ Route::group( ["middleware" => 'homeCheck'], function() {
 	Route::get('Cancel', 'home\CitylistController@Cancel');
 	Route::get('Hotel', 'home\CitylistController@Hotel');
 	Route::get('HotelOrder', 'home\CitylistController@HotelOrder');
+
+	Route::get('collect', 'home\UseraccountController@collect');
+	Route::any('files', 'home\UseraccountController@file');
+
+	//礼品商城
+	Route::get('Gift', 'home\GiftController@Gift');
+	//礼品积分兑换
+	Route::post('Convert', 'home\GiftController@Convert');
+	//礼品收藏
+	Route::get('Collection', 'home\GiftController@Collection');
+	//礼品详情页面返回首页
+	Route::get('shou', 'home\GiftController@shou');
+>>>>>>> master
 });
 	// gs
 

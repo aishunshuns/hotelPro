@@ -180,8 +180,8 @@
          
            
             var open = null, today = new Date();
-            var beginday = "{{Session::get('start_time')}}";
-            var endday = "{{Session::get('end_time')}}";
+            var beginday = '2014-4-11';
+            var endday = '2014-4-12';
             //设置开始时间为今天
             $('#datestart').html(beginday + '<span class="ui-icon-down"></span>');
 
@@ -267,27 +267,7 @@
           
         <div class="fr">
           <em class="orange roomprice">
-          <?php if($data < 1000){?>
-              门市价：￥{{$v['house_price']}}
-          <?php }elseif($data >=1000 && $data<2000){?>
-               <p style="text-decoration:line-through;">门市价：￥{{$v['house_price']}} </p>
-               <p>VIP价：￥{{$v['member_price']}} </p>
-          <?php }elseif($data >=2000 && $data<4000){?>
-               <p style="text-decoration:line-through;">门市价：￥{{$v['house_price']}} </p>
-               <p style="text-decoration:line-through;">VIP价：￥{{$v['member_price']}} </p>
-               <p>银卡价：￥{{$v['silver_price']}} </p>
-          <?php }elseif($data >=4000 && $data<8000){?>
-               <p style="text-decoration:line-through;">门市价：￥{{$v['house_price']}} </p>
-               <p style="text-decoration:line-through;">VIP价：￥{{$v['member_price']}} </p>
-               <p style="text-decoration:line-through;">银卡价：￥{{$v['silver_price']}} </p>
-               <p>金卡价：￥{{$v['gold_price']}} </p>
-          <?php }else{ ?>
-              <p style="text-decoration:line-through;">门市价：￥{{$v['house_price']}} </p>
-              <p style="text-decoration:line-through;">VIP价：￥{{$v['member_price']}} </p>
-              <p style="text-decoration:line-through;">银卡价：￥{{$v['silver_price']}} </p>
-              <p style="text-decoration:line-through;">金卡价：￥{{$v['gold_price']}} </p>
-              <p>钻石价：￥{{$v['diamond_price']}} </p>
-          <?php } ?>
+              ￥{{$v['diamond_price']}} 起
          </em>
        @if($v['house_num']>0)
 	     <a href="HotelOrder?hotel_id={{$v['hotel_id']}}&house_id={{$v['house_id']}}&start_time={{Session::get('start_time')}}&end_time={{Session::get('end_time')}}" title='立即预定' class='btn btn-success iframe'>预定</a>
@@ -297,9 +277,9 @@
 		</div>
         </div>
         
-                     <a class="fl roompic" bigsrc="{{$v['house_img']}}">
-                            <img title="{{$v['house_name']}}"
-                             src="{{$v['house_img']}}"></a>
+                     <a class="fl roompic" bigsrc="..\{{$v['house_img']}}">
+                            <img title="秀灵上下铺" 
+                             src="..\{{$v['house_img']}}"></a>
                     
     </li>  
     @endforeach   

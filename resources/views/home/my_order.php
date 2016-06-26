@@ -132,17 +132,15 @@ text-decoration:none;
               <div class='clear'></div>  
                </a> 
                <ul class='unstyled'>
-                     <li><a href='javascript:showBg();' class='order'>评论</a></li>
-              </ul>
+                      <input type='hidden' value='".$v['card_number']."' id='card_number' />";?>
+                     <li><a href='javascript:void(0);' onclick="showBg('<?php echo $v['card_number'] ?>')" class='order'>评论</a></li>
+              <?php echo "</ul>
                </li>     
                   <div>
                   <div id='fullbg'></div> 
                   <div id='dialog'> 
                   <p class='close'><a href='#' onclick='closeBg();'>关闭</a></p> 
-                  <div>
-                    ";
-                                  include 'Ping.php';
-                                  echo "
+                  <div id='lists'>
                   </div> 
                   </div> 
                   </div> 
@@ -198,7 +196,18 @@ text-decoration:none;
 </html>
 <script type="text/javascript"> 
 //显示灰色 jQuery 遮罩层 
-function showBg() { 
+function showBg(card_number) {
+
+  var ajax =new XMLHttpRequest()
+ajax.open("get","Ping?card_number="+card_number)
+ajax.send()
+ajax.onreadystatechange=function () {
+      // alert(ajax.responseText)
+    if (ajax.status==200&&ajax.readyState==4) {
+      //alert(1)
+      document.getElementById('lists').innerHTML=ajax.responseText;
+    }
+}
 var bh = $("body").height(); 
 var bw = $("body").width(); 
 $("#fullbg").css({ 
@@ -206,7 +215,11 @@ height:bh,
 width:bw, 
 display:"block" 
 }); 
-$("#dialog").show(); 
+ 
+//var card_number = document.getElementById('card_number').value
+//alert(card_number)
+
+$("#dialog").show();
 } 
 //关闭灰色 jQuery 遮罩 
 function closeBg() { 

@@ -47,7 +47,7 @@
             
               
               <td> <a href="#"><?php echo $v['hotel_name']?></a> </td> 
-              <td><img src="<?php echo $v['hotel_img']?>"></td> 
+              <td><img src="../<?php echo $v['hotel_img']?>" width='50px'></td> 
               <td><?php echo $v['city_id']?></td> 
               <td><?php echo $v['hotel_address']?></td> 
          
