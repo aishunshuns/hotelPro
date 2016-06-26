@@ -53,6 +53,7 @@
                 <li onclick="javascript:location.href='myOrder';">我的订单</li>
                 <li onclick="javascript:location.href='myGift';">历史记录</li>
                 <li onclick="javascript:location.href='collect';">我的收藏</li>
+                <li onclick="javascript:location.href='<?php echo url('out')?>';">退出</li>
             </ul>
         </div>
         <div class="footer">

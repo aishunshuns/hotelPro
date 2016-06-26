@@ -10,7 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+	Route::get('aaa', 'home\api\AaaController@aaa');
 
+	// gs
 
 	//注册及登陆路由
 	Route::get('Register', 'home\RegisterController@Register');
@@ -18,14 +20,12 @@
 	Route::post('register_add', 'home\RegisterController@Register_add');
 	Route::get('Login', 'home\RegisterController@Login');
 	Route::post('Login_yz', 'home\RegisterController@Login_yz');
-Route::group( ["middleware" => 'homeCheck'], function() {
+
 	//首页页面路由
 	Route::get('/', 'home\IndexController@Index');
 	Route::get('CityList', 'home\IndexController@CityList');
 	Route::get('ActiVitys', 'home\IndexController@ActiVitys');
 	Route::get('GiftList', 'home\IndexController@GiftList');
-
-	Route::get('MyOrder', 'home\IndexController@MyOrder');
 
 	//帮助咨询
 	Route::get('Help', 'home\HelpController@Help');
@@ -36,26 +36,27 @@ Route::group( ["middleware" => 'homeCheck'], function() {
 
 	//预定酒店路由
 	Route::get('HotelList', 'home\CitylistController@HotelList');
-	Route::get('Hotel', 'home\CitylistController@Hotel');
 	Route::get('HotelInfo', 'home\CitylistController@HotelInfo');
 	Route::get('HotelMap', 'home\CitylistController@HotelMap');
 	Route::get('HotelReview', 'home\CitylistController@HotelReview');
 
-	Route::get('HotelOrder', 'home\CitylistController@HotelOrder');
 	Route::post('updateTime', 'home\CitylistController@updateTime');
 	Route::get('HotelShow', 'home\CitylistController@HotelShow');
 	Route::get('HotelNav', 'home\CitylistController@HotelNav');
-
-	//收藏酒店
-	Route::get('Collection', 'home\CitylistController@Collection');
-	Route::get('Cancel', 'home\CitylistController@Cancel');
-
-
 	//最新活动路由
 	Route::get('News', 'home\ActivityController@News');
-	
+	//礼品商城
+	Route::get('Gift', 'home\GiftController@Gift');
+	//礼品详情页面返回首页
+	Route::get('shou', 'home\GiftController@shou');
+Route::group( ["middleware" => 'homeCheck'], function() {
+	//礼品积分兑换
+	Route::post('Convert', 'home\GiftController@Convert');
+	//礼品收藏
+	Route::get('Collection', 'home\GiftController@Collection');
 	//我的订单
 	Route::get('myOrder', 'home\MyorderController@myOrder');
+	Route::get('MyOrder', 'home\IndexController@MyOrder');
 	//订单详情
 	Route::post('myOrderping', 'home\MyorderController@myOrderping');
 	//评论页面
@@ -64,6 +65,13 @@ Route::group( ["middleware" => 'homeCheck'], function() {
 	Route::get('userAccount', 'home\UseraccountController@userAccount');
 	Route::get('myList', 'home\UseraccountController@myList');
 	Route::get('myGift', 'home\UseraccountController@myGift');
+	Route::get('out', 'home\UseraccountController@out');
+	//收藏酒店
+	Route::get('Collection', 'home\CitylistController@Collection');
+	Route::get('Cancel', 'home\CitylistController@Cancel');
+	Route::get('Hotel', 'home\CitylistController@Hotel');
+	Route::get('HotelOrder', 'home\CitylistController@HotelOrder');
+
 	Route::get('collect', 'home\UseraccountController@collect');
 	Route::any('files', 'home\UseraccountController@file');
 
@@ -75,7 +83,9 @@ Route::group( ["middleware" => 'homeCheck'], function() {
 	Route::get('Collection', 'home\GiftController@Collection');
 	//礼品详情页面返回首页
 	Route::get('shou', 'home\GiftController@shou');
+>>>>>>> master
 });
+	// gs
 
 /*后台*/
  
