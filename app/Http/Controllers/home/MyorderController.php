@@ -39,7 +39,10 @@ class MyOrderController extends Controller{
         public function myOrderping()
         {
                 $arr=Request::all();
-                $card=DB::select('SELECT * FROM lat_comment where user_id = ? and hotel_id', [$arr['user_id']],[$arr['hotel_id']]);
+                //echo "<pre>";
+                //print_r($arr);
+                $card=DB::select('SELECT * FROM lat_comment where user_id = ? and hotel_id = ?', [$arr['user_id'],$arr['hotel_id']]);
+                //print_r($card);die;
                 if ($card) {
                         return "<script>alert('您已提交过评论，请勿重复提交。');location.href='myOrder?card_status=".$arr['card_status']."'</script>";
                 } else {
